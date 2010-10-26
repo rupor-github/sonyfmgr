@@ -1,0 +1,32 @@
+This is a very simple two-panel filemanager (like total/midnight commander). It implements pretty small subset of such file manager functionality: F5-Copy file, F6-Move file, F7-Create directory, F8-Delete file. Files can be marked by right click or "Insert" key. +/- keys can be used for mark/unmark files using wildcards. Thats it. Note that operations with directories not implemented yet.
+
+But no one will write such filemanager today - total commander, midnight commender, gnome commander or krusader work good enough. So this product (mngr505) provides some other additional PRS505 specific functionality.
+
+1. It aware about .fb2, .fb2.zip and .lrf formats. That means that when you select such file it will show you all book specific information: author, title and even pages amount and current page number (if this information is available in media.xml file). When you move cursor over such file this information will appear as tooltip.
+
+2. Upon start mngr505 will look for PRS505 reader. If reader is found it reads and parses media.xml file and go to database/media/books directory in the reader.
+
+3. Then you can work with mngr505 as if it is regular (but restricted) file manager. If you create some subdirectories under the database/media/books directory in the reader these subdirectories will be converted to collections later.
+
+4. You can set any arbitrary order of files in such subdirectories (by Shift-Up/Shift-Down keys). Just don't forget to save this order with Cntrl-S key. Note that all this functionality is accessible via "Action" menu too. The order of books in collection will reflect order of files in subdirectories.
+
+5. After all books are copied to reader and all subdirectories with desired order are created, use "Actions"/"Scan and create collection" menu item. Upon this mngr505 executes follow steps:
+
+5.1 Removes from media.xml file books which are not found on device (i.e. you deleted them during this session).
+
+5.2 Adds to media.xml information about new (added during this session) books. Note that accurate information is generated only for .lrf books. All other formats (.pdf, .rtf, .txt) are handled too but with less info (title is set to file name and author to "Unknown").
+
+5.3 Removes all old collections
+
+5.4 Scan directories under database/media/books in the reader. for each subdirectory collection with same name is created. Order of books in collection will be same as you set it in subdirectory.
+
+5.5 If "author" field is Russian (UTF8) - first letter of author will be transliterated to latin. It is necessary to ensure some sane sorting by Author in PRS505. "title" will be transliterated to latin1 and set to titleSorter tag - for sorting by title in PRS505.
+
+5.6 When you press "OK" (you may preview media.xml file draft before) - the new media.xml will be written back to device.
+
+Now you can exit from mngr505 and unmount PRS505 (Safely stop USB device).
+
+Note 1: For old and untouched books all info in media.xml file is kept as is - so all book information (bookmarks, current position, history, etc.) is kept.
+
+Note 2: Media.xml file is rewritten only when you press OK button in corresponding window. It is untouched before. When it overwritten mngr505 creates backup copy with the previous one.
+

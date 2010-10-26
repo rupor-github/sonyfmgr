@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="icons" >
+    <file>Graphics/asort.png</file>
+    <file>Graphics/config.png</file>
+    <file>Graphics/qticon.png</file>
+    <file>Graphics/bsort.png</file>
+    <file>Graphics/exit.png</file>
+    <file>Graphics/enum.png</file>
+    <file>Graphics/unenum.png</file>
+    <file>Graphics/unselect.png</file>
+    <file>Graphics/select.png</file>
+    <file>Graphics/umount.png</file>
+    <file>Graphics/revert.png</file>
+    <file>Graphics/sort.png</file>
+    <file>Graphics/SD.png</file>
+    <file>Graphics/save.png</file>
+    <file>Graphics/books.png</file>
+    <file>Graphics/bookshelf.png</file>
+    <file>Graphics/down.png</file>
+    <file>Graphics/up.png</file>
+    <file>Graphics/mngr505.png</file>
+  </qresource>
+</RCC>

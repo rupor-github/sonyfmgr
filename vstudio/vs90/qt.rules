@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="QT"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="QT UI Header"
+			DisplayName="Building QT UI Header"
+			CommandLine="$(ProjectDir)..\..\Qt\4.7.0\bin\uic.exe [inputs] [AllOptions]"
+			Outputs="$(InputDir)ui_$(InputName).h"
+			FileExtensions="*.ui"
+			ExecutionDescription="Building QT UI Header"
+			ShowOnlyRuleProperties="false"
+			>
+			<Properties>
+				<StringProperty
+					Name="QTHeaderFile"
+					DisplayName="QT Header File"
+					Switch="-o &quot;[value]&quot;"
+					DefaultValue="$(InputDir)ui_$(InputName).h"
+				/>
+			</Properties>
+		</CustomBuildRule>
+		<CustomBuildRule
+			Name="QT MOC file"
+			DisplayName="Building QT MOC file"
+			CommandLine="$(ProjectDir)..\..\Qt\4.7.0\bin\moc.exe [inputs] [AllOptions]"
+			Outputs="$(InputDir)$(ConfigurationName)\moc_$(InputName).cpp"
+			FileExtensions="*.h"
+			ExecutionDescription="Building QT MOC file"
+			ShowOnlyRuleProperties="false"
+			>
+			<Properties>
+				<StringProperty
+					Name="QTMOCFile"
+					DisplayName="QT Moc File"
+					Switch="-o &quot;[value]&quot;"
+					DefaultValue="$(InputDir)$(ConfigurationName)\moc_$(InputName).cpp"
+				/>
+				<StringProperty
+					Name="MOCIncludePath"
+					DisplayName="Include Path"
+					Switch="-I&quot;$(InputDir)..\Qt\4.7.0\include\QtCore&quot; -I&quot;$(InputDir)..\Qt\4.7.0\include\QtGui&quot; -I&quot;$(InputDir)..Qt\4.7.0\include\QtXml&quot; -I&quot;$(InputDir)..\Qt\4.7.0\include&quot; -I&quot;$(InputDir)..\Qt\4.7.0\include\ActiveQt&quot; -I&quot;$(ConfigurationName)&quot; -I&quot;.&quot; -I&quot;$(InputDir)..\Qt\4.7.0\mkspecs\win32-msvc2008&quot;"
+				/>
+				<StringProperty
+					Name="MOCDefines"
+					DisplayName="MOC Defines"
+					Switch="-DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DWINDOWS -DQT_DLL -DQT_NO_DEBUG -DQT_XML_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -D_MSC_VER=1500"
+				/>
+			</Properties>
+		</CustomBuildRule>
+		<CustomBuildRule
+			Name="QT Resources"
+			DisplayName="Building QT RCC"
+			CommandLine="$(ProjectDir)..\..\Qt\4.7.0\bin\rcc.exe [inputs] [AllOptions]"
+			Outputs="$(InputDir)$(ConfigurationName)\qrc_$(InputName).cpp"
+			FileExtensions="*.qrc"
+			ExecutionDescription="Building QT RCC"
+			ShowOnlyRuleProperties="false"
+			>
+			<Properties>
+				<StringProperty
+					Name="QTRCCFile"
+					DisplayName="QT RCC File"
+					Switch="-o &quot;[value]&quot;"
+					DefaultValue="$(InputDir)$(ConfigurationName)\qrc_$(InputName).cpp"
+				/>
+				<StringProperty
+					Name="QTRCCName"
+					DisplayName="QT RCC Name"
+					Switch="-name &quot;[value]&quot;"
+					DefaultValue="$(InputName)"
+				/>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

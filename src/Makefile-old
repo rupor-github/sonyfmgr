@@ -1,0 +1,269 @@
+###
+### $Id$
+###
+### Manager505 Makefile
+### -------------------
+###
+### Linux only. For other systems use mngr505.pro file!
+###
+
+###
+### ------------------
+### Common definitions
+### ------------------
+###
+
+### Common
+### ------
+TRG          = mngr505
+SYS          = $(shell uname)
+OBJ_DIR      = OBJ_$(SYS)
+
+### QT
+### --
+ifndef $QTDIR
+QTDIR=/usr
+endif
+QTBDIR = $(QTDIR)/bin
+QTLDIR = $(QTDIR)/lib
+QTIDIR = $(shell if [ -r $(QTDIR)/include/qt4/QtCore/QString ]; then \
+			echo $(QTDIR)/include/qt4;                   \
+		elif [ -r $(QTDIR)/include/QtCore/QString ]; then    \
+			echo $(QTDIR)/include;                       \
+		else                                                 \
+			echo "";                                     \
+		fi)
+ifeq ($(strip $(QTIDIR)),)
+$(error "No Qt Include found.")
+endif
+
+UIC    = $(QTBDIR)/uic
+MOC    = $(QTBDIR)/moc
+RCC    = $(QTBDIR)/rcc
+
+### X11
+### ---
+X11IDIR = /usr/X11R6/include
+X11LDIR = /usr/X11R6/lib
+
+.SUFFIXES:  .ui .o .cpp
+.SECONDARY:
+
+
+LFLAGS = -L$(QTLDIR) -L$(X11LDIR)
+INC    = -I. -I$(OBJ_DIR) -I$(QTIDIR)/QtCore -I$(QTIDIR)/QtNetwork -I$(QTIDIR)/QtXml -I$(QTIDIR)/QtGui -I$(QTIDIR) -I$(X11IDIR)
+DEFS   = -DLINUX -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_SHARED -D_REENTRANT
+CFLAGS = -pipe -Wall -W -Werror -fno-exceptions
+CC     = g++
+
+ifdef RELEASE
+     ###
+     ### Release build
+     ###
+     ifdef STATIC
+          ### Static build
+          ### ------------
+          QTGUI_LIB  = $(shell if [ -r $(QTLDIR)/libQtGui.a ]; then  \
+                             echo $(QTLDIR)/libQtGui.a;              \
+                         else                                        \
+                             echo -lQtGui;                           \
+                         fi)
+          QTXML_LIB  = $(shell if [ -r $(QTLDIR)/libQtXml.a ]; then  \
+                             echo $(QTLDIR)/libQtXml.a;              \
+                         else                                        \
+                             echo -lQtXml;                           \
+                         fi)
+          QTCORE_LIB = $(shell if [ -r $(QTLDIR)/libQtCore.a ]; then \
+                             echo $(QTLDIR)/libQtCore.a;             \
+                         else                                        \
+                             echo -lQtCore;                          \
+                         fi)
+
+          DEFS  += -DQT_NO_DEBUG
+          CFLAGS+= -O2
+          EXTRA1_LIBS = \
+               /usr/lib/libfontconfig.a \
+               /usr/lib/libfreetype.a	\
+               /usr/lib/libSM.a		\
+               /usr/lib/libICE.a	\
+               /usr/lib/libXrender.a	\
+               /usr/lib/libXrandr.a	\
+               /usr/lib/libXcursor.a	\
+               /usr/lib/libXfixes.a	\
+               /usr/lib/libXi.a		\
+               /usr/lib/libXt.a		\
+               /usr/lib/libXext.a	\
+               /usr/lib/libX11.a	\
+               /usr/lib/libxcb-xlib.a	\
+               /usr/lib/libxcb.a	\
+               /usr/lib/libXdmcp.a	\
+               /usr/lib/libXau.a	\
+               /usr/lib/libpng12.a	\
+               /usr/lib/libexpat.a	\
+               /usr/lib/librt.a         \
+               /usr/lib/libz.a          \
+                -ldl -lpthread -lglib-2.0 -lgthread-2.0
+              # /usr/lib/libselinux.a	????
+
+      else
+          ### Dynamic build
+          ### -------------
+          QTGUI_LIB  = -lQtGui
+          QTCORE_LIB = -lQtCore
+          QTXML_LIB  = -lQtXml
+      endif
+
+else
+
+     ###
+     ### Debug build
+     ###
+     GUI_LIB  = $(shell if [ -r $(QTLDIR)/libQtGui*debug ]; then  \
+                        ls $(QTLDIR)/libQtGui*debug;         \
+                    else                                            \
+                        echo -lQtGui;                               \
+                    fi)
+     XML_LIB  = $(shell if [ -r $(QTLDIR)/libQtXml*debug ]; then  \
+                        ls $(QTLDIR)/libQtXml*debug;         \
+                    else                                            \
+                        echo -lQtXml;                               \
+                    fi)
+     CORE_LIB = $(shell if [ -r $(QTLDIR)/libQtCore*debug ]; then \
+                        ls $(QTLDIR)/libQtCore*debug;        \
+                    else                                            \
+                        echo -lQtCore;                              \
+                    fi)
+     #QTGUI_LIB   = -l:$(GUI_LIB)
+     #QTXML_LIB   = -l:$(XML_LIB)
+     #QTCORE_LIB  = -l:$(CORE_LIB)
+     #EXTRA1_LIBS = -lpng -lXrender -lXrandr -lXcursor -lfreetype -lfontconfig -lXext -lX11 -lXi -laudio -lglib-2.0 -lgthread-2.0
+     QTGUI_LIB   = -lQtGui
+     QTCORE_LIB  = -lQtCore
+     QTXML_LIB   = -lQtXml
+     CFLAGS+= -g
+endif
+
+LIBS   = $(QTGUI_LIB) $(QTXML_LIB) $(QTCORE_LIB)  $(EXTRA1_LIBS) -lpthread
+
+
+all:	$(TRG)
+
+TRGMODULES  = \
+	BookData.cpp       \
+	Confirm.cpp        \
+	Config.cpp         \
+	DeviceSelect.cpp   \
+	FB2Parser.cpp      \
+	FB2toEPUB.cpp      \
+	FB2toLRF.cpp       \
+	EPUB.cpp           \
+	EPUBParser.cpp     \
+	FPanel.cpp         \
+	FPanelItem.cpp     \
+	Info.cpp           \
+	LRFParser.cpp      \
+	LogWidget.cpp      \
+	Media.cpp          \
+	NameEdit.cpp       \
+	Viewer.cpp         \
+	mngr505.cpp        \
+	umount_lin.cpp     \
+	unzip.cpp          \
+	utils.cpp          \
+	zip.cpp            \
+	main.cpp
+TRGUIFILES = \
+	Confirm            \
+	Config             \
+	LogWidget          \
+	mngr505
+TRGMOCS    = \
+	moc_Confirm        \
+	moc_Config         \
+	moc_DeviceSelect   \
+	moc_FPanel         \
+	moc_Info           \
+	moc_LogWidget      \
+	moc_Media          \
+	moc_NameEdit       \
+	moc_Viewer         \
+	moc_mngr505
+
+QRCRESOURCES  = \
+	Graphics/SD.png        \
+	Graphics/books.png     \
+	Graphics/bookshelf.png \
+	Graphics/bsort.png     \
+	Graphics/config.png    \
+	Graphics/down.png      \
+	Graphics/exit.png      \
+	Graphics/qticon.png    \
+	Graphics/save.png      \
+	Graphics/select.png    \
+	Graphics/sort.png      \
+	Graphics/umount.png    \
+	Graphics/unselect.png  \
+	Graphics/up.png        \
+	Graphics/mngr505.png
+QRCFILE       = mngr505.qrc
+
+QRCFILE_CPP= $(QRCFILE:%.qrc=qrc_%.cpp)
+QRCFILE_OBJ= $(QRCFILE_CPP:%.cpp=$(OBJ_DIR)/%.o)
+TRGFILES   = $(TRGUIFILES:%=$(OBJ_DIR)/ui_%.h)
+TRGFILES  += $(TRGMOCS:%=$(OBJ_DIR)/%.cpp)
+
+TRGOBJS  += $(TRGMOCS:%=$(OBJ_DIR)/%.o)
+TRGOBJS  += $(TRGMODULES:%.cpp=$(OBJ_DIR)/%.o)
+
+### Load dependecies
+### ----------------
+DEPS = $(wildcard $(OBJ_DIR)/*.d)
+ifneq ($(strip $(DEPS)),)
+include $(DEPS)
+endif
+
+### Compilation and dependecies generation
+### --------------------------------------
+define COMPILE
+$(CC) -c -MD $(CFLAGS) $(INC) $(DEFS) -o $@ $<
+endef
+
+### Target rules
+### ------------
+clean:
+			@rm -fr $(OBJ_DIR) Mak Mak.* Make.* Makefile.* debug release object_script.* Config.h Config.cpp valgrind* qrc_* ui_* moc_* .qmake* *.RES *.exe obj *.o *.d $(TRG) $(TRG).gz *.mak moc_* *~ core*
+
+Config.h:		gen_config Config-1.h
+			./gen_config Config-1.h Config.h
+
+Config.cpp:		gen_config Config-1.cpp
+			./gen_config Config-1.cpp Config.cpp
+
+$(OBJ_DIR)/ui_%.h:	%.ui
+			$(UIC) -o $@ $<
+
+$(OBJ_DIR)/$(QRCFILE_CPP): 	$(QRCRESOURCES) $(QRCFILE)
+				$(RCC) -name $(TRG) $(QRCFILE) -o $@
+$(OBJ_DIR)/moc_%.cpp:	$(OBJ_DIR)/%.h
+			$(MOC) $(INC) $(DEFS) -o $@ $<
+
+$(OBJ_DIR)/moc_%.cpp:	%.h
+			$(MOC) $(INC) $(DEFS) -o $@ $<
+
+$(OBJ_DIR)/%.o: 	$(OBJ_DIR)/%.cpp
+			$(COMPILE)
+
+$(OBJ_DIR)/%.o: 	%.cpp
+			$(COMPILE)
+
+$(OBJ_DIR):
+			mkdir $(OBJ_DIR)
+
+$(TRG):			$(OBJ_DIR) $(TRGFILES) $(TRGOBJS) $(QRCFILE_OBJ) Makefile
+			$(CC) -o $@ $(LFLAGS) $(TRGOBJS)  $(QRCFILE_OBJ) $(LIBS)
+			@rm -f *.d core* *~
+ifdef RELEASE
+			strip $@
+endif
+rel:			clean
+			make RELEASE=1 STATIC=1

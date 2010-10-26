@@ -1,0 +1,39 @@
+Linux:
+======
+
+System requirements:
+--------------------
+        Qt development libraries (apt-get install libqt4-dev)
+        Zlib developmnet headers (apt-get install zlib1g-dev)
+I use Ubuntu 8.04. Should work on all major distributions
+
+Build:
+------
+qmake -o Mak mngr505.pro
+make -f Mak
+
+Install:
+--------
+Copy ./mngr505 executable file to any directory in your path.
+
+
+Windows:
+========
+
+System requirements:
+--------------------
+        Qt
+        mingw
+        mingw-zlib
+
+While you install Qt, the Qt installator automatically installs mingw.
+But mingw-zlib package should be installed separate.
+
+Build:
+------
+qmake -o Mak mngr505.pro
+make -f Mak
+
+Install:
+--------
+Copy .\release\mngr505.exe executable file to any directory in your path.

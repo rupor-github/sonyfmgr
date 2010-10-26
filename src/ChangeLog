@@ -1,0 +1,72 @@
+Version 0.15
+------------
+New configure options
+        Exit confirmation
+        Reader and SD card root directory
+        Transliteration options
+        Concatenate directory names
+	"Other" collections creation is optional now
+Show free space
+Allow edit media.xml file before saving
+Backspace and Delete keys added to navigation shortcuts
+
+
+Version 0.16
+------------
+New text nodes are inserted before first existing text node
+Stay in current mode -
+	if PRS505 was detected, we are working only inside the reader
+	if SD card was detected - we are working only inside the card
+New option - report in plain text (via configure screen). Much faster.
+Add mount points in right panel (instead of left)
+
+
+Version 0.20
+------------
+Collection name replacement executed on a last stage, before write
+them back to xml file.
+
+Unmount fixed - now mng505 always cd to root directory after successful unmount
+
+New mechanism to force collection names to something else then directory
+name.
+
+Optional collections enumeration in order to avoid their sorting by reader.
+
+Insert key and right mouse selection now is configurable via "Options" screen
+
+Added Control/Left mouse and Shift/Left mouse selections modes, like in
+Windows file explorer. These modes are optional, and can be configured via
+"Options" screen as well.
+
+Added Cntrl/Left arrow and Cntrl/Right arrow navigation as in Total Commander
+
+Create .zip archive with all debug info.
+
+Tips in a bootom converted to buttons
+
+When new configuration saved (user press "OK" on configuration screen)
+the mngr505 rereads all Ebook/SD contents
+
+
+Version 0.24
+------------
+Books attributes (date) now are independent from local setting
+
+Bug with "other" collection creation fixed.
+
+
+Version 0.25
+------------
+Configuration import/export/revert added
+
+Confirmation window redesigned
+
+sort collection by author added
+
+
+Version 0.25
+------------
+Clear transliteration added
+
+Automatic sort configuration added

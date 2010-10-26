@@ -1,0 +1,1 @@
+Install qt-win-opensource-4.7.0-vs2008.exe into this directory
