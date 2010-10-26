@@ -156,7 +156,7 @@ bool TDeviceEject::GetDriveDeviceId(TCHAR* DriveSpec,TCHAR* DeviceId,DWORD MaxDe
             {
                 PWSTR p1 = (PWSTR)Value;
                 ValueSize /= sizeof *p1;
-                if ((p1[0] == '\\') && (p1[1] == '?') && (p1[2] == '?') && (p1[3] == '\\'))
+                if ((p1[0] == '_') && (p1[1] == '?') && (p1[2] == '?') && (p1[3] == '_'))
                 {
                     Result = true;
                     p1        += 4;
@@ -350,7 +350,7 @@ static bool umount1(TCHAR cDriveLetter)
     TCHAR EjectDevSpec[1024]={0};
     bool bResult=false;
 
-    swprintf(EjectDrive,L"%c:",cDriveLetter);
+    swprintf(EjectDrive,20,L"%c:",cDriveLetter);
     if ( !TDeviceEject::GetDriveDeviceId(EjectDrive,EjectDevSpec,1024) )
         return false;
 
