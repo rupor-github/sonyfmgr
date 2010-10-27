@@ -878,12 +878,21 @@ UnZip::ErrorCode UnzipPrivate::parseCentralDirectoryRecord()
         skipEntry = true;
     }
 
+    // This check makes no sence for several reasons, but mainly since
+    // EPUB does not support "proprietary" PKZIP extensions.
+    //
+    // TODO: Instead proper check should verify that such extensions are not used on each
+    // ZipEntry level :) I am aware of 2 such extensions: UnicodeText = 0x0800 and
+    // StrongEncryption = 0x0040.
+    //
+    // We may also need to verify that Zip64 is not used.
+    //
     // Header parsing may be a problem if version is bigger than UNZIP_VERSION
-    if (!skipEntry && buffer1[UNZIP_CD_OFF_VERSION] > UNZIP_VERSION)
-    {
-        qDebug() << "Unsupported PKZip version. Skipping file.";
-        skipEntry = true;
-    }
+    // if (!skipEntry && buffer1[UNZIP_CD_OFF_VERSION] > UNZIP_VERSION)
+    // {
+    //    qDebug() << "Unsupported PKZip version. Skipping file.";
+    //    skipEntry = true;
+    // }
 
     if (!skipEntry && szName == 0)
     {

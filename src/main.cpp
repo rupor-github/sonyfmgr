@@ -11,7 +11,7 @@
 
 #include "mngr505.h"
 
-#if !defined(_MSC_VER)
+#if !defined(_MSC_VER)|| defined(_DEBUG)
 int main(int ac, char *av[])
 {
     QApplication app(ac, av);

@@ -316,10 +316,6 @@ bool Info::fillEPUBInfo(const QString& fullname, BookData *bd)
     // Set  FB2 parser
     EPUBParser        handler;
     EPUBErrorHandler  errorHandler(fullname);
-    QXmlInputSource   source;
-    QXmlSimpleReader  reader;
-    reader.setErrorHandler(&errorHandler);
-    reader.setContentHandler(&handler);
 
     // Archive
     UnZip            uz;
@@ -327,33 +323,49 @@ bool Info::fillEPUBInfo(const QString& fullname, BookData *bd)
     if (ec != UnZip::Ok)
         return false;
 
-    // Read container
-    QBuffer     outcont;
-    if (!outcont.open(QIODevice::ReadWrite))
-        return false;
-    ec = uz.extractFile("META-INF/container.xml", &outcont, UnZip::SkipPaths);
-    if (ec != UnZip::Ok)
-        return false;
-    source.setData(outcont.data());
-    errorHandler.setFname("META-INF/container.xml");
-    if (!reader.parse(source))
-        return false;
+    {
+        QXmlInputSource   source;
+        QXmlSimpleReader  reader;
+        reader.setErrorHandler(&errorHandler);
+        reader.setContentHandler(&handler);
+
+        // Read container
+        QBuffer     outcont;
+        if (!outcont.open(QIODevice::ReadWrite))
+            return false;
+        ec = uz.extractFile("META-INF/container.xml", &outcont, UnZip::SkipPaths);
+        if (ec != UnZip::Ok)
+            return false;
+        source.setData(outcont.data());
+        errorHandler.setFname("META-INF/container.xml");
+        if (!reader.parse(source))
+            return false;
+    }
     QString content_file = handler.rootfile();
     if (content_file.isEmpty())
         return false;
+    {
+        // We cannot reuse QXmlInputSource here despite source.reset() call -
+        // on a second attempt QTXml parser chokes on BOM - every time. I guess
+        // it resets itself too much :)
 
-    // Read content
-    QBuffer     outopf;
-    if (!outopf.open(QIODevice::ReadWrite))
-        return false;
-    ec = uz.extractFile(content_file, &outopf, UnZip::SkipPaths);
-    if (ec != UnZip::Ok)
-        return false;
-    source.reset();
-    source.setData(outopf.data());
-    errorHandler.setFname(content_file);
-    if (!reader.parse(source))
-        return false;
+        QXmlInputSource   source;
+        QXmlSimpleReader  reader;
+        reader.setErrorHandler(&errorHandler);
+        reader.setContentHandler(&handler);
+
+        // Read content
+        QBuffer     outopf;
+        if (!outopf.open(QIODevice::ReadWrite))
+            return false;
+        ec = uz.extractFile(content_file, &outopf, UnZip::SkipPaths);
+        if (ec != UnZip::Ok)
+            return false;
+        source.setData(outopf.data());
+        errorHandler.setFname(content_file);
+        if (!reader.parse(source))
+            return false;
+    }
     bd->author = handler.author();
     bd->title  = handler.title();
     return true;
