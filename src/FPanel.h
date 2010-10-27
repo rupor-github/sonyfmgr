@@ -69,7 +69,7 @@ public:
     const char *getMode() {
         switch (_mode) {
         case PRS505:
-            return "PRS505";
+            return "Internal memory";
         case SD:
             return "SD";
         case FileSystem:

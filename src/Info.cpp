@@ -80,10 +80,10 @@ void Info::infoReq(FPanel *panel, const QString& dname, const QString& fname)
     if (getBookData(panel, type, dname + "/" + fname, &bd))
     {
         al[1]->setText(bd.author);
-        if (bd.page != 0  &&  bd.pages != 0)
+        if (bd.page != 0)
             tl[1]->setText(QString("%1&nbsp;&nbsp;&nbsp;&nbsp;<font color=#0000ff>"
-                                   "Page: %2/%3</font>")
-                           .arg(bd.title).arg(bd.page).arg(bd.pages));
+                                   "Page: %2</font>")
+                           .arg(bd.title).arg(bd.page));
         else
             tl[1]->setText(bd.title);
     }
@@ -110,7 +110,6 @@ bool Info::getBookData(FPanel *panel, const BookData::BType type, const QString&
     //qDebug("--- Not found");
     // Not found in cache - extract book data from the file
     bd->page = 0;
-    bd->pages = 0;
     bool rc;
     switch (type)
     {

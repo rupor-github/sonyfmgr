@@ -403,7 +403,7 @@ bool FPanel::findDevice(bool *ok)
                  "Start in <b><font color=#0000ff>%4</b><br>%5"));
 
     // Try root directory
-    QString modeName(dev->mode==PRS505 ? "PRS505" : "SD card");
+    QString modeName(dev->mode==PRS505 ? "Internal memory" : "SD card");
     QString rootDirName(dev->mode==PRS505 ? Config::rootPRS() :  Config::rootSD());
     QString dname(dev->name + "/" + rootDirName);
     while (dname.endsWith("/"))
@@ -418,7 +418,7 @@ bool FPanel::findDevice(bool *ok)
                "inside the book<br><br>"
                "Please create the directory or go to <b>Options/Collections</b> "
                "configuration screen and define another root directory "
-               "for PRS505.")
+               "for reader.")
             .arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(rootDirName));
         QMessageBox::information(0, "Directory not found", t);
         _umountAct->setEnabled(false);
@@ -445,7 +445,7 @@ bool FPanel::findDevice(bool *ok)
             t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dname))
                 .arg(tr("<font color=#ff0000><b>"
                         "Media file error:</b><br>%1").arg(errText));
-        _umountAct->setText(tr("U&mount Sony eBook PRS505"));
+        _umountAct->setText(tr("U&mount Sony eBook"));
         _umountAct->setIcon(QIcon(":/icons/Graphics/mngr505.png"));
     }
     else
@@ -859,9 +859,8 @@ void FPanel::entered(const QModelIndex& ind)
         BookData bd;
         if (Info::getBookData(this, _dirname, c->text(), &bd))
         {
-            if (bd.page != 0  &&  bd.pages != 0)
-                setToolTip(QString("%1\n%2\nPage: %3/%4").arg(bd.author).arg(bd.title)
-                           .arg(bd.page).arg(bd.pages));
+            if (bd.page != 0)
+                setToolTip(QString("%1\n%2\nPage: %3").arg(bd.author).arg(bd.title).arg(bd.page));
             else
                 setToolTip(QString("%1\n%2").arg(bd.author).arg(bd.title));
         }

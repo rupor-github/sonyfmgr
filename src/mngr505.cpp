@@ -23,7 +23,7 @@
 Ui::MainWindow    mngr505::_ui;
 const char *mngr505::_version = "1.12";
 const char *mngr505::_company = "HaraSoft";
-const char *mngr505::_appName = "mngr505";
+const char *mngr505::_appName = "mngr650";
 
 #define FCON(f) connect(_ui.f, SIGNAL(pressed()), this, SLOT(f())); \
     _fl->append(_ui.f);
@@ -39,7 +39,7 @@ void mngr505::f() {                  \
 mngr505::mngr505(): QMainWindow(0)
 {
     _ui.setupUi(this);
-    setWindowTitle("Manager505");
+    setWindowTitle("Manager650");
     qApp->setWindowIcon(QIcon(":/icons/Graphics/mngr505.png"));
 
     Config::init();
@@ -235,13 +235,13 @@ mngr505::~mngr505()
 ////////////////////////////////////////////////////////////////////////
 void mngr505::about()
 {
-    QMessageBox::about(0, tr("Manager505"),
-    tr("<h3><center>About Manager505</center></h3>"
-       "<p>Manager505 is a simple file manager for Sony eBook Reader PRS505. "
+    QMessageBox::about(0, tr("Manager650"),
+    tr("<h3><center>About program</center></h3>"
+       "<p>Manager650 is a simple file manager for Sony eBook Reader PRS650. "
        "It provides basic two-panel file manager functionality as well "
        "as some Sony eBook Reader specific functions, like collection "
        "management</p>"
-       "<p>Manager505 is aware about .lrf, .fb2 and .fb2.zip formats "
+       "<p>Manager650 is aware about .lrf, .fb2 and .fb2.zip formats "
        "and shows author/title information for these types of files</p>"
        "<center>Version: %1</center>").arg(_version));
 } // mngr505::about
@@ -385,9 +385,9 @@ void mngr505::show()
     if (v.isValid())
     {
         QList<int>  il;
-        QStringList sl = v.toStringList();
+		QStringList sl = v.toStringList();
         for( int i = 0; i < sl.size(); ++i )
-	   il.append( sl.at(i).toInt() );
+		   il.append( sl.at(i).toInt() );
 
         _ui.pSplitter->setSizes(il);
     }

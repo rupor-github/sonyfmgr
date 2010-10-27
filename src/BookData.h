@@ -11,9 +11,9 @@
 
 class BookData {
 public:
-    BookData() : pages(0), page(0), size(0), is_file(false), is_media(false) { }
+    BookData() : page(0), size(0), is_file(false), is_media(false) { }
     BookData(const QString& a, const QString& t) : author(a), title(t),
-        pages(0), page(0), size(0), is_file(false), is_media(false) { }
+        page(0), size(0), is_file(false), is_media(false) { }
 
     enum BType { Unknown, FB2, LRF, PDF, RTF, TXT, EPUB };
 
@@ -26,7 +26,6 @@ public:
     QString title;
     QString date;
     BType   type;
-    int     pages;
     int     page;
     int     size;
     bool    is_file;

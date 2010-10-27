@@ -49,11 +49,11 @@
         s->setValue(s->maximum());          \
 } while(0)
 
-#define PLAYLIST_T (_isSD ? "playlist"   : "xs1:playlist")
-#define TEXT_T     (_isSD ? "text"       : "xs1:text")
-#define IMAGE_T    (_isSD ? "image"      : "xs1:image")
-#define AUDIO_T    (_isSD ? "audio"      : "xs1:audio")
-#define ITEM_T     (_isSD ? "item"       : "xs1:item")
+#define PLAYLIST_T (_isSD ? "playlist"   : "cache:playlist")
+#define TEXT_T     (_isSD ? "text"       : "cache:text")
+#define IMAGE_T    (_isSD ? "image"      : "cache:image")
+#define AUDIO_T    (_isSD ? "audio"      : "cache:audio")
+#define ITEM_T     (_isSD ? "item"       : "cache:item")
 #define NAME_T     (_isSD ? "cache.xml"  : "media.xml")
 #define BNAME_T    (_isSD ? "cache"      : "media")
 #define SOURCEID_T (_isSD ? "500"        : "1")
@@ -245,7 +245,7 @@ bool Media::readPRS(const QString& root,  const QString& bookroot,
     }
     _nextID = nextID.nodeValue().toInt();
 
-    books = _dom.elementsByTagName("xs1:text");
+    books = _dom.elementsByTagName("cache:text");
     if (books.count() < 1)
     {
         QDomNodeList records = _dom.elementsByTagName("records");
@@ -286,20 +286,6 @@ bool Media::readPRS(const QString& root,  const QString& bookroot,
         // Page
         if (!page.isNull())
             bd.page = page.nodeValue().toInt();
-
-        // Pages
-        int pg = 0;
-        QDomNodeList bookmarks = b.toElement().elementsByTagName("xs1:bookmark");
-        for (int i=0; i<bookmarks.count(); i++) {
-            QDomNode pages = bookmarks.item(i).attributes().namedItem("pages");
-            if (!pages.isNull())
-            {
-                pg = pages.nodeValue().toInt();
-                break;
-            }
-        }
-        if (pg)
-            bd.pages = pg;
 
         bd.is_media = true;
         //qDebug("+++ Book \"%s\" inserted from media.xml",
@@ -393,20 +379,6 @@ bool Media::readSD(const QString& root,  const QString& bookroot,
         // Page
         if (!page.isNull())
             bd.page = page.nodeValue().toInt();
-
-        // Pages
-        int pg = 0;
-        QDomNodeList bookmarks = b.toElement().elementsByTagName("bookmark");
-        for (int i=0; i<bookmarks.count(); i++) {
-            QDomNode pages = bookmarks.item(i).attributes().namedItem("pages");
-            if (!pages.isNull())
-            {
-                pg = pages.nodeValue().toInt();
-                break;
-            }
-        }
-        if (pg)
-            bd.pages = pg;
 
         bd.is_media = true;
         //qDebug("+++ Book \"%s\" page: %d/%d inserted from cache.xml",
@@ -867,7 +839,7 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
     //           qPrintable(entries_list[i].absoluteFilePath())); //+++++
     //qDebug("%s", "");                                           //+++++
 
-    // Calculate values for current direcotry possible enumeration
+    // Calculate values for current directory possible enumeration
     int dcount=0, damount=0;
     char _dformat[10];
     _dformat[0] = 0;
