@@ -61,7 +61,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="$(InputDir)..\..\Qt\4.7.0\lib\QtCored4.lib $(InputDir)..\..\Qt\4.7.0\lib\QtGuid4.lib $(InputDir)..\..\Qt\4.7.0\lib\QtXmld4.lib SetupAPI.Lib"
-				OutputFile="$(OutDir)\mngr505.exe"
+				OutputFile="$(OutDir)\mngr650.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -138,7 +138,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="$(InputDir)..\..\Qt\4.7.0\lib\QtCore4.lib $(InputDir)..\..\Qt\4.7.0\lib\QtGui4.lib $(InputDir)..\..\Qt\4.7.0\lib\QtXml4.lib SetupAPI.Lib"
-				OutputFile="$(OutDir)\mngr505.exe"
+				OutputFile="$(OutDir)\mngr650.exe"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
