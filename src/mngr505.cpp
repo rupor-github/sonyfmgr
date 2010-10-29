@@ -21,7 +21,7 @@
 #include "mngr505.h"
 
 Ui::MainWindow    mngr505::_ui;
-const char *mngr505::_version = "1.12";
+const char *mngr505::_version = "1.13";
 const char *mngr505::_company = "HaraSoft";
 const char *mngr505::_appName = "mngr650";
 
@@ -94,10 +94,8 @@ mngr505::mngr505(): QMainWindow(0)
     enumAction->setShortcutContext(Qt::WidgetShortcut);
     connect(enumAction, SIGNAL(triggered()), this, SLOT(enumerate()));
     menu->addAction(enumAction);
-    menu->addSeparator(); // -----------------------------
-
     QAction *unEnumAction = new QAction(QIcon(":/icons/Graphics/unenum.png"),
-                                      tr("Enumerate"), this);
+                                      tr("Un-enumerate"), this);
     unEnumAction->setShortcut(tr("Ctrl+W"));
     unEnumAction->setShortcutContext(Qt::WidgetShortcut);
     connect(unEnumAction, SIGNAL(triggered()), this, SLOT(unEnumerate()));
@@ -154,7 +152,7 @@ mngr505::mngr505(): QMainWindow(0)
     topBar->addAction(QIcon(":/icons/Graphics/down.png"),    tr("Move item down"), this, SLOT(moveDown()));
     topBar->addAction(QIcon(":/icons/Graphics/save.png"),    tr("Save order"),     this, SLOT(saveOrder()));
     topBar->addAction(QIcon(":/icons/Graphics/enum.png"),    tr("Enumerate"),      this, SLOT(enumerate()));
-    topBar->addAction(QIcon(":/icons/Graphics/unenum.png"),  tr("Un enumerate"),   this, SLOT(unEnumerate()));
+    topBar->addAction(QIcon(":/icons/Graphics/unenum.png"),  tr("Un-enumerate"),   this, SLOT(unEnumerate()));
     topBar->addSeparator();
     topBar->addSeparator();
     topBar->addAction(QIcon(":/icons/Graphics/sort.png"),    tr("Sort"), this, SLOT(sort()));
