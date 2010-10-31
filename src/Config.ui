@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>Dialog</class>
- <widget class="QDialog" name="Dialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,22 +10,22 @@
     <height>713</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <property name="modal" >
+  <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout_24" >
-   <item row="1" column="2" >
-    <spacer name="verticalSpacer_2" >
-     <property name="orientation" >
+  <layout class="QGridLayout" name="gridLayout_24">
+   <item row="1" column="2">
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeType" >
+     <property name="sizeType">
       <enum>QSizePolicy::Preferred</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
        <height>58</height>
@@ -32,12 +33,12 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="0" >
-    <spacer name="horizontalSpacer_4" >
-     <property name="orientation" >
+   <item row="2" column="0">
+    <spacer name="horizontalSpacer_4">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>101</width>
        <height>20</height>
@@ -45,25 +46,25 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="1" >
-    <widget class="QPushButton" name="cancel_b" >
-     <property name="font" >
+   <item row="2" column="1">
+    <widget class="QPushButton" name="cancel_b">
+     <property name="font">
       <font>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
-     <property name="text" >
+     <property name="text">
       <string>Cancel</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="2" >
-    <spacer name="horizontalSpacer_5" >
-     <property name="orientation" >
+   <item row="2" column="2">
+    <spacer name="horizontalSpacer_5">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>101</width>
        <height>20</height>
@@ -71,25 +72,25 @@
      </property>
     </spacer>
    </item>
-   <item row="2" column="3" >
-    <widget class="QPushButton" name="ok_b" >
-     <property name="font" >
+   <item row="2" column="3">
+    <widget class="QPushButton" name="ok_b">
+     <property name="font">
       <font>
        <weight>75</weight>
        <bold>true</bold>
       </font>
      </property>
-     <property name="text" >
+     <property name="text">
       <string>OK</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="4" >
-    <spacer name="horizontalSpacer_6" >
-     <property name="orientation" >
+   <item row="2" column="4">
+    <spacer name="horizontalSpacer_6">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>101</width>
        <height>20</height>
@@ -97,43 +98,35 @@
      </property>
     </spacer>
    </item>
-   <item row="3" column="0" colspan="5" >
-    <widget class="QLabel" name="errstr" >
-     <property name="text" >
+   <item row="3" column="0" colspan="5">
+    <widget class="QLabel" name="errstr">
+     <property name="text">
       <string/>
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="5" >
-    <widget class="QTabWidget" name="tabs" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+   <item row="0" column="0" colspan="5">
+    <widget class="QTabWidget" name="tabs">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
        <verstretch>2</verstretch>
       </sizepolicy>
      </property>
-     <property name="currentIndex" >
-      <number>8</number>
+     <property name="currentIndex">
+      <number>4</number>
      </property>
-     <widget class="QWidget" name="tab" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
        <string>General 1</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_19" >
-       <item row="0" column="0" >
-        <spacer name="verticalSpacer" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_19">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>20</height>
@@ -141,22 +134,22 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox" >
-         <property name="title" >
-          <string>Selection with "+"</string>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Selection with &quot;+&quot;</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout" >
-          <item row="0" column="1" >
-           <widget class="QRadioButton" name="sel_dirs" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="sel_dirs">
+            <property name="text">
              <string>Also select directories</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0" >
-           <widget class="QRadioButton" name="sel_files" >
-            <property name="text" >
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="sel_files">
+            <property name="text">
              <string>Select files only</string>
             </property>
            </widget>
@@ -164,12 +157,12 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <spacer name="verticalSpacer_16" >
-         <property name="orientation" >
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_16">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>20</height>
@@ -177,36 +170,36 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" >
-        <widget class="QGroupBox" name="groupBox_13" >
-         <property name="title" >
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_13">
+         <property name="title">
           <string>Selection mode</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_17" >
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="rmouse_sel" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_17">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="rmouse_sel">
+            <property name="text">
              <string>Right mouse button</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QCheckBox" name="insert_sel" >
-            <property name="text" >
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="insert_sel">
+            <property name="text">
              <string>Insert key</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QCheckBox" name="cmouse_sel" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="cmouse_sel">
+            <property name="text">
              <string>Cntrl/left mouse button selection</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QCheckBox" name="smouse_sel" >
-            <property name="text" >
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="smouse_sel">
+            <property name="text">
              <string>Shift/left mouse button selection</string>
             </property>
            </widget>
@@ -214,12 +207,12 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_17" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_17">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>20</height>
@@ -227,15 +220,15 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="0" >
-        <widget class="QGroupBox" name="groupBox_12" >
-         <property name="title" >
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="groupBox_12">
+         <property name="title">
           <string>Reports while copy/delete</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_3" >
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="html_rep" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="html_rep">
+            <property name="text">
              <string>HTML report (fancy and slow)</string>
             </property>
            </widget>
@@ -243,12 +236,12 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <spacer name="verticalSpacer_3" >
-         <property name="orientation" >
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>20</height>
@@ -256,15 +249,15 @@
          </property>
         </spacer>
        </item>
-       <item row="7" column="0" >
-        <widget class="QGroupBox" name="groupBox_14" >
-         <property name="title" >
+       <item row="7" column="0">
+        <widget class="QGroupBox" name="groupBox_14">
+         <property name="title">
           <string>Debug info</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_18" >
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="collect_dbg" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_18">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="collect_dbg">
+            <property name="text">
              <string>Collect more debug information</string>
             </property>
            </widget>
@@ -272,12 +265,12 @@
          </layout>
         </widget>
        </item>
-       <item row="8" column="0" >
-        <spacer name="verticalSpacer_18" >
-         <property name="orientation" >
+       <item row="8" column="0">
+        <spacer name="verticalSpacer_18">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>558</width>
            <height>12</height>
@@ -285,51 +278,51 @@
          </property>
         </spacer>
        </item>
-       <item row="9" column="0" >
-        <widget class="QGroupBox" name="groupBox_3" >
-         <property name="title" >
+       <item row="9" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
           <string>Confirmations</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2" >
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="conf_dir" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="conf_dir">
+            <property name="text">
              <string>Deleting non empty directories</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QCheckBox" name="conf_over" >
-            <property name="text" >
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="conf_over">
+            <property name="text">
              <string>Overwriting files</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QCheckBox" name="conf_exit" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="conf_exit">
+            <property name="text">
              <string>Exit</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <layout class="QHBoxLayout" name="horizontalLayout_7" >
+          <item row="1" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
             <item>
-             <widget class="QSpinBox" name="conf_max" >
-              <property name="maximum" >
+             <widget class="QSpinBox" name="conf_max">
+              <property name="maximum">
                <number>65536</number>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label" >
-              <property name="sizePolicy" >
-               <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+             <widget class="QLabel" name="label">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                 <horstretch>1</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
-              <property name="text" >
+              <property name="text">
                <string>Maximal files in conf. screen</string>
               </property>
              </widget>
@@ -339,12 +332,12 @@
          </layout>
         </widget>
        </item>
-       <item row="10" column="0" >
-        <spacer name="verticalSpacer_4" >
-         <property name="orientation" >
+       <item row="10" column="0">
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>20</height>
@@ -354,25 +347,17 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_7" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_7">
+      <attribute name="title">
        <string>General 2</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_38" >
-       <item row="0" column="0" >
-        <spacer name="verticalSpacer_27" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_38">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer_27">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>72</height>
@@ -380,15 +365,15 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_26" >
-         <property name="title" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_26">
+         <property name="title">
           <string>Auxiliary windows behavior</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_30" >
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="log_disapp" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_30">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="log_disapp">
+            <property name="text">
              <string>Log (progress) window automatically disappears when everything is OK</string>
             </property>
            </widget>
@@ -396,12 +381,12 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <spacer name="verticalSpacer_28" >
-         <property name="orientation" >
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_28">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>72</height>
@@ -409,22 +394,22 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" >
-        <widget class="QGroupBox" name="groupBox_21" >
-         <property name="title" >
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_21">
+         <property name="title">
           <string>F9 action</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_29" >
-          <item row="0" column="0" >
-           <widget class="QRadioButton" name="f9_epub" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_29">
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="f9_epub">
+            <property name="text">
              <string>Convert to EPUB</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QRadioButton" name="f9_lrf" >
-            <property name="text" >
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="f9_lrf">
+            <property name="text">
              <string>Convert to LRF using FB2LRF utility</string>
             </property>
            </widget>
@@ -432,12 +417,12 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_30" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_30">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>72</height>
@@ -445,24 +430,24 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="0" >
-        <widget class="QGroupBox" name="Hidefiles" >
-         <property name="title" >
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="Hidefiles">
+         <property name="title">
           <string>Hide files</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_28" >
-          <item row="0" column="0" >
-           <widget class="QLineEdit" name="hide_files" />
+         <layout class="QGridLayout" name="gridLayout_28">
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="hide_files"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <spacer name="verticalSpacer_37" >
-         <property name="orientation" >
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_37">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>72</height>
@@ -472,104 +457,96 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_10" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_10">
+      <attribute name="title">
        <string>Colors</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_40" >
-       <item row="0" column="0" >
-        <widget class="QGroupBox" name="groupBox_28" >
-         <property name="title" >
+      <layout class="QGridLayout" name="gridLayout_40">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_28">
+         <property name="title">
           <string>Active panel</string>
          </property>
-         <layout class="QFormLayout" name="formLayout_6" >
-          <property name="fieldGrowthPolicy" >
+         <layout class="QFormLayout" name="formLayout_6">
+          <property name="fieldGrowthPolicy">
            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
           </property>
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_8" >
-            <property name="text" >
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
              <string>Regular foreground</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QPushButton" name="reg_fg" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="0" column="1">
+           <widget class="QPushButton" name="reg_fg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_9" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
              <string>Regular backround</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QPushButton" name="reg_bg" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="1" column="1">
+           <widget class="QPushButton" name="reg_bg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_10" >
-            <property name="text" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
              <string>Selected foreground</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" >
-           <widget class="QPushButton" name="sel_fg" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="2" column="1">
+           <widget class="QPushButton" name="sel_fg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" >
-           <widget class="QLabel" name="label_11" >
-            <property name="text" >
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
              <string>Selected background</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" >
-           <widget class="QPushButton" name="sel_bg" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="3" column="1">
+           <widget class="QPushButton" name="sel_bg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
@@ -577,12 +554,12 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <spacer name="verticalSpacer_39" >
-         <property name="orientation" >
+       <item row="1" column="0">
+        <spacer name="verticalSpacer_39">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>12</height>
@@ -590,88 +567,88 @@
          </property>
         </spacer>
        </item>
-       <item row="2" column="0" >
-        <widget class="QGroupBox" name="groupBox_29" >
-         <property name="title" >
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupBox_29">
+         <property name="title">
           <string>Not active panel</string>
          </property>
-         <layout class="QFormLayout" name="formLayout_7" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_12" >
-            <property name="text" >
+         <layout class="QFormLayout" name="formLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
              <string>Regular foreground</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QPushButton" name="nf_reg_fg" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="0" column="1">
+           <widget class="QPushButton" name="nf_reg_fg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_13" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
              <string>Regular backround</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QPushButton" name="nf_reg_bg" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="1" column="1">
+           <widget class="QPushButton" name="nf_reg_bg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_14" >
-            <property name="text" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_14">
+            <property name="text">
              <string>Selected foreground</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" >
-           <widget class="QPushButton" name="nf_sel_fg" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="2" column="1">
+           <widget class="QPushButton" name="nf_sel_fg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" >
-           <widget class="QLabel" name="label_15" >
-            <property name="text" >
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_15">
+            <property name="text">
              <string>Selected background</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" >
-           <widget class="QPushButton" name="nf_sel_bg" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="3" column="1">
+           <widget class="QPushButton" name="nf_sel_bg">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
@@ -679,12 +656,12 @@
          </layout>
         </widget>
        </item>
-       <item row="3" column="0" >
-        <spacer name="verticalSpacer_40" >
-         <property name="orientation" >
+       <item row="3" column="0">
+        <spacer name="verticalSpacer_40">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>13</height>
@@ -692,51 +669,51 @@
          </property>
         </spacer>
        </item>
-       <item row="4" column="0" >
-        <widget class="QGroupBox" name="groupBox_30" >
-         <property name="title" >
+       <item row="4" column="0">
+        <widget class="QGroupBox" name="groupBox_30">
+         <property name="title">
           <string>Miscelaneous</string>
          </property>
-         <layout class="QFormLayout" name="formLayout_8" >
-          <property name="fieldGrowthPolicy" >
+         <layout class="QFormLayout" name="formLayout_8">
+          <property name="fieldGrowthPolicy">
            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
           </property>
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_16" >
-            <property name="text" >
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_16">
+            <property name="text">
              <string>Saved order</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QPushButton" name="ord_unchanged" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="0" column="1">
+           <widget class="QPushButton" name="ord_unchanged">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="label_17" >
-            <property name="text" >
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_17">
+            <property name="text">
              <string>Not saved order</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QPushButton" name="ord_changed" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+          <item row="1" column="1">
+           <widget class="QPushButton" name="ord_changed">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string/>
             </property>
            </widget>
@@ -744,12 +721,12 @@
          </layout>
         </widget>
        </item>
-       <item row="5" column="0" >
-        <spacer name="verticalSpacer_41" >
-         <property name="orientation" >
+       <item row="5" column="0">
+        <spacer name="verticalSpacer_41">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>12</height>
@@ -759,25 +736,17 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
        <string>External tools</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_9" >
-       <item row="0" column="0" >
-        <spacer name="verticalSpacer_29" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_9">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer_29">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>122</height>
@@ -785,21 +754,21 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_5" >
-         <property name="title" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
           <string>FB2 viewer</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_7" >
-          <item row="0" column="0" colspan="4" >
-           <widget class="QLineEdit" name="fb2viewer_l" />
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0" colspan="4">
+           <widget class="QLineEdit" name="fb2viewer_l"/>
           </item>
-          <item row="1" column="0" >
-           <spacer name="horizontalSpacer_11" >
-            <property name="orientation" >
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_11">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>191</width>
               <height>20</height>
@@ -807,19 +776,19 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="1" >
-           <widget class="QPushButton" name="fb2viewer_browse" >
-            <property name="text" >
+          <item row="1" column="1">
+           <widget class="QPushButton" name="fb2viewer_browse">
+            <property name="text">
              <string>Browse</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2" >
-           <spacer name="horizontalSpacer_12" >
-            <property name="orientation" >
+          <item row="1" column="2">
+           <spacer name="horizontalSpacer_12">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>190</width>
               <height>20</height>
@@ -827,15 +796,15 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="3" >
-           <widget class="QLabel" name="fb2_ok" >
-            <property name="font" >
+          <item row="1" column="3">
+           <widget class="QLabel" name="fb2_ok">
+            <property name="font">
              <font>
               <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>OK</string>
             </property>
            </widget>
@@ -843,12 +812,12 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <spacer name="verticalSpacer_5" >
-         <property name="orientation" >
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>74</height>
@@ -856,21 +825,21 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" >
-        <widget class="QGroupBox" name="groupBox_6" >
-         <property name="title" >
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_6">
+         <property name="title">
           <string>LRF viewer</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_8" >
-          <item row="0" column="0" colspan="4" >
-           <widget class="QLineEdit" name="lrfviewer_l" />
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="0" column="0" colspan="4">
+           <widget class="QLineEdit" name="lrfviewer_l"/>
           </item>
-          <item row="1" column="0" >
-           <spacer name="horizontalSpacer_3" >
-            <property name="orientation" >
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>138</width>
               <height>20</height>
@@ -878,19 +847,19 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="1" >
-           <widget class="QPushButton" name="lrfviewer_browse" >
-            <property name="text" >
+          <item row="1" column="1">
+           <widget class="QPushButton" name="lrfviewer_browse">
+            <property name="text">
              <string>Browse</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2" >
-           <spacer name="horizontalSpacer_7" >
-            <property name="orientation" >
+          <item row="1" column="2">
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>180</width>
               <height>20</height>
@@ -898,15 +867,15 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="3" >
-           <widget class="QLabel" name="lrf_ok" >
-            <property name="font" >
+          <item row="1" column="3">
+           <widget class="QLabel" name="lrf_ok">
+            <property name="font">
              <font>
               <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>OK</string>
             </property>
            </widget>
@@ -914,12 +883,12 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_6" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>88</height>
@@ -929,25 +898,20 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_3">
+      <attribute name="title">
        <string>eBook</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_11" >
-       <item row="0" column="0" >
-        <spacer name="verticalSpacer_10" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_11">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer_10">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeType">
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>15</height>
@@ -955,71 +919,12 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_7" >
-         <property name="title" >
-          <string>Directory -> Collection name replacement rule</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_4" >
-          <item row="2" column="0" >
-           <spacer name="horizontalSpacer" >
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0" >
-             <size>
-              <width>59</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="3" >
-           <spacer name="horizontalSpacer_2" >
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0" >
-             <size>
-              <width>59</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="1" colspan="2" >
-           <widget class="QPushButton" name="dir_help" >
-            <property name="text" >
-             <string>Help</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" colspan="2" >
-           <widget class="QCheckBox" name="dir_case" >
-            <property name="text" >
-             <string>Case sensitive</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2" colspan="2" >
-           <widget class="QCheckBox" name="dir_greedy" >
-            <property name="text" >
-             <string>Greedy</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0" colspan="4" >
-           <widget class="QLineEdit" name="dir_rules" />
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="0" >
-        <spacer name="verticalSpacer_8" >
-         <property name="orientation" >
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_8">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>18</height>
@@ -1027,24 +932,24 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" >
-        <widget class="QGroupBox" name="groupBox_8" >
-         <property name="title" >
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_8">
+         <property name="title">
           <string>FB2 file matching patterns</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_10" >
-          <item row="0" column="0" >
-           <widget class="QLineEdit" name="fb2_patt" />
+         <layout class="QGridLayout" name="gridLayout_10">
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="fb2_patt"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_7" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_7">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>15</height>
@@ -1052,71 +957,120 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="0" >
-        <widget class="QGroupBox" name="groupBox_2" >
-         <property name="title" >
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
           <string>UTF 8 / Latin1 transliteration</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_5" >
-          <item row="1" column="1" >
-           <widget class="QCheckBox" name="tr_clear" >
-            <property name="layoutDirection" >
-             <enum>Qt::LeftToRight</enum>
-            </property>
-            <property name="text" >
-             <string>Clear old transliteration</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" >
-           <spacer name="horizontalSpacer_10" >
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0" >
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="tr_author" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="tr_author">
+            <property name="text">
              <string>First letter of author</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2" >
-           <spacer name="horizontalSpacer_13" >
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0" >
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="2" >
-           <widget class="QCheckBox" name="tr_title" >
-            <property name="text" >
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="tr_title">
+            <property name="text">
              <string>Title</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QCheckBox" name="tr_clear">
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="text">
+             <string>Clear old transliteration</string>
             </property>
            </widget>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <spacer name="verticalSpacer_9" >
-         <property name="orientation" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_7">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>308</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Directory -&gt; Collection name replacement rule</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="dir_truscore">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Replace underscores with spaces</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QLineEdit" name="dir_rules"/>
+          </item>
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QCheckBox" name="dir_case">
+              <property name="text">
+               <string>Case sensitive</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="dir_greedy">
+              <property name="text">
+               <string>Greedy</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="1">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>335</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="dir_help">
+            <property name="text">
+             <string>Help</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_9">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>18</height>
@@ -1126,25 +1080,17 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_4" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
        <string>Collections</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_16" >
-       <item row="0" column="0" >
-        <spacer name="verticalSpacer_11" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_16">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer_11">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>10</height>
@@ -1152,24 +1098,24 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_4" >
-         <property name="title" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
           <string>eBook reader root directory</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_12" >
-          <item row="0" column="0" >
-           <widget class="QLineEdit" name="root_prs" />
+         <layout class="QGridLayout" name="gridLayout_12">
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="root_prs"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <spacer name="verticalSpacer_12" >
-         <property name="orientation" >
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_12">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>10</height>
@@ -1177,24 +1123,24 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" >
-        <widget class="QGroupBox" name="groupBox_9" >
-         <property name="title" >
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_9">
+         <property name="title">
           <string>SD card root directory</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_13" >
-          <item row="0" column="0" >
-           <widget class="QLineEdit" name="root_sd" />
+         <layout class="QGridLayout" name="gridLayout_13">
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="root_sd"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_13" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_13">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>10</height>
@@ -1202,35 +1148,35 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="0" >
-        <widget class="QGroupBox" name="groupBox_10" >
-         <property name="title" >
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="groupBox_10">
+         <property name="title">
           <string>Concatenate nested directory names to collection name</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_14" >
-          <item row="0" column="1" >
-           <layout class="QFormLayout" name="formLayout" >
-            <item row="0" column="0" >
-             <widget class="QLabel" name="concat_l" >
-              <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_14">
+          <item row="0" column="1">
+           <layout class="QFormLayout" name="formLayout">
+            <item row="0" column="0">
+             <widget class="QLabel" name="concat_l">
+              <property name="text">
                <string>Separator:</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1" >
-             <widget class="QLineEdit" name="concat_s" />
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="concat_s"/>
             </item>
            </layout>
           </item>
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="concat" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="concat">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>Concatenate</string>
             </property>
            </widget>
@@ -1238,12 +1184,12 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <spacer name="verticalSpacer_14" >
-         <property name="orientation" >
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_14">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>10</height>
@@ -1251,48 +1197,48 @@
          </property>
         </spacer>
        </item>
-       <item row="7" column="0" >
-        <widget class="QGroupBox" name="groupBox_11" >
-         <property name="title" >
+       <item row="7" column="0">
+        <widget class="QGroupBox" name="groupBox_11">
+         <property name="title">
           <string>Collection for rest of books, which are not part of any other collection</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_15" >
-          <item row="0" column="0" colspan="4" >
-           <widget class="QCheckBox" name="others_s" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_15">
+          <item row="0" column="0" colspan="4">
+           <widget class="QCheckBox" name="others_s">
+            <property name="text">
              <string>Create such collections</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="others_lprs" >
-            <property name="text" >
-             <string>PRS650:</string>
+          <item row="1" column="0">
+           <widget class="QLabel" name="others_lprs">
+            <property name="text">
+             <string>Reader:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
-           <widget class="QLineEdit" name="others_prs" />
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="others_prs"/>
           </item>
-          <item row="1" column="2" >
-           <widget class="QLabel" name="others_lsd" >
-            <property name="text" >
+          <item row="1" column="2">
+           <widget class="QLabel" name="others_lsd">
+            <property name="text">
              <string>SD card:</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="3" >
-           <widget class="QLineEdit" name="others_sd" />
+          <item row="1" column="3">
+           <widget class="QLineEdit" name="others_sd"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="8" column="0" >
-        <spacer name="verticalSpacer_19" >
-         <property name="orientation" >
+       <item row="8" column="0">
+        <spacer name="verticalSpacer_19">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>538</width>
            <height>12</height>
@@ -1300,32 +1246,32 @@
          </property>
         </spacer>
        </item>
-       <item row="9" column="0" >
-        <widget class="QGroupBox" name="groupBox_15" >
-         <property name="title" >
+       <item row="9" column="0">
+        <widget class="QGroupBox" name="groupBox_15">
+         <property name="title">
           <string>Miscelaneous</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_6" >
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="coll_enum" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="coll_enum">
+            <property name="text">
              <string>Enumerate collections</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QCheckBox" name="coll_empty" >
-            <property name="text" >
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="coll_empty">
+            <property name="text">
              <string>Create empty collections</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <spacer name="horizontalSpacer_9" >
-            <property name="orientation" >
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_9">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>264</width>
               <height>20</height>
@@ -1333,9 +1279,9 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="1" >
-           <widget class="QCheckBox" name="coll_dummy" >
-            <property name="text" >
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="coll_dummy">
+            <property name="text">
              <string>Insert dummy book to empty collections</string>
             </property>
            </widget>
@@ -1343,12 +1289,12 @@
          </layout>
         </widget>
        </item>
-       <item row="10" column="0" >
-        <spacer name="verticalSpacer_15" >
-         <property name="orientation" >
+       <item row="10" column="0">
+        <spacer name="verticalSpacer_15">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>10</height>
@@ -1358,25 +1304,17 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_5" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_5">
+      <attribute name="title">
        <string>Sort</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_25" >
-       <item row="0" column="0" >
-        <spacer name="verticalSpacer_20" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_25">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer_20">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>35</height>
@@ -1384,22 +1322,22 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_16" >
-         <property name="title" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_16">
+         <property name="title">
           <string>Sort order</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_21" >
-          <item row="0" column="0" >
-           <widget class="QRadioButton" name="sorder_a" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_21">
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="sorder_a">
+            <property name="text">
              <string>Ascending</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QRadioButton" name="sorder_d" >
-            <property name="text" >
+          <item row="0" column="1">
+           <widget class="QRadioButton" name="sorder_d">
+            <property name="text">
              <string>Descending</string>
             </property>
            </widget>
@@ -1407,12 +1345,12 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <spacer name="verticalSpacer_21" >
-         <property name="orientation" >
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_21">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>35</height>
@@ -1420,63 +1358,63 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" >
-        <widget class="QGroupBox" name="groupBox_17" >
-         <property name="title" >
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_17">
+         <property name="title">
           <string>First sort criteria</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_22" >
-          <item row="0" column="0" >
-           <layout class="QHBoxLayout" name="horizontalLayout" >
+         <layout class="QGridLayout" name="gridLayout_22">
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QRadioButton" name="s1_a" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s1_a">
+              <property name="text">
                <string>Author</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="s1_t" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s1_t">
+              <property name="text">
                <string>Title</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="s1_d" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s1_d">
+              <property name="text">
                <string>Date</string>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-          <item row="1" column="0" >
-           <layout class="QFormLayout" name="formLayout_2" >
-            <item row="0" column="0" >
-             <widget class="QLabel" name="s1_l" >
-              <property name="text" >
+          <item row="1" column="0">
+           <layout class="QFormLayout" name="formLayout_2">
+            <item row="0" column="0">
+             <widget class="QLabel" name="s1_l">
+              <property name="text">
                <string>Replace for sort regular expression</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1" >
-             <widget class="QLineEdit" name="s1_re" />
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="s1_re"/>
             </item>
            </layout>
           </item>
-          <item row="2" column="0" >
-           <layout class="QHBoxLayout" name="horizontalLayout_6" >
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
-             <widget class="QCheckBox" name="s1_cs" >
-              <property name="text" >
+             <widget class="QCheckBox" name="s1_cs">
+              <property name="text">
                <string>Case sensitive</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="s1_gr" >
-              <property name="text" >
+             <widget class="QCheckBox" name="s1_gr">
+              <property name="text">
                <string>Greedy</string>
               </property>
              </widget>
@@ -1486,12 +1424,12 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_22" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_22">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>35</height>
@@ -1499,63 +1437,63 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="0" >
-        <widget class="QGroupBox" name="groupBox_18" >
-         <property name="title" >
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="groupBox_18">
+         <property name="title">
           <string>Second sort criteria</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_23" >
-          <item row="0" column="0" >
-           <layout class="QHBoxLayout" name="horizontalLayout_2" >
+         <layout class="QGridLayout" name="gridLayout_23">
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
             <item>
-             <widget class="QRadioButton" name="s2_a" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s2_a">
+              <property name="text">
                <string>Author</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="s2_t" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s2_t">
+              <property name="text">
                <string>Title</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="s2_d" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s2_d">
+              <property name="text">
                <string>Date</string>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-          <item row="1" column="0" >
-           <layout class="QFormLayout" name="formLayout_3" >
-            <item row="0" column="0" >
-             <widget class="QLabel" name="s2_l" >
-              <property name="text" >
+          <item row="1" column="0">
+           <layout class="QFormLayout" name="formLayout_3">
+            <item row="0" column="0">
+             <widget class="QLabel" name="s2_l">
+              <property name="text">
                <string>Replace for sort regular expression</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1" >
-             <widget class="QLineEdit" name="s2_re" />
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="s2_re"/>
             </item>
            </layout>
           </item>
-          <item row="2" column="0" >
-           <layout class="QHBoxLayout" name="horizontalLayout_5" >
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
-             <widget class="QCheckBox" name="s2_cs" >
-              <property name="text" >
+             <widget class="QCheckBox" name="s2_cs">
+              <property name="text">
                <string>Case sensitive</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="s2_gr" >
-              <property name="text" >
+             <widget class="QCheckBox" name="s2_gr">
+              <property name="text">
                <string>Greedy</string>
               </property>
              </widget>
@@ -1565,12 +1503,12 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <spacer name="verticalSpacer_23" >
-         <property name="orientation" >
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_23">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>35</height>
@@ -1578,63 +1516,63 @@
          </property>
         </spacer>
        </item>
-       <item row="7" column="0" >
-        <widget class="QGroupBox" name="groupBox_19" >
-         <property name="title" >
+       <item row="7" column="0">
+        <widget class="QGroupBox" name="groupBox_19">
+         <property name="title">
           <string>Third sort criteria</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_20" >
-          <item row="0" column="0" >
-           <layout class="QHBoxLayout" name="horizontalLayout_3" >
+         <layout class="QGridLayout" name="gridLayout_20">
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
             <item>
-             <widget class="QRadioButton" name="s3_a" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s3_a">
+              <property name="text">
                <string>Author</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="s3_t" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s3_t">
+              <property name="text">
                <string>Title</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="s3_d" >
-              <property name="text" >
+             <widget class="QRadioButton" name="s3_d">
+              <property name="text">
                <string>Date</string>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-          <item row="1" column="0" >
-           <layout class="QFormLayout" name="formLayout_4" >
-            <item row="0" column="0" >
-             <widget class="QLabel" name="s3_l" >
-              <property name="text" >
+          <item row="1" column="0">
+           <layout class="QFormLayout" name="formLayout_4">
+            <item row="0" column="0">
+             <widget class="QLabel" name="s3_l">
+              <property name="text">
                <string>Replace for sort regular expression</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="1" >
-             <widget class="QLineEdit" name="s3_re" />
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="s3_re"/>
             </item>
            </layout>
           </item>
-          <item row="2" column="0" >
-           <layout class="QHBoxLayout" name="horizontalLayout_4" >
+          <item row="2" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QCheckBox" name="s3_cs" >
-              <property name="text" >
+             <widget class="QCheckBox" name="s3_cs">
+              <property name="text">
                <string>Case sensitive</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="s3_gr" >
-              <property name="text" >
+             <widget class="QCheckBox" name="s3_gr">
+              <property name="text">
                <string>Greedy</string>
               </property>
              </widget>
@@ -1644,12 +1582,12 @@
          </layout>
         </widget>
        </item>
-       <item row="8" column="0" >
-        <spacer name="verticalSpacer_24" >
-         <property name="orientation" >
+       <item row="8" column="0">
+        <spacer name="verticalSpacer_24">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>40</height>
@@ -1659,25 +1597,17 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_6" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_6">
+      <attribute name="title">
        <string>EPUB</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_39" >
-       <item row="0" column="0" >
-        <spacer name="verticalSpacer_25" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_39">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer_25">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>116</height>
@@ -1685,18 +1615,18 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_27" >
-         <property name="title" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_27">
+         <property name="title">
           <string>EPUB Styles</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_27" >
-          <item row="0" column="0" >
-           <spacer name="horizontalSpacer_8" >
-            <property name="orientation" >
+         <layout class="QGridLayout" name="gridLayout_27">
+          <item row="0" column="0">
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>232</width>
               <height>20</height>
@@ -1704,19 +1634,19 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="1" >
-           <widget class="QPushButton" name="epub_editstyles" >
-            <property name="text" >
+          <item row="0" column="1">
+           <widget class="QPushButton" name="epub_editstyles">
+            <property name="text">
              <string>Edit default styles</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="2" >
-           <spacer name="horizontalSpacer_22" >
-            <property name="orientation" >
+          <item row="0" column="2">
+           <spacer name="horizontalSpacer_22">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>232</width>
               <height>20</height>
@@ -1727,12 +1657,12 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <spacer name="verticalSpacer_26" >
-         <property name="orientation" >
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_26">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>117</height>
@@ -1740,21 +1670,21 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" >
-        <widget class="QGroupBox" name="groupBox_20" >
-         <property name="title" >
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="groupBox_20">
+         <property name="title">
           <string>Temporary directory for EPUB creation</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_26" >
-          <item row="0" column="0" colspan="4" >
-           <widget class="QLineEdit" name="epub_tmp_l" />
+         <layout class="QGridLayout" name="gridLayout_26">
+          <item row="0" column="0" colspan="4">
+           <widget class="QLineEdit" name="epub_tmp_l"/>
           </item>
-          <item row="1" column="0" >
-           <spacer name="horizontalSpacer_15" >
-            <property name="orientation" >
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_15">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>208</width>
               <height>20</height>
@@ -1762,19 +1692,19 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="1" >
-           <widget class="QPushButton" name="epub_tmp_browse" >
-            <property name="text" >
+          <item row="1" column="1">
+           <widget class="QPushButton" name="epub_tmp_browse">
+            <property name="text">
              <string>Browse</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2" >
-           <spacer name="horizontalSpacer_14" >
-            <property name="orientation" >
+          <item row="1" column="2">
+           <spacer name="horizontalSpacer_14">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>207</width>
               <height>20</height>
@@ -1782,15 +1712,15 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="3" >
-           <widget class="QLabel" name="epub_tmp_ok" >
-            <property name="font" >
+          <item row="1" column="3">
+           <widget class="QLabel" name="epub_tmp_ok">
+            <property name="font">
              <font>
               <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>OK</string>
             </property>
            </widget>
@@ -1798,12 +1728,12 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_38" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_38">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>116</height>
@@ -1813,34 +1743,26 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_8" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_8">
+      <attribute name="title">
        <string>FB2LRF 1</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_35" >
-       <item row="0" column="0" >
-        <widget class="QGroupBox" name="groupBox_23" >
-         <property name="title" >
+      <layout class="QGridLayout" name="gridLayout_35">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="groupBox_23">
+         <property name="title">
           <string>FB2LRF convertor</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_32" >
-          <item row="0" column="0" colspan="4" >
-           <widget class="QLineEdit" name="fb2lrf_l" />
+         <layout class="QGridLayout" name="gridLayout_32">
+          <item row="0" column="0" colspan="4">
+           <widget class="QLineEdit" name="fb2lrf_l"/>
           </item>
-          <item row="1" column="0" >
-           <spacer name="horizontalSpacer_16" >
-            <property name="orientation" >
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_16">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>191</width>
               <height>20</height>
@@ -1848,19 +1770,19 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="1" >
-           <widget class="QPushButton" name="fb2lrf_browse" >
-            <property name="text" >
+          <item row="1" column="1">
+           <widget class="QPushButton" name="fb2lrf_browse">
+            <property name="text">
              <string>Browse</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2" >
-           <spacer name="horizontalSpacer_18" >
-            <property name="orientation" >
+          <item row="1" column="2">
+           <spacer name="horizontalSpacer_18">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>190</width>
               <height>20</height>
@@ -1868,15 +1790,15 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="3" >
-           <widget class="QLabel" name="fb2lrf_ok" >
-            <property name="font" >
+          <item row="1" column="3">
+           <widget class="QLabel" name="fb2lrf_ok">
+            <property name="font">
              <font>
               <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>OK</string>
             </property>
            </widget>
@@ -1884,12 +1806,12 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0" >
-        <spacer name="verticalSpacer_31" >
-         <property name="orientation" >
+       <item row="1" column="0">
+        <spacer name="verticalSpacer_31">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>17</height>
@@ -1897,21 +1819,21 @@
          </property>
         </spacer>
        </item>
-       <item row="2" column="0" >
-        <widget class="QGroupBox" name="groupBox_24" >
-         <property name="title" >
+       <item row="2" column="0">
+        <widget class="QGroupBox" name="groupBox_24">
+         <property name="title">
           <string>FB2LRF styles file</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_33" >
-          <item row="0" column="0" colspan="4" >
-           <widget class="QLineEdit" name="fb2styles_l" />
+         <layout class="QGridLayout" name="gridLayout_33">
+          <item row="0" column="0" colspan="4">
+           <widget class="QLineEdit" name="fb2styles_l"/>
           </item>
-          <item row="1" column="0" >
-           <spacer name="horizontalSpacer_17" >
-            <property name="orientation" >
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_17">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>191</width>
               <height>20</height>
@@ -1919,19 +1841,19 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="1" >
-           <widget class="QPushButton" name="fb2styles_browse" >
-            <property name="text" >
+          <item row="1" column="1">
+           <widget class="QPushButton" name="fb2styles_browse">
+            <property name="text">
              <string>Browse</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="2" >
-           <spacer name="horizontalSpacer_19" >
-            <property name="orientation" >
+          <item row="1" column="2">
+           <spacer name="horizontalSpacer_19">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>190</width>
               <height>20</height>
@@ -1939,15 +1861,15 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="3" >
-           <widget class="QLabel" name="fb2styles_ok" >
-            <property name="font" >
+          <item row="1" column="3">
+           <widget class="QLabel" name="fb2styles_ok">
+            <property name="font">
              <font>
               <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>OK</string>
             </property>
            </widget>
@@ -1955,12 +1877,12 @@
          </layout>
         </widget>
        </item>
-       <item row="3" column="0" >
-        <spacer name="verticalSpacer_32" >
-         <property name="orientation" >
+       <item row="3" column="0">
+        <spacer name="verticalSpacer_32">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>17</height>
@@ -1968,21 +1890,21 @@
          </property>
         </spacer>
        </item>
-       <item row="4" column="0" >
-        <widget class="QGroupBox" name="groupBox_22" >
-         <property name="title" >
+       <item row="4" column="0">
+        <widget class="QGroupBox" name="groupBox_22">
+         <property name="title">
           <string>Temporary directory for LRF creation</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_31" >
-          <item row="0" column="0" colspan="4" >
-           <widget class="QLineEdit" name="fb2lrf_tmp_l" />
+         <layout class="QGridLayout" name="gridLayout_31">
+          <item row="0" column="0" colspan="4">
+           <widget class="QLineEdit" name="fb2lrf_tmp_l"/>
           </item>
-          <item row="2" column="0" >
-           <spacer name="horizontalSpacer_20" >
-            <property name="orientation" >
+          <item row="2" column="0">
+           <spacer name="horizontalSpacer_20">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>208</width>
               <height>20</height>
@@ -1990,19 +1912,19 @@
             </property>
            </spacer>
           </item>
-          <item row="2" column="1" >
-           <widget class="QPushButton" name="fb2lrf_tmp_browse" >
-            <property name="text" >
+          <item row="2" column="1">
+           <widget class="QPushButton" name="fb2lrf_tmp_browse">
+            <property name="text">
              <string>Browse</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="2" >
-           <spacer name="horizontalSpacer_21" >
-            <property name="orientation" >
+          <item row="2" column="2">
+           <spacer name="horizontalSpacer_21">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>207</width>
               <height>20</height>
@@ -2010,22 +1932,22 @@
             </property>
            </spacer>
           </item>
-          <item row="2" column="3" >
-           <widget class="QLabel" name="fb2lrf_tmp_ok" >
-            <property name="font" >
+          <item row="2" column="3">
+           <widget class="QLabel" name="fb2lrf_tmp_ok">
+            <property name="font">
              <font>
               <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>OK</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" >
-           <widget class="QCheckBox" name="fb2lrf_utmp" >
-            <property name="text" >
+          <item row="3" column="1">
+           <widget class="QCheckBox" name="fb2lrf_utmp">
+            <property name="text">
              <string>Use the directory for resulting LRF, then copy them to destination</string>
             </property>
            </widget>
@@ -2033,12 +1955,12 @@
          </layout>
         </widget>
        </item>
-       <item row="5" column="0" >
-        <spacer name="verticalSpacer_33" >
-         <property name="orientation" >
+       <item row="5" column="0">
+        <spacer name="verticalSpacer_33">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>17</height>
@@ -2046,69 +1968,69 @@
          </property>
         </spacer>
        </item>
-       <item row="6" column="0" >
-        <widget class="QGroupBox" name="Hidefiles_2" >
-         <property name="title" >
+       <item row="6" column="0">
+        <widget class="QGroupBox" name="Hidefiles_2">
+         <property name="title">
           <string>FB2LRF command line</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_34" >
-          <item row="0" column="0" colspan="2" >
-           <widget class="QLineEdit" name="fb2lrf_cmd" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+         <layout class="QGridLayout" name="gridLayout_34">
+          <item row="0" column="0" colspan="2">
+           <widget class="QLineEdit" name="fb2lrf_cmd">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="0" column="2" >
-           <widget class="QLabel" name="fb2lrf_cmd_ok" >
-            <property name="font" >
+          <item row="0" column="2">
+           <widget class="QLabel" name="fb2lrf_cmd_ok">
+            <property name="font">
              <font>
               <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>OK</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3" >
-           <widget class="QLabel" name="label_6" >
-            <property name="text" >
+          <item row="1" column="0" colspan="3">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
              <string>%FB2LRF will be replaced by FB2LRF executable file</string>
             </property>
-            <property name="alignment" >
+            <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="label_2" >
-            <property name="text" >
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
              <string>%STYLES will by replaced by styles file</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="2" >
-           <widget class="QLabel" name="label_3" >
-            <property name="text" >
+          <item row="2" column="1" colspan="2">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
              <string>%TEMP will be relaced by temp. directory</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" >
-           <widget class="QLabel" name="label_4" >
-            <property name="text" >
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
              <string>%INP will be replaced by input file</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1" colspan="2" >
-           <widget class="QLabel" name="label_5" >
-            <property name="text" >
+          <item row="3" column="1" colspan="2">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
              <string>%OUT will be replaced by output file</string>
             </property>
            </widget>
@@ -2118,28 +2040,20 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_9" >
-      <property name="geometry" >
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>647</width>
-        <height>592</height>
-       </rect>
-      </property>
-      <attribute name="title" >
+     <widget class="QWidget" name="tab_9">
+      <attribute name="title">
        <string>FB2LRF 2</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_41" >
-       <item row="0" column="0" >
-        <spacer name="verticalSpacer_44" >
-         <property name="orientation" >
+      <layout class="QGridLayout" name="gridLayout_41">
+       <item row="0" column="0">
+        <spacer name="verticalSpacer_44">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType" >
+         <property name="sizeType">
           <enum>QSizePolicy::Minimum</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>14</height>
@@ -2147,28 +2061,28 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" >
-        <widget class="QGroupBox" name="groupBox_25" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="groupBox_25">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Show FB2LRF details</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_36" >
-          <item row="0" column="1" >
-           <widget class="QCheckBox" name="fb2lrf_serr" >
-            <property name="text" >
+         <layout class="QGridLayout" name="gridLayout_36">
+          <item row="0" column="1">
+           <widget class="QCheckBox" name="fb2lrf_serr">
+            <property name="text">
              <string>Show FB2LRF output only on error</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="fb2lrf_scmd" >
-            <property name="text" >
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="fb2lrf_scmd">
+            <property name="text">
              <string>Show FB2LRF command line</string>
             </property>
            </widget>
@@ -2176,15 +2090,15 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" >
-        <spacer name="verticalSpacer_35" >
-         <property name="orientation" >
+       <item row="2" column="0">
+        <spacer name="verticalSpacer_35">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType" >
+         <property name="sizeType">
           <enum>QSizePolicy::Minimum</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>14</height>
@@ -2192,40 +2106,40 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0" >
-        <widget class="QGroupBox" name="Wine_box1" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+       <item row="3" column="0">
+        <widget class="QGroupBox" name="Wine_box1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Wine virtual drives mapping</string>
          </property>
-         <layout class="QFormLayout" name="formLayout_5" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="label_7" >
-            <property name="text" >
+         <layout class="QFormLayout" name="formLayout_5">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
              <string>Wine virtual drive (path) which maps to / directory</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QLineEdit" name="fb2lrf_drv" />
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="fb2lrf_drv"/>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="4" column="0" >
-        <spacer name="verticalSpacer_34" >
-         <property name="orientation" >
+       <item row="4" column="0">
+        <spacer name="verticalSpacer_34">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType" >
+         <property name="sizeType">
           <enum>QSizePolicy::Minimum</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>19</height>
@@ -2233,28 +2147,28 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="0" >
-        <widget class="QGroupBox" name="groupBox_31" >
-         <property name="title" >
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="groupBox_31">
+         <property name="title">
           <string>Environment for FB2LRF</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_37" >
-          <item rowspan="5" row="0" column="0" >
-           <widget class="QTextEdit" name="fb2lrf_env" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+         <layout class="QGridLayout" name="gridLayout_37">
+          <item row="0" column="0" rowspan="5">
+           <widget class="QTextEdit" name="fb2lrf_env">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
               <horstretch>1</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="3" >
-           <spacer name="verticalSpacer_42" >
-            <property name="orientation" >
+          <item row="0" column="1" colspan="3">
+           <spacer name="verticalSpacer_42">
+            <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
               <height>68</height>
@@ -2262,19 +2176,19 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="1" colspan="3" >
-           <widget class="QCheckBox" name="fb2lrf_ovr" >
-            <property name="text" >
+          <item row="1" column="1" colspan="3">
+           <widget class="QCheckBox" name="fb2lrf_ovr">
+            <property name="text">
              <string>Override existing</string>
             </property>
            </widget>
           </item>
-          <item row="2" column="1" colspan="3" >
-           <spacer name="verticalSpacer_43" >
-            <property name="orientation" >
+          <item row="2" column="1" colspan="3">
+           <spacer name="verticalSpacer_43">
+            <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
               <height>68</height>
@@ -2282,12 +2196,12 @@
             </property>
            </spacer>
           </item>
-          <item row="3" column="1" >
-           <spacer name="horizontalSpacer_23" >
-            <property name="orientation" >
+          <item row="3" column="1">
+           <spacer name="horizontalSpacer_23">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>47</width>
               <height>20</height>
@@ -2295,28 +2209,28 @@
             </property>
            </spacer>
           </item>
-          <item row="3" column="2" >
-           <widget class="QLabel" name="fb2lrf_env_ok" >
-            <property name="font" >
+          <item row="3" column="2">
+           <widget class="QLabel" name="fb2lrf_env_ok">
+            <property name="font">
              <font>
               <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
-            <property name="autoFillBackground" >
+            <property name="autoFillBackground">
              <bool>true</bool>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>OK</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="3" >
-           <spacer name="horizontalSpacer_24" >
-            <property name="orientation" >
+          <item row="3" column="3">
+           <spacer name="horizontalSpacer_24">
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>47</width>
               <height>20</height>
@@ -2324,12 +2238,12 @@
             </property>
            </spacer>
           </item>
-          <item row="4" column="2" >
-           <spacer name="verticalSpacer_45" >
-            <property name="orientation" >
+          <item row="4" column="2">
+           <spacer name="verticalSpacer_45">
+            <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
               <height>18</height>
@@ -2340,12 +2254,12 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0" >
-        <spacer name="verticalSpacer_36" >
-         <property name="orientation" >
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_36">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeHint" stdset="0" >
+         <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
            <height>116</height>
@@ -2359,6 +2273,90 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>cancel_b</tabstop>
+  <tabstop>ok_b</tabstop>
+  <tabstop>tabs</tabstop>
+  <tabstop>sel_dirs</tabstop>
+  <tabstop>sel_files</tabstop>
+  <tabstop>rmouse_sel</tabstop>
+  <tabstop>insert_sel</tabstop>
+  <tabstop>cmouse_sel</tabstop>
+  <tabstop>smouse_sel</tabstop>
+  <tabstop>html_rep</tabstop>
+  <tabstop>collect_dbg</tabstop>
+  <tabstop>conf_dir</tabstop>
+  <tabstop>conf_over</tabstop>
+  <tabstop>conf_exit</tabstop>
+  <tabstop>conf_max</tabstop>
+  <tabstop>log_disapp</tabstop>
+  <tabstop>f9_epub</tabstop>
+  <tabstop>f9_lrf</tabstop>
+  <tabstop>hide_files</tabstop>
+  <tabstop>reg_fg</tabstop>
+  <tabstop>reg_bg</tabstop>
+  <tabstop>sel_fg</tabstop>
+  <tabstop>sel_bg</tabstop>
+  <tabstop>nf_reg_fg</tabstop>
+  <tabstop>nf_reg_bg</tabstop>
+  <tabstop>nf_sel_fg</tabstop>
+  <tabstop>nf_sel_bg</tabstop>
+  <tabstop>ord_unchanged</tabstop>
+  <tabstop>ord_changed</tabstop>
+  <tabstop>fb2viewer_l</tabstop>
+  <tabstop>fb2viewer_browse</tabstop>
+  <tabstop>lrfviewer_l</tabstop>
+  <tabstop>lrfviewer_browse</tabstop>
+  <tabstop>dir_rules</tabstop>
+  <tabstop>fb2_patt</tabstop>
+  <tabstop>tr_author</tabstop>
+  <tabstop>root_prs</tabstop>
+  <tabstop>root_sd</tabstop>
+  <tabstop>concat_s</tabstop>
+  <tabstop>concat</tabstop>
+  <tabstop>others_s</tabstop>
+  <tabstop>others_prs</tabstop>
+  <tabstop>others_sd</tabstop>
+  <tabstop>coll_enum</tabstop>
+  <tabstop>coll_empty</tabstop>
+  <tabstop>coll_dummy</tabstop>
+  <tabstop>sorder_a</tabstop>
+  <tabstop>sorder_d</tabstop>
+  <tabstop>s1_a</tabstop>
+  <tabstop>s1_t</tabstop>
+  <tabstop>s1_d</tabstop>
+  <tabstop>s1_re</tabstop>
+  <tabstop>s1_cs</tabstop>
+  <tabstop>s1_gr</tabstop>
+  <tabstop>s2_a</tabstop>
+  <tabstop>s2_t</tabstop>
+  <tabstop>s2_d</tabstop>
+  <tabstop>s2_re</tabstop>
+  <tabstop>s2_cs</tabstop>
+  <tabstop>s2_gr</tabstop>
+  <tabstop>s3_a</tabstop>
+  <tabstop>s3_t</tabstop>
+  <tabstop>s3_d</tabstop>
+  <tabstop>s3_re</tabstop>
+  <tabstop>s3_cs</tabstop>
+  <tabstop>s3_gr</tabstop>
+  <tabstop>epub_editstyles</tabstop>
+  <tabstop>epub_tmp_l</tabstop>
+  <tabstop>epub_tmp_browse</tabstop>
+  <tabstop>fb2lrf_l</tabstop>
+  <tabstop>fb2lrf_browse</tabstop>
+  <tabstop>fb2styles_l</tabstop>
+  <tabstop>fb2styles_browse</tabstop>
+  <tabstop>fb2lrf_tmp_l</tabstop>
+  <tabstop>fb2lrf_tmp_browse</tabstop>
+  <tabstop>fb2lrf_utmp</tabstop>
+  <tabstop>fb2lrf_cmd</tabstop>
+  <tabstop>fb2lrf_serr</tabstop>
+  <tabstop>fb2lrf_scmd</tabstop>
+  <tabstop>fb2lrf_drv</tabstop>
+  <tabstop>fb2lrf_env</tabstop>
+  <tabstop>fb2lrf_ovr</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

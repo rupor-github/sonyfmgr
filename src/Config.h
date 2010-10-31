@@ -513,6 +513,14 @@ public:
     private slots:
         void dir_greedy(bool checked) { _replGreedy = checked; }
 
+    // _replTruscore property definition
+    public:
+        static bool replTruscore() { return _replTruscore; }
+    private:
+        static bool _replTruscore;
+    private slots:
+        void dir_truscore(bool checked) { _replTruscore = checked; }
+
     // _rootPRS property definition
     public:
         static QString rootPRS() { return _rootPRS; }

@@ -617,8 +617,12 @@ bool Media::updateColl()
             continue;
         QDomElement new_collection = _dom.createElement(PLAYLIST_T);
         QString coll_name = it.key();
+
+        if (Config::replTruscore())
+            coll_name.replace(QRegExp("_"), " ");
         if (!Config::replFrom().isEmpty())
             coll_name.replace(Config::replFrom(), Config::replTo());
+
         new_collection.setAttribute("title", coll_name);
         new_collection.setAttribute("sourceid", "0");
         new_collection.setAttribute("id", QString("%1").arg(getID()));
@@ -898,6 +902,8 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
 
 
             // Possible replace
+            if (Config::replTruscore())
+                coll_name.replace(QRegExp("_"), " ");
             if (!Config::replFrom().isEmpty())
                 coll_name.replace(Config::replFrom(), Config::replTo());
 
@@ -912,6 +918,7 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
             }
 
             _log->_ui.txt->insertPlainText(QString("    new collection - %1\n").arg(coll_name));
+
             TO_BOTTOM(_log->_ui.txt);
 
             _colls.insert(coll_name, Collection());

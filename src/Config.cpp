@@ -17,8 +17,10 @@
 #include "utils.h"
 
 // Defaults
+// #define REPL_RULES  "s/_/ /"
+
 #define SEPARATOR   "/"
-#define REPL_RULES  "s/_/ /"
+#define REPL_RULES  "s%(\\w+)(?:\\W+\\w*)*(/(\\w+\\W*)+)*\\W*%\\1\\2%"
 #define S1_RULES    ""
 #define S2_RULES    ""
 #define S3_RULES    ""
@@ -142,6 +144,7 @@ QColor Config::_reg_bg = REG_BG;
 QColor Config::_reg_fg = REG_FG;
 bool Config::_replCase = true;
 bool Config::_replGreedy = true;
+bool Config::_replTruscore = true;
 QString Config::_rootPRS = ROOT_PRS;
 QString Config::_rootSD = ROOT_SD;
 bool Config::_s1Case = true;
@@ -524,6 +527,8 @@ Config::Config(QWidget *par) : QDialog(par)
     _ui.dir_case->setChecked(_replCase);
     connect(_ui.dir_greedy, SIGNAL(clicked(bool)), this, SLOT(dir_greedy(bool)));
     _ui.dir_greedy->setChecked(_replGreedy);
+    connect(_ui.dir_truscore, SIGNAL(clicked(bool)), this, SLOT(dir_truscore(bool)));
+    _ui.dir_truscore->setChecked(_replTruscore);
     connect(_ui.root_prs, SIGNAL(textChanged(const QString&)), this, SLOT(root_prs(const QString&)));
     _ui.root_prs->setText(_rootPRS);
     connect(_ui.root_sd, SIGNAL(textChanged(const QString&)), this, SLOT(root_sd(const QString&)));
@@ -740,6 +745,7 @@ void Config::revert()
     _reg_fg = REG_FG;
     _replCase = true;
     _replGreedy = true;
+    _replTruscore = true;
     _rootPRS = ROOT_PRS;
     _rootSD = ROOT_SD;
     _s1Case = true;
@@ -830,6 +836,7 @@ void Config::reread()
     _reg_fg = st.value("reg_fg_color", REG_FG).value<QColor>();
     _replCase = st.value("repl_casesensitive", true).toBool();
     _replGreedy = st.value("repl_greedy", true).toBool();
+    _replTruscore = st.value("repl_truscore", true).toBool();
     _rootPRS = st.value("root_prs", ROOT_PRS).toString();
     _rootSD = st.value("root_sd", ROOT_SD).toString();
     _s1Case = st.value("s1_casesensitive", true).toBool();
@@ -923,6 +930,7 @@ void Config::init()
     _reg_fg = st.value("reg_fg_color", REG_FG).value<QColor>();
     _replCase = st.value("repl_casesensitive", true).toBool();
     _replGreedy = st.value("repl_greedy", true).toBool();
+    _replTruscore = st.value("repl_truscore", true).toBool();
     _rootPRS = st.value("root_prs", ROOT_PRS).toString();
     _rootSD = st.value("root_sd", ROOT_SD).toString();
     _s1Case = st.value("s1_casesensitive", true).toBool();
@@ -1085,8 +1093,10 @@ void Config::dirHelp()
 
         "<p>More about Qt regular expressions - <a href=\"http://doc.trolltech.com/4.4/qregexp.html\">here</a></p>"
         "Examples:<br>"
-        "<b>s/_/ /</b> - Change every underscore symbol to space<br>"
         "<b>s/Title_([^)]*)/\\1/</b> - Change Title_SOMETHING to SOMETHING<br>"
+        "<b>s%(\\w+)(?:\\W+\\w*)*(/(\\w+\\W*)+)*\\W*%\\1\\2%</b> - Shorten collection name (pick first word from top level directory<br>"
+
+
         ;
     QMessageBox::information(0, "dir. name replacement", tr(txt));
 } // Config::dirHelp
@@ -1140,6 +1150,7 @@ void Config::save()
     st.setValue("reg_fg_color", _reg_fg);
     st.setValue("repl_casesensitive", _replCase);
     st.setValue("repl_greedy", _replGreedy);
+    st.setValue("repl_truscore", _replTruscore);
     st.setValue("root_prs", _rootPRS);
     st.setValue("root_sd", _rootSD);
     st.setValue("s1_casesensitive", _s1Case);
