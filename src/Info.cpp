@@ -216,7 +216,7 @@ bool Info::fillFB2Info(const QString& fullname, BookData *bd)
 
 ////////////////////////////////////////////////////////////////////////
 #if defined(_MSC_VER)
-#   pragma pack (1)
+#   pragma pack (push,1)
 #endif
 struct LRFHeader {
     uint8_t  sign[8];       // 0x00
@@ -243,6 +243,9 @@ struct LRFHeader {
    __attribute__ ((__packed__))
 #endif
 ;
+#if defined(_MSC_VER)
+#   pragma pack (pop)
+#endif
 
 bool Info::fillLRFInfo(const QString& fullname, BookData *bd)
 {
