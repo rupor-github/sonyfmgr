@@ -64,6 +64,7 @@ public:
     QString errorString() const                                { return _err; }
     QString author() const                                     { return _author; }
     QString title() const                                      { return _title;  }
+    const QByteArray& cover() const                            { return _cover;  }
 
 private:
     bool    err(const QString& e) { _err = e; return false; }
@@ -73,6 +74,9 @@ private:
     QString     _currText;
     QString     _author;
     QString     _title;
+    QString     _covertag;
+    bool        _cover_found;
+    QByteArray  _cover;
 };
 
 #endif

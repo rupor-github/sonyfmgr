@@ -184,6 +184,9 @@ mngr505::mngr505(): QMainWindow(0)
     l.append(_ui.title_l);
     l.append(_ui.title);
     m.insert("title", l);
+    l.clear();
+    l.append(_ui.cover);
+    m.insert("cover", l);
     _ui.info->setLabels(m);
 
     // Button list

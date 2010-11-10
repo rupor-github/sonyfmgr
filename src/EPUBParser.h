@@ -58,12 +58,15 @@ public:
     QString rootfile() const                                   { return _rootfile; }
     QString author() const                                     { return _author;   }
     QString title() const                                      { return _title;    }
+    QString coverfile() const                                  { return _coverfile; }
 
 private:
     bool    err(const QString& e) { _err = e; return false; }
 
     QString     _err;
     QString     _currText;
+    QString     _covername;
+    QString     _coverfile;
     QString     _author;
     QString     _title;
     QString     _rootfile;

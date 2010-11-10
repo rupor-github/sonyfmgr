@@ -19,21 +19,23 @@
 // Defaults
 // #define REPL_RULES  "s/_/ /"
 
-#define SEPARATOR   "/"
-#define REPL_RULES  "s%(\\w+)(?:\\W+\\w*)*(/(\\w+\\W*)+)*\\W*%\\1\\2%"
-#define S1_RULES    ""
-#define S2_RULES    ""
-#define S3_RULES    ""
-#define FB2_PATTERN "*.fb2,*.fb2.zip"
-#define ROOT_PRS    "database/media/books"
-#define ROOT_SD     "Sony Reader/database/media/books"
-#define OTHERS_SD   "_Others_SD"
-#define OTHERS_PRS  "_Others_PRS"
-#define HIDE_FILES  ".*,*.tmp"
-#define FB2LRF      ""
-#define FB2STYLES   ""
-#define FB2LRF_TMP  "C:\\Temp"
-#define FB2LRF_ENV  "LANG=ru_RU.UTF-8\nLC_ALL=ru_RU.UTF-8"
+#define SEPARATOR     "/"
+#define REPL_RULES    "s%(\\w+)(?:\\W+\\w*)*(/(\\w+\\W*)+)*\\W*%\\1\\2%"
+#define S1_RULES      ""
+#define S2_RULES      ""
+#define S3_RULES      ""
+#define FB2_PATTERN   "*.fb2,*.fb2.zip"
+#define ROOT_PRS      "database/media/books"
+#define ROOT_PRS_TMB  "database/thumbnail"
+#define ROOT_SD       "Sony Reader/database/media/books"
+#define ROOT_SD_TMB   "Sony Reader/thumbnail"
+#define OTHERS_SD     "_Others_SD"
+#define OTHERS_PRS    "_Others_PRS"
+#define HIDE_FILES    ".*,*.tmp"
+#define FB2LRF        ""
+#define FB2STYLES     ""
+#define FB2LRF_TMP    "C:\\Temp"
+#define FB2LRF_ENV    "LANG=ru_RU.UTF-8\nLC_ALL=ru_RU.UTF-8"
 #define REG_FG        QColor(  0,   0,   0)
 #define REG_BG        QColor(255, 255, 255)
 #define SEL_FG        QColor(255,   0,   0)
@@ -145,8 +147,11 @@ QColor Config::_reg_fg = REG_FG;
 bool Config::_replCase = true;
 bool Config::_replGreedy = true;
 bool Config::_replTruscore = true;
+bool Config::_mngThumbs = true;
 QString Config::_rootPRS = ROOT_PRS;
+QString Config::_rootPRStmb = ROOT_PRS_TMB;
 QString Config::_rootSD = ROOT_SD;
+QString Config::_rootSDtmb = ROOT_SD_TMB;
 bool Config::_s1Case = true;
 bool Config::_s1Greedy = true;
 bool Config::_s2Case = true;
@@ -529,10 +534,16 @@ Config::Config(QWidget *par) : QDialog(par)
     _ui.dir_greedy->setChecked(_replGreedy);
     connect(_ui.dir_truscore, SIGNAL(clicked(bool)), this, SLOT(dir_truscore(bool)));
     _ui.dir_truscore->setChecked(_replTruscore);
+    connect(_ui.prs_thumbs, SIGNAL(clicked(bool)), this, SLOT(prs_thumbs(bool)));
+    _ui.prs_thumbs->setChecked(_mngThumbs);
     connect(_ui.root_prs, SIGNAL(textChanged(const QString&)), this, SLOT(root_prs(const QString&)));
     _ui.root_prs->setText(_rootPRS);
+    connect(_ui.root_prs_thumbs, SIGNAL(textChanged(const QString&)), this, SLOT(root_prs_thumbs(const QString&)));
+    _ui.root_prs_thumbs->setText(_rootPRStmb);
     connect(_ui.root_sd, SIGNAL(textChanged(const QString&)), this, SLOT(root_sd(const QString&)));
     _ui.root_sd->setText(_rootSD);
+    connect(_ui.root_sd_thumbs, SIGNAL(textChanged(const QString&)), this, SLOT(root_sd_thumbs(const QString&)));
+    _ui.root_sd_thumbs->setText(_rootSDtmb);
     connect(_ui.s1_cs, SIGNAL(clicked(bool)), this, SLOT(s1_case(bool)));
     _ui.s1_cs->setChecked(_s1Case);
     connect(_ui.s1_gr, SIGNAL(clicked(bool)), this, SLOT(s1_greedy(bool)));
@@ -620,6 +631,7 @@ void Config::restore_dependecies()
     concat_sl(_concat);
     others_sl(_others);
     coll_empty(_coll_empty);
+    prs_thumbs(_mngThumbs);
     tr_clear(_translClear);
     _ui.f9_epub->setChecked(!_f9_lrf);
     f9_lrf(_f9_lrf);
@@ -746,8 +758,11 @@ void Config::revert()
     _replCase = true;
     _replGreedy = true;
     _replTruscore = true;
+    _mngThumbs = true;
     _rootPRS = ROOT_PRS;
+    _rootPRStmb = ROOT_PRS_TMB;
     _rootSD = ROOT_SD;
+    _rootSDtmb = ROOT_SD_TMB;
     _s1Case = true;
     _s1Greedy = true;
     _s2Case = true;
@@ -837,8 +852,11 @@ void Config::reread()
     _replCase = st.value("repl_casesensitive", true).toBool();
     _replGreedy = st.value("repl_greedy", true).toBool();
     _replTruscore = st.value("repl_truscore", true).toBool();
+    _mngThumbs = st.value("prs_thumbs", true).toBool();
     _rootPRS = st.value("root_prs", ROOT_PRS).toString();
+    _rootPRStmb = st.value("root_prs_thumbs", ROOT_PRS_TMB).toString();
     _rootSD = st.value("root_sd", ROOT_SD).toString();
+    _rootSDtmb = st.value("root_sd_thumbs", ROOT_SD_TMB).toString();
     _s1Case = st.value("s1_casesensitive", true).toBool();
     _s1Greedy = st.value("s1_greedy", true).toBool();
     _s2Case = st.value("s2_casesensitive", true).toBool();
@@ -931,8 +949,11 @@ void Config::init()
     _replCase = st.value("repl_casesensitive", true).toBool();
     _replGreedy = st.value("repl_greedy", true).toBool();
     _replTruscore = st.value("repl_truscore", true).toBool();
+    _mngThumbs = st.value("prs_thumbs", true).toBool();
     _rootPRS = st.value("root_prs", ROOT_PRS).toString();
+    _rootPRStmb = st.value("root_prs_thumbs", ROOT_PRS_TMB).toString();
     _rootSD = st.value("root_sd", ROOT_SD).toString();
+    _rootSDtmb = st.value("root_sd_thumbs", ROOT_SD_TMB).toString();
     _s1Case = st.value("s1_casesensitive", true).toBool();
     _s1Greedy = st.value("s1_greedy", true).toBool();
     _s2Case = st.value("s2_casesensitive", true).toBool();
@@ -1151,8 +1172,11 @@ void Config::save()
     st.setValue("repl_casesensitive", _replCase);
     st.setValue("repl_greedy", _replGreedy);
     st.setValue("repl_truscore", _replTruscore);
+    st.setValue("prs_thumbs", _mngThumbs);
     st.setValue("root_prs", _rootPRS);
     st.setValue("root_sd", _rootSD);
+    st.setValue("root_prs_thumbs", _rootPRStmb);
+    st.setValue("root_sd_thumbs", _rootSDtmb);
     st.setValue("s1_casesensitive", _s1Case);
     st.setValue("s1_greedy", _s1Greedy);
     st.setValue("s2_casesensitive", _s2Case);
@@ -1371,6 +1395,14 @@ void Config::coll_empty(bool checked)
     _coll_empty = checked;
     _ui.coll_dummy->setEnabled(checked);
 } // Config::coll_empty
+
+////////////////////////////////////////////////////////////////////////
+void Config::prs_thumbs(bool checked)
+{
+    _mngThumbs = checked;
+    _ui.root_prs_thumbs->setEnabled(checked);
+    _ui.root_sd_thumbs->setEnabled(checked);
+} // Config::prs_thumbs
 
 ////////////////////////////////////////////////////////////////////////
 Config::Sorder Config::sorder1()

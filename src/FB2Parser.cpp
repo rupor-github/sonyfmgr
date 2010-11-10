@@ -6,10 +6,12 @@
 
 #include "FB2Parser.h"
 
-const char *author_f = "FictionBook.description.title-info.author.first-name";
-const char *author_m = "FictionBook.description.title-info.author.middle-name";
-const char *author_l = "FictionBook.description.title-info.author.last-name";
-const char *book_tit = "FictionBook.description.title-info.book-title";
+const char *author_f    = "FictionBook.description.title-info.author.first-name";
+const char *author_m    = "FictionBook.description.title-info.author.middle-name";
+const char *author_l    = "FictionBook.description.title-info.author.last-name";
+const char *book_title  = "FictionBook.description.title-info.book-title";
+const char *book_cover  = "FictionBook.description.title-info.coverpage.image";
+const char *binary      = "FictionBook.binary";
 
 ////////////////////////////////////////////////////////////////////////
 QString FullPref::name()
@@ -34,6 +36,9 @@ bool FB2Parser::startDocument()
     _author.clear();
     _title.clear();
     _pref.clear();
+    _covertag.clear();
+    _cover_found = false;
+    _cover.clear();
     return true;
 } // FB2Parser::startDocument
 
@@ -41,10 +46,19 @@ bool FB2Parser::startDocument()
 ////////////////////////////////////////////////////////////////////////
 bool FB2Parser::startElement(const QString&, const QString&,
                                const QString & qName,
-                               const QXmlAttributes& /*atts*/)
+                               const QXmlAttributes& atts)
 {
-
     _pref.push(qName);
+    if( _pref.name() == QString(book_cover) )
+    {
+       for( int ni = 0; ni < atts.length(); ++ni )
+          if(  atts.localName( ni ) == QString( "href" ) )
+             _covertag = atts.value( ni ).mid( 1 );
+    }
+    else if( (_pref.name() == QString(binary)) && ( atts.value( "id" ) == _covertag ) )
+    {
+       _cover_found = true;
+    }
     _currText.clear();
     return true;
 } // FB2Parser::startElement
@@ -58,11 +72,12 @@ bool FB2Parser::endElement(const QString&, const QString&,
     {
         if (_pref.name() == QString(author_f))
             _author = _currText;
-        else if (_pref.name() == QString(author_m)
-                 || _pref.name() == QString(author_l))
+        else if (_pref.name() == QString(author_m) || _pref.name() == QString(author_l))
             _author += " " + _currText;
-        else if (_pref.name() == QString(book_tit))
+        else if (_pref.name() == QString(book_title))
             _title = _currText;
+        else if( (_pref.name() == QString(binary)) && _cover_found )
+           _cover = QByteArray::fromBase64( _currText.toAscii() );
 
         _pref.pop();
     }

@@ -782,7 +782,7 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
     //          qPrintable(finfo.fileName()));         //+++++
     //qDebug("%s", "");                                //+++++
 
-    // Go over result_list and descend to direcotries and collect file info
+    // Go over result_list and descend to directories and collect file info
     entries_list.clear();
     foreach (QFileInfo finfo, result_list)
     {

@@ -521,6 +521,13 @@ public:
     private slots:
         void dir_truscore(bool checked) { _replTruscore = checked; }
 
+
+    // _mngThumbs property definition
+    public:
+        static bool mngThumbs() { return _mngThumbs; }
+    private:
+        static bool _mngThumbs;
+
     // _rootPRS property definition
     public:
         static QString rootPRS() { return _rootPRS; }
@@ -529,6 +536,14 @@ public:
     private slots:
         void root_prs(const QString& t) { _rootPRS = t; }
 
+    // _rootPRStmb property definition
+    public:
+        static QString rootPRStmb() { return _rootPRStmb; }
+    private:
+        static QString _rootPRStmb;
+    private slots:
+        void root_prs_thumbs(const QString& t) { _rootPRStmb = t; }
+
     // _rootSD property definition
     public:
         static QString rootSD() { return _rootSD; }
@@ -536,6 +551,14 @@ public:
         static QString _rootSD;
     private slots:
         void root_sd(const QString& t) { _rootSD = t; }
+
+    // _rootSDtmb property definition
+    public:
+        static QString rootSDtmb() { return _rootSDtmb; }
+    private:
+        static QString _rootSDtmb;
+    private slots:
+        void root_sd_thumbs(const QString& t) { _rootSDtmb = t; }
 
     // _s1Case property definition
     public:
@@ -810,6 +833,7 @@ private slots:
     void concat_sl(bool checked);
     void others_sl(bool checked);
     void coll_empty(bool checked);
+    void prs_thumbs(bool checked);   
     void tr_clear(bool checked);
     void f9_lrf(bool checked);
     void epub_editstyles();

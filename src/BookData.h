@@ -26,6 +26,7 @@ public:
     QString title;
     QString date;
     BType   type;
+    QImage  cover;
     int     page;
     int     size;
     bool    is_file;

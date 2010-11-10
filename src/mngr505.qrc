@@ -19,5 +19,6 @@
     <file>Graphics/down.png</file>
     <file>Graphics/up.png</file>
     <file>Graphics/mngr505.png</file>
+    <file>Graphics/thumb.jpg</file>
   </qresource>
 </RCC>

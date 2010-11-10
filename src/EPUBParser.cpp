@@ -16,6 +16,8 @@ bool EPUBParser::startDocument()
     _author.clear();
     _title.clear();
     _rootfile.clear();
+    _covername.clear();
+    _coverfile.clear();
     return true;
 } // EPUBParser::startDocument
 
@@ -26,7 +28,11 @@ bool EPUBParser::startElement(const QString&, const QString&,
                                const QXmlAttributes& atts)
 {
     if (qName == QString(rootfile_tag))
-        _rootfile = atts.value("full-path");
+       _rootfile = atts.value("full-path");
+    else if (qName == QString("meta") && (atts.value( "name" ) == QString("cover")))
+       _covername = atts.value( "content" );
+    else if (qName == QString("item") && (atts.value( "id" ) == _covername))
+       _coverfile = atts.value( "href" );
     _currText.clear();
     return true;
 } // EPUBParser::startElement
