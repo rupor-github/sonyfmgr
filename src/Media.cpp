@@ -15,7 +15,8 @@
 #define FNAME_CASE Qt::CaseInsensitive
 #endif
 
-#define CONFIG_ROOT (_isSD ? Config::rootSD() : Config::rootPRS())
+#define CONFIG_ROOT       (_isSD ? Config::rootSD() : Config::rootPRS())
+#define CONFIG_ROOT_THUMB (_isSD ? Config::rootSDtmb() : Config::rootPRStmb() );
 
 #include <QCloseEvent>
 #include <QDateTime>
@@ -304,13 +305,14 @@ bool Media::readPRS(const QString& root,  const QString& bookroot,
     _readok = true;
     _IDs.clear();
     _isSD = false;
+    _thumbroot = CONFIG_ROOT_THUMB;
+    if (_thumbroot.startsWith("/"))
+        _thumbroot = _thumbroot.mid(1);
     return true;
 } // Media::read
 
-
 ////////////////////////////////////////////////////////////////////////
-bool Media::readSD(const QString& root,  const QString& bookroot,
-                   const QString& fname, QString& errText)
+bool Media::readSD(const QString& root, const QString& bookroot, const QString& fname, QString& errText)
 {
     _readok = false;
 
@@ -396,6 +398,9 @@ bool Media::readSD(const QString& root,  const QString& bookroot,
     _readok = true;
     _IDs.clear();
     _isSD = true;
+    _thumbroot = CONFIG_ROOT_THUMB;
+    if (_thumbroot.startsWith("/"))
+        _thumbroot = _thumbroot.mid(1);
     return true;
 } // Media::readSD
 
@@ -451,8 +456,7 @@ bool Media::updateColl()
         _dom_1 = _dom.toString(4);
 
     // Remove all books not read from media
-    for (QMap<QString, BookData>::iterator it = _par->books_data.begin();
-         it != _par->books_data.end(); )
+    for (QMap<QString, BookData>::iterator it = _par->books_data.begin(); it != _par->books_data.end(); )
         if (!it.value().is_media)
             it = _par->books_data.erase(it);
         else
@@ -482,6 +486,15 @@ bool Media::updateColl()
             _IDs += b.attributes().namedItem("id").nodeValue().toInt();
             QDomNode p      = b.parentNode();
             p.removeChild(b);
+
+            if( Config::mngThumbs() )
+            {
+               QDir thumb( _root + "/" + _thumbroot + "/" + path );
+
+               if( thumb.exists() )
+                  if( thumb.remove( "main_thumbnail.jpg" ) )
+                     thumb.rmpath( thumb.canonicalPath() );
+            }
         }
         TO_BOTTOM(_log->_ui.txt);
         if (_log->canceled())
@@ -503,6 +516,15 @@ bool Media::updateColl()
             _IDs += b.attributes().namedItem("id").nodeValue().toInt();
             QDomNode p      = b.parentNode();
             p.removeChild(b);
+
+            if( Config::mngThumbs() )
+            {
+               QDir thumb( _root + "/" + _thumbroot + "/" + path );
+
+               if( thumb.exists() )
+                  if( thumb.remove( "main_thumbnail.jpg" ) )
+                     thumb.rmpath( thumb.canonicalPath() );
+            }
         }
         TO_BOTTOM(_log->_ui.txt);
         if (_log->canceled())
@@ -527,6 +549,15 @@ bool Media::updateColl()
             _IDs += b.attributes().namedItem("id").nodeValue().toInt();
             QDomNode p      = b.parentNode();
             p.removeChild(b);
+
+            if( Config::mngThumbs() )
+            {
+               QDir thumb( _root + "/" + _thumbroot + "/" + path );
+
+               if( thumb.exists() )
+                  if( thumb.remove( "main_thumbnail.jpg" ) )
+                     thumb.rmpath( thumb.canonicalPath() );
+            }
         }
         TO_BOTTOM(_log->_ui.txt);
         if (_log->canceled())
@@ -831,6 +862,33 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
                         _books_parent.appendChild(new_book);
                     else
                         _books_parent.insertBefore(new_book, _first_text);
+
+                    if( Config::mngThumbs() && ! bd.cover.isNull() )
+                    {
+                       QString thumb( _root + "/" + _thumbroot + "/" + getPath( fpath ) );
+
+                       // stale thumnails are possible
+                       if( ! QDir( thumb ).exists() )
+                       {
+                          if( QDir().mkpath( thumb ) )
+                          {
+                             QImage image( bd.cover );
+
+                             // grayscale
+                             QVector<QRgb> ct = image.colorTable();
+                             for( int ni = 0; ni < ct.size(); ++ni )
+                             {
+                                int gray = qGray( ct.at( ni ) );
+                                ct[ ni ] = qRgb( gray, gray, gray );
+                             }
+                             image.setColorTable(  ct );
+
+                             qDebug( "New book - %s\n", qPrintable( _root + "/" + _thumbroot + "/" + getPath(fpath) ) );
+
+                             image.save( thumb + "/main_thumbnail.jpg", "JPG" );
+                          }
+                       }
+                    }
                 }
             }
         }
@@ -974,7 +1032,6 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
     }
 } // Media::scanDir
 
-
 ////////////////////////////////////////////////////////////////////////
 int Media::getID(const QString& path, bool *ok)
 {
@@ -1036,8 +1093,8 @@ bool Media::cancelXml()
     QString errText;
     QString n = _isSD ? "Cache" : "Media";
 
-    bool  rc = _isSD ? readSD(_root, _bookroot, _mediafname, errText)
-        : readPRS(_root, _bookroot, _mediafname, errText);
+    bool  rc = _isSD ? readSD (_root, _bookroot, _mediafname, errText)
+                     : readPRS(_root, _bookroot, _mediafname, errText);
     if (!rc)
     {
         QMessageBox::warning(0, tr("%1 file error").arg(n),
@@ -1046,7 +1103,6 @@ bool Media::cancelXml()
                              .arg(n).arg(errText));
         return false;
     }
-
     _log->close();
     return true;
 } // Media::cancelXml
@@ -1129,6 +1185,7 @@ bool Media::saveXml()
 #endif
     }
     media.close();
+
     QMessageBox::information(0, "OK", tr("File  <b><font color=#0000ff>%1"
                                          "</font> <font color=#008000><br>"
                                          "saved successfully</font></b>")
@@ -1458,4 +1515,4 @@ bool Media::deleteDir(const QString& dname)
     //qDebug("RmDir:  \"%s\"", qPrintable(QFileInfo(dname).absolutePath() + "/"
     //           + QFileInfo(dname).fileName()));
     return QDir(QFileInfo(dname).absolutePath()).rmdir(QFileInfo(dname).fileName());
-} // Media::dbgScanDir
+} // Media::deleteDir

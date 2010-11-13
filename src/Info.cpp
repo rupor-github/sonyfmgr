@@ -97,7 +97,7 @@ void Info::infoReq(FPanel *panel, const QString& dname, const QString& fname)
         else
             tl[1]->setText(bd.title);
 
-        if( ! bd.cover.isNull() )
+        if( Config::mngThumbs() && ! bd.cover.isNull() )
         {
            QPixmap pm;
            pm.convertFromImage( bd.cover );
@@ -105,7 +105,6 @@ void Info::infoReq(FPanel *panel, const QString& dname, const QString& fname)
         }
     }
 } // Info::infoReq
-
 
 ////////////////////////////////////////////////////////////////////////
 bool Info::getBookData(FPanel *panel, const BookData::BType type, const QString& fname, BookData *bd)
@@ -232,21 +231,23 @@ bool Info::fillFB2Info(const QString& fullname, BookData *bd)
     bd->author = handler.author();
     bd->title  = handler.title();
 
-    // Get image for cover page
-
-    if( ! handler.cover().isEmpty() )
+    if( Config::mngThumbs() )
     {
-       QImage src;
+       // Get image for cover page
 
-       src.loadFromData( handler.cover() );
-       bd->cover = src.scaledToHeight( 217, Qt::SmoothTransformation );
+       if( ! handler.cover().isEmpty() )
+       {
+          QImage src;
 
-       if( QImage::Format_Indexed8 != bd->cover.format() )
-          bd->cover = bd->cover.convertToFormat( QImage::Format_Indexed8, Qt::AutoColor );
+          src.loadFromData( handler.cover() );
+          bd->cover = src.scaledToHeight( 217, Qt::SmoothTransformation );
+
+          if( QImage::Format_Indexed8 != bd->cover.format() )
+             bd->cover = bd->cover.convertToFormat( QImage::Format_Indexed8, Qt::AutoColor );
+       }
+       else
+          bd->cover.load( ":/icons/Graphics/thumb.jpg" );
     }
-    else
-       bd->cover.load( ":/icons/Graphics/thumb.jpg" );
-
     return true;
 } // Info::fillFB2Info
 
@@ -395,111 +396,113 @@ bool Info::fillLRFInfo(const QString& fullname, BookData *bd)
     bd->author = handler.author();
     bd->title  = handler.title();
 
-    // Get image for cover page
-    QScopedArrayPointer<LRFObjectRecord> objects( new LRFObjectRecord[ hdr.numOfObjects ] );
-
-    if( ! i_file.seek( hdr.objIndexOffs ) )
-        return false;
-
-    if( i_file.read( (char*)objects.data(), sizeof(LRFObjectRecord) * hdr.numOfObjects ) != sizeof(LRFObjectRecord) * hdr.numOfObjects )
-        return false;
-
-    for( uint32_t ni = 0; ni < hdr.numOfObjects; ++ni )
+    if( Config::mngThumbs() )
     {
-       const LRFObjectRecord& obj = objects[ ni ];
+       // Get image for cover page
+       QScopedArrayPointer<LRFObjectRecord> objects( new LRFObjectRecord[ hdr.numOfObjects ] );
 
-       if( ! i_file.seek( obj.offset ) )
-          continue;
+       if( ! i_file.seek( hdr.objIndexOffs ) )
+           return false;
 
-       uint32_t left     = obj.size;
-       bool     next_obj = true;
-       uint16_t sflags   = 0;
-       uint32_t ssize    = 0;
+       if( i_file.read( (char*)objects.data(), sizeof(LRFObjectRecord) * hdr.numOfObjects ) != sizeof(LRFObjectRecord) * hdr.numOfObjects )
+           return false;
 
-       while( left > 0 )
+       for( uint32_t ni = 0; ni < hdr.numOfObjects; ++ni )
        {
-          uint16_t tag = 0;
+          const LRFObjectRecord& obj = objects[ ni ];
 
-          if( i_file.read( (char*)&tag, sizeof(tag) ) != sizeof(tag) )
-             break;
+          if( ! i_file.seek( obj.offset ) )
+             continue;
 
-          left -= sizeof(tag);
+          uint32_t left     = obj.size;
+          bool     next_obj = true;
+          uint16_t sflags   = 0;
+          uint32_t ssize    = 0;
 
-          uint32_t param_size = LRFTags[ tag & 0xFF ];
-          char     data[ 16 ];
-
-          if( (tag >> 8 != 0xF5) || (param_size < 0) )
-             break;
-
-          if( i_file.read( (char*)data, param_size ) != param_size )
-             break;
-
-          left -= param_size;
-
-          if( tag == 0xF500 )                     // object type
+          while( left > 0 )
           {
-             if( 0x11 != *(uint16_t*)(&data[4]) ) // if not image stream
-                break;                            //    move to next obj
-          }
-          else if( tag == 0xF504 )                // stream size
-          {
-             ssize = *(uint32_t*)&data[0];
-          }
-          else if( tag == 0xF554 )                // stream flags
-          {
-             sflags = *(uint16_t*)&data[0];
-          }
-          else if( tag == 0xF505 )                // stream start
-          {
-             next_obj = false;
-             left    -= ssize;
+             uint16_t tag = 0;
 
-             QByteArray image = i_file.read( ssize );
-             if( image.size() != ssize )
+             if( i_file.read( (char*)&tag, sizeof(tag) ) != sizeof(tag) )
                 break;
 
-//           if( sflags & 0x100 ) { Unpack }
+             left -= sizeof(tag);
 
-             if( sflags & 0x200 )
+             uint32_t param_size = LRFTags[ tag & 0xFF ];
+             char     data[ 16 ];
+
+             if( (tag >> 8 != 0xF5) || (param_size < 0) )
+                break;
+
+             if( i_file.read( (char*)data, param_size ) != param_size )
+                break;
+
+             left -= param_size;
+
+             if( tag == 0xF500 )                     // object type
              {
-                uint32_t len = image.size() > 0x400 ? 0x400 : image.size();
-                uint32_t key = (uint16_t)((ssize % hdr.pseudokey) + 0x0F) & 0xFF;
-
-                key = key << 8  | key;
-                key = key << 16 | key;
-
-                uint32_t* p = (uint32_t*)image.data();
-                while( len >= sizeof(uint32_t) )
-                {
-                   (*p++) ^= key;
-                   len -= 4;
-                }
-
-                unsigned char* p1 = (unsigned char*)p;
-                while( len > 0 )
-                {
-                   (*p1++) ^= (key & 0xFF);
-                   len--;
-                }
+                if( 0x11 != *(uint16_t*)(&data[4]) ) // if not image stream
+                   break;                            //    move to next obj
              }
+             else if( tag == 0xF504 )                // stream size
+             {
+                ssize = *(uint32_t*)&data[0];
+             }
+             else if( tag == 0xF554 )                // stream flags
+             {
+                sflags = *(uint16_t*)&data[0];
+             }
+             else if( tag == 0xF505 )                // stream start
+             {
+                next_obj = false;
+                left    -= ssize;
 
-             QImage src;
+                QByteArray image = i_file.read( ssize );
+                if( image.size() != ssize )
+                   break;
 
-             src.loadFromData( image );
-             bd->cover = src.scaledToHeight( 217, Qt::SmoothTransformation );
+   //           if( sflags & 0x100 ) { Unpack }
 
-             if( QImage::Format_Indexed8 != bd->cover.format() )
-                bd->cover = bd->cover.convertToFormat( QImage::Format_Indexed8, Qt::AutoColor );
+                if( sflags & 0x200 )
+                {
+                   uint32_t len = image.size() > 0x400 ? 0x400 : image.size();
+                   uint32_t key = (uint16_t)((ssize % hdr.pseudokey) + 0x0F) & 0xFF;
 
-             break;
+                   key = key << 8  | key;
+                   key = key << 16 | key;
+
+                   uint32_t* p = (uint32_t*)image.data();
+                   while( len >= sizeof(uint32_t) )
+                   {
+                      (*p++) ^= key;
+                      len -= 4;
+                   }
+
+                   unsigned char* p1 = (unsigned char*)p;
+                   while( len > 0 )
+                   {
+                      (*p1++) ^= (key & 0xFF);
+                      len--;
+                   }
+                }
+
+                QImage src;
+
+                src.loadFromData( image );
+                bd->cover = src.scaledToHeight( 217, Qt::SmoothTransformation );
+
+                if( QImage::Format_Indexed8 != bd->cover.format() )
+                   bd->cover = bd->cover.convertToFormat( QImage::Format_Indexed8, Qt::AutoColor );
+
+                break;
+             }
           }
+          if( ! next_obj )
+             break;
        }
-       if( ! next_obj )
-          break;
+       if( bd->cover.isNull() )
+          bd->cover.load( ":/icons/Graphics/thumb.jpg" );
     }
-    if( bd->cover.isNull() )
-       bd->cover.load( ":/icons/Graphics/thumb.jpg" );
-
     return true;
 } // Info::fillLRFInfo
 
@@ -562,33 +565,34 @@ bool Info::fillEPUBInfo(const QString& fullname, BookData *bd)
     bd->author = handler.author();
     bd->title  = handler.title();
 
-    // Get image for cover page
-    QString cover_file = handler.coverfile();
-
-    if( cover_file.isEmpty() )
-       return true;
-
-    cover_file.prepend( content_file.section( '/', -2, 0, QString::SectionIncludeTrailingSep ) );
-
-    QBuffer image;
-    if( image.open( QIODevice::ReadWrite ) )
+    if( Config::mngThumbs() )
     {
-       ec = uz.extractFile( cover_file, &image, UnZip::SkipPaths );
-       if( ec == UnZip::Ok )
+       // Get image for cover page
+       QString cover_file = handler.coverfile();
+
+       if( cover_file.isEmpty() )
+          return true;
+
+       cover_file.prepend( content_file.section( '/', -2, 0, QString::SectionIncludeTrailingSep ) );
+
+       QBuffer image;
+       if( image.open( QIODevice::ReadWrite ) )
        {
-          QImage src;
+          ec = uz.extractFile( cover_file, &image, UnZip::SkipPaths );
+          if( ec == UnZip::Ok )
+          {
+             QImage src;
 
-          src.loadFromData( image.buffer() );
-          bd->cover = src.scaledToHeight( 217, Qt::SmoothTransformation );
+             src.loadFromData( image.buffer() );
+             bd->cover = src.scaledToHeight( 217, Qt::SmoothTransformation );
 
-          if( QImage::Format_Indexed8 != bd->cover.format() )
-             bd->cover = bd->cover.convertToFormat( QImage::Format_Indexed8, Qt::AutoColor );
+             if( QImage::Format_Indexed8 != bd->cover.format() )
+                bd->cover = bd->cover.convertToFormat( QImage::Format_Indexed8, Qt::AutoColor );
+          }
        }
+       if( bd->cover.isNull() )
+          bd->cover.load( ":/icons/Graphics/thumb.jpg" );
     }
-
-    if( bd->cover.isNull() )
-       bd->cover.load( ":/icons/Graphics/thumb.jpg" );
-
     return true;
 }
 

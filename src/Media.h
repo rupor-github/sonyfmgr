@@ -74,6 +74,7 @@ public:
     bool readSD(const QString& root, const QString& bookroot,
                 const QString& fname, QString& errText);
     bool updateColl();
+    void syncThumbs( const QString& path );
     bool ok() { return _readok; }
 
 private slots:
@@ -99,6 +100,7 @@ private:
     QString      _mediafname;
     QString      _root;
     QString      _bookroot;
+    QString      _thumbroot;
     bool         _readok;
     LogWidget    *_log;
     int          _nextID;

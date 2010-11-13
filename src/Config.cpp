@@ -191,48 +191,18 @@ QString Config::_s3_to;
 ////////////////////////////////////////////////////////////////////////
 static QString str2ini(const QString &s)
 {
-    QString    rc;
-    QByteArray a = qCompress(s.toUtf8(), 9);
-    for (int i=0; i<a.size(); i++)
-        rc += QString().sprintf("%02X", a.at(i) & 0xff);
-    return rc;
-} // str2ini
+   return QString( qCompress(s.toUtf8(), 9).toHex() );
+}
 
 ////////////////////////////////////////////////////////////////////////
 static QString ini2str(const QString &s)
 {
-    QByteArray a;
-    a.reserve(s.size());
-    for (const char *p = qPrintable(s); *p; p++)
-    {
-        unsigned i;
-        if (*p >= '0' && *p <= '9')
-            i = (*p - '0') << 4;
-        else if (*p >= 'A' && *p <= 'F')
-            i = (*p - 'A' + 10) << 4;
-        else if (*p >= 'a' && *p <= 'f')
-            i = (*p - 'a' + 10) << 4;
-        else
-            break;
+   QByteArray a( qPrintable( s ) );
 
-        if (!*++p)
-            break;
+   a = qUncompress( QByteArray::fromHex( a ) );
 
-        if (*p >= '0' && *p <= '9')
-            i |= (*p - '0') & 0x0f;
-        else if (*p >= 'A' && *p <= 'F')
-            i |= (*p - 'A' + 10) & 0x0f;
-        else if (*p >= 'a' && *p <= 'f')
-            i |= (*p - 'a' + 10) & 0x0f;
-        else
-            break;
-
-        a.append((char)(i&0xff));
-    }
-    QByteArray b = qUncompress(a);
-    return QString::fromUtf8(b.data(), b.size());
-} // ini2str
-
+   return QString::fromUtf8( a.data(), a.size() );
+}
 
 ////////////////////////////////////////////////////////////////////////
 EditCSS::EditCSS(Config *par) : QMainWindow(par), _par(par), _wasEdit(false)
