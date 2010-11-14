@@ -70,9 +70,9 @@ public:
     ~Media() {}
 
     bool readPRS(const QString& root, const QString& bookroot,
-                 const QString& fname, QString& errText);
+                 const QString& fname, const QString& fxname, QString& errText);
     bool readSD(const QString& root, const QString& bookroot,
-                const QString& fname, QString& errText);
+                const QString& fname, const QString& fxname, QString& errText);
     bool updateColl();
     void syncThumbs( const QString& path );
     bool ok() { return _readok; }
@@ -94,10 +94,12 @@ private:
     bool     deleteDir(const QString& dname);
 
     QDomDocument _dom;
+    QDomDocument _dom_ext;
     QDomNode     _books_parent;
     QDomNode     _first_text;
     FPanel       *_par;
     QString      _mediafname;
+    QString      _extfname;
     QString      _root;
     QString      _bookroot;
     QString      _thumbroot;

@@ -81,8 +81,10 @@
 
 #define H(s) QString(s).replace(" ", "&nbsp;")
 
-static const char   *media_files[] = { "database/cache/media.xml" };
-static const char   *cache_files[] = { "Sony Reader/database/cache.xml" };
+static const char   *media_files[]     = { "database/cache/media.xml" };
+static const char   *media_ext_files[] = { "database/cache/cacheExt.xml" };
+static const char   *cache_files[]     = { "Sony Reader/database/cache.xml" };
+static const char   *cache_ext_files[] = { "Sony Reader/database/cacheExt.xml" };
 
 const char    *FPanel::order_fname = "index.order";
 const char    *FPanel::cname_fname = "index.name";
@@ -355,9 +357,11 @@ bool FPanel::findDevice(bool *ok)
         for (i=0; i<numb_el(media_files); i++)
         {
             QString name(m + "/" + media_files[i]);
-            if (QFile::exists(name))
+            QString namex(m + "/" + media_ext_files[i]);
+
+            if( (Config::mngThumbs()) ? (QFile::exists(name) && QFile::exists(namex)) : QFile::exists(name) )
             {
-                devs += Device(m, name, media_files[i], PRS505);
+                devs += Device(m, name, namex, media_files[i], media_ext_files[i], PRS505);
                 break;
             }
         }
@@ -368,9 +372,10 @@ bool FPanel::findDevice(bool *ok)
         for (i=0; i<numb_el(cache_files); i++)
         {
             QString name(m + "/" + cache_files[i]);
-            if (QFile::exists(name))
+            QString namex(m + "/" + cache_ext_files[i]);
+            if( (Config::mngThumbs()) ? (QFile::exists(name) && QFile::exists(namex)) : QFile::exists(name) )
             {
-                devs += Device(m, name, cache_files[i], SD);
+                devs += Device(m, name, namex, cache_files[i], cache_ext_files[i], SD);
                 break;
             }
         }
@@ -398,9 +403,17 @@ bool FPanel::findDevice(bool *ok)
     }
 
     // Look for start directory
-    QString t(tr("%1 found on <b><font color=#0000ff>%2</font></b>, "
+    QString t = Config::mngThumbs()
+       ?
+          (tr("%1 found on <b><font color=#0000ff>%2</font></b><br>"
                  "media file is <b><font color=#0000ff>%3</font></b><br>"
-                 "Start in <b><font color=#0000ff>%4</b><br>%5"));
+                 "cacheExt file is <b><font color=#0000ff>%4</font></b><br>"
+                 "Start in <b><font color=#0000ff>%5</b><br>%6"))
+       :
+          (tr("%1 found on <b><font color=#0000ff>%2</font></b><br>"
+                 "media file is <b><font color=#0000ff>%3</font></b><br>"
+                 "Start in <b><font color=#0000ff>%4</b><br>%5"))
+       ;
 
     // Try root directory
     QString modeName(dev->mode==PRS505 ? "Internal memory" : "SD card");
@@ -410,6 +423,7 @@ bool FPanel::findDevice(bool *ok)
         dname = dname.left(dname.length()-1);
     _root = dev->name;
     _mediafname = dev->fname;
+    _extfname = dev->fxname;
     if (!cd(dname))
     {
         t = tr("%1 found on <b><font color=#0000ff>%2</font></b>, "
@@ -434,33 +448,69 @@ bool FPanel::findDevice(bool *ok)
     _media = new Media(this);
     if (dev->mode == PRS505)
     {
-        if (_media->readPRS(_root, dname, _mediafname, errText))
+        if (_media->readPRS(_root, dname, _mediafname, _extfname, errText))
         {
-            t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dname))
-                .arg(tr("<b><font color=#008000>"
+           if( Config::mngThumbs() )
+           {
+              t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dev->xname)).arg(H(dname)).arg(tr("<b><font color=#008000>"
+                       "Media file has been read and parsed OK</font></b>"));
+           }
+           else
+           {
+               t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dname)).arg(tr("<b><font color=#008000>"
                         "Media file has been read and parsed OK</font></b>"));
-            mediaOK = true;
+           }
+           mediaOK = true;
         }
         else
-            t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dname))
-                .arg(tr("<font color=#ff0000><b>"
+        {
+           if( Config::mngThumbs() )
+           {
+              t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dev->xname)).arg(H(dname))
+                     .arg(tr("<font color=#ff0000><b>"
                         "Media file error:</b><br>%1").arg(errText));
+           }
+           else
+           {
+              t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dname))
+                     .arg(tr("<font color=#ff0000><b>"
+                        "Media file error:</b><br>%1").arg(errText));
+           }
+        }
         _umountAct->setText(tr("U&mount Sony eBook"));
         _umountAct->setIcon(QIcon(":/icons/Graphics/mngr505.png"));
     }
     else
     {
-        if (_media->readSD(_root, dname, _mediafname, errText))
+        if (_media->readSD(_root, dname, _mediafname, _extfname, errText))
         {
-            t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dname))
-                .arg(tr("<b><font color=#008000>"
+           if( Config::mngThumbs() )
+           {
+              t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dev->xname)).arg(H(dname)).arg(tr("<b><font color=#008000>"
+                       "Cache file has been read and parsed OK</font></b>"));
+           }
+           else
+           {
+               t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dname)).arg(tr("<b><font color=#008000>"
                         "Cache file has been read and parsed OK</font></b>"));
-            mediaOK = true;
+           }
+           mediaOK = true;
         }
         else
-            t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dname))
-                .arg(tr("<font color=#ff0000><b>"
+        {
+           if( Config::mngThumbs() )
+           {
+              t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->mname)).arg(H(dev->xname)).arg(H(dname))
+                     .arg(tr("<font color=#ff0000><b>"
                         "Cache file error:</b><br>%1").arg(errText));
+           }
+           else
+           {
+              t = t.arg(H(modeName)).arg(H(dev->name)).arg(H(dev->xname)).arg(H(dev->mname)).arg(H(dname))
+                     .arg(tr("<font color=#ff0000><b>"
+                        "Cache file error:</b><br>%1").arg(errText));
+           }
+        }
         _umountAct->setText("U&mount SD card");
         _umountAct->setIcon(QIcon(":/icons/Graphics/SD.png"));
     }
@@ -488,6 +538,7 @@ void FPanel::notFound(const QString& newRoot)
     delete _media;
     _media = 0;
     _mediafname.clear();
+    _extfname.clear();
     _root = newRoot;
     setMode(FileSystem);
     _umountAct->setText("U&mount");

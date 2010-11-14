@@ -47,6 +47,7 @@ public:
     QString pwd()                     { return _dirname;                }
     QString root()                    { return _root;                   }
     QString mediafname()              { return _mediafname;             }
+    QString extfname()                { return _extfname;               }
     bool    order_changed()           { return _order_changed;          }
     void    setOrder_changed(bool c)  { _order_changed = c;             }
     QString getPath(const QString& fpath);
@@ -134,13 +135,15 @@ private:
 
     class Device {
     public:
-        Device(const QString& n, const QString& f, const QString& m, const Mode& mod)
-            : name(n), fname(f), mname(m), mode(mod) { }
+        Device(const QString& n, const QString& f, const QString& fx, const QString& m, const QString& x, const Mode& mod)
+            : name(n), fname(f), fxname(fx), mname(m), xname(x), mode(mod) { }
         bool operator==(const Device& d)
-            { return d.name == name && d.fname == fname && d.mname == mname && d.mode == mode; }
+            { return d.name == name && d.fname == fname && d.fxname == fxname && d.mname == mname && d.xname == xname && d.mode == mode; }
         QString name;
         QString fname;
+        QString fxname;
         QString mname;
+        QString xname;
         Mode    mode;
     };
 
@@ -182,6 +185,7 @@ private:
     QDir                   *_dir;
     QString                _root;
     QString                _mediafname;
+    QString                _extfname;
     QString                _dirname;
     QString                _prevSelection;
     QSet<QString>          _marked;

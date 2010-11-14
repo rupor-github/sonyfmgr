@@ -211,24 +211,43 @@ QString Media::getPath(const QString& fpath)
 
 ////////////////////////////////////////////////////////////////////////
 bool Media::readPRS(const QString& root,  const QString& bookroot,
-                    const QString& fname, QString& errText)
+                    const QString& fname, const QString& fxname, QString& errText)
 {
     _readok = false;
 
-    QFile        media_file(fname);
-    int          errLine, errCol;
-    QString      errMsg;
-    if (!media_file.open(QIODevice::ReadOnly))
     {
-        errText = tr("Can't open file %1: %2")
-            .arg(fname).arg(media_file.errorString());
-        return false;
+       QFile        media_file(fname);
+       int          errLine, errCol;
+       QString      errMsg;
+       if (!media_file.open(QIODevice::ReadOnly))
+       {
+           errText = tr("Can't open file %1: %2")
+               .arg(fname).arg(media_file.errorString());
+           return false;
+       }
+       if (!_dom.setContent(&media_file, &errMsg, &errLine, &errCol))
+       {
+           errText = tr("File: %1<br>Line: %2, Column: %3 -- %4")
+               .arg(fname).arg(errLine).arg(errCol).arg(errMsg);
+           return false;
+       }
     }
-    if (!_dom.setContent(&media_file, &errMsg, &errLine, &errCol))
     {
-        errText = tr("File: %1<br>Line: %2, Column: %3 -- %4")
-            .arg(fname).arg(errLine).arg(errCol).arg(errMsg);
-        return false;
+       QFile        media_file(fxname);
+       int          errLine, errCol;
+       QString      errMsg;
+       if (!media_file.open(QIODevice::ReadOnly))
+       {
+           errText = tr("Can't open file %1: %2")
+               .arg(fname).arg(media_file.errorString());
+           return false;
+       }
+       if (!_dom_ext.setContent(&media_file, &errMsg, &errLine, &errCol))
+       {
+           errText = tr("File: %1<br>Line: %2, Column: %3 -- %4")
+               .arg(fname).arg(errLine).arg(errCol).arg(errMsg);
+           return false;
+       }
     }
 
     // Get max ID
@@ -302,6 +321,7 @@ bool Media::readPRS(const QString& root,  const QString& bookroot,
     if (_bookroot.startsWith("/"))
         _bookroot = _bookroot.mid(1);
     _mediafname = fname;
+    _extfname = fxname;
     _readok = true;
     _IDs.clear();
     _isSD = false;
@@ -312,24 +332,43 @@ bool Media::readPRS(const QString& root,  const QString& bookroot,
 } // Media::read
 
 ////////////////////////////////////////////////////////////////////////
-bool Media::readSD(const QString& root, const QString& bookroot, const QString& fname, QString& errText)
+bool Media::readSD(const QString& root, const QString& bookroot, const QString& fname, const QString& fxname, QString& errText)
 {
     _readok = false;
 
-    QFile        cache_file(fname);
-    int          errLine, errCol;
-    QString      errMsg;
-    if (!cache_file.open(QIODevice::ReadOnly))
     {
-        errText = QString("Can't open file %1: %2")
-            .arg(fname).arg(cache_file.errorString());
-        return false;
+       QFile        cache_file(fname);
+       int          errLine, errCol;
+       QString      errMsg;
+       if (!cache_file.open(QIODevice::ReadOnly))
+       {
+           errText = QString("Can't open file %1: %2")
+               .arg(fname).arg(cache_file.errorString());
+           return false;
+       }
+       if (!_dom.setContent(&cache_file, &errMsg, &errLine, &errCol))
+       {
+           errText = QString("File: %1<br>Line: %2, Column: %3 -- %4")
+               .arg(fname).arg(errLine).arg(errCol).arg(errMsg);
+           return false;
+       }
     }
-    if (!_dom.setContent(&cache_file, &errMsg, &errLine, &errCol))
     {
-        errText = QString("File: %1<br>Line: %2, Column: %3 -- %4")
-            .arg(fname).arg(errLine).arg(errCol).arg(errMsg);
-        return false;
+       QFile        cache_file(fxname);
+       int          errLine, errCol;
+       QString      errMsg;
+       if (!cache_file.open(QIODevice::ReadOnly))
+       {
+           errText = QString("Can't open file %1: %2")
+               .arg(fname).arg(cache_file.errorString());
+           return false;
+       }
+       if (!_dom_ext.setContent(&cache_file, &errMsg, &errLine, &errCol))
+       {
+           errText = QString("File: %1<br>Line: %2, Column: %3 -- %4")
+               .arg(fname).arg(errLine).arg(errCol).arg(errMsg);
+           return false;
+       }
     }
 
     // Get max ID
@@ -395,6 +434,7 @@ bool Media::readSD(const QString& root, const QString& bookroot, const QString& 
     if (_bookroot.startsWith("/"))
         _bookroot = _bookroot.mid(1);
     _mediafname = fname;
+    _extfname = fxname;
     _readok = true;
     _IDs.clear();
     _isSD = true;
@@ -762,6 +802,9 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
     if (_log->canceled())
         return;
 
+    if( Config::mngThumbs() && getPath( dname ).startsWith( _thumbroot ) )
+        return;
+
     QTextCodec        *codec = QTextCodec::codecForName("UTF-8");
     QDir              dir(dname);
     QDir::Filters     filt = QDir::AllEntries | QDir::Hidden | QDir::System;
@@ -867,7 +910,6 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
                     {
                        QString thumb( _root + "/" + _thumbroot + "/" + getPath( fpath ) );
 
-                       // stale thumnails are possible
                        if( ! QDir( thumb ).exists() )
                        {
                           if( QDir().mkpath( thumb ) )
@@ -883,9 +925,19 @@ void Media::scanDir(const QString& nprefix, const QString& cprefix,
                              }
                              image.setColorTable(  ct );
 
-                             qDebug( "New book - %s\n", qPrintable( _root + "/" + _thumbroot + "/" + getPath(fpath) ) );
-
                              image.save( thumb + "/main_thumbnail.jpg", "JPG" );
+
+                             QString num;
+                             QDomElement book_ext  = _dom_ext.createElement( "text" );
+                             book_ext.setAttribute( "path", getPath(fpath) );
+                             QDomElement thumbnail = _dom_ext.createElement( "thumbnail" );
+                             QDomText text = _dom_ext.createTextNode( "main_thumbnail.jpg" );
+                             thumbnail.appendChild( text );
+                             thumbnail.setAttribute( "width", num.setNum( image.width() ) );
+                             thumbnail.setAttribute( "height", num.setNum( image.height() ) );
+                             book_ext.appendChild( thumbnail );
+
+                             _dom_ext.documentElement().appendChild( book_ext );
                           }
                        }
                     }
@@ -1093,8 +1145,8 @@ bool Media::cancelXml()
     QString errText;
     QString n = _isSD ? "Cache" : "Media";
 
-    bool  rc = _isSD ? readSD (_root, _bookroot, _mediafname, errText)
-                     : readPRS(_root, _bookroot, _mediafname, errText);
+    bool  rc = _isSD ? readSD (_root, _bookroot, _mediafname, _extfname, errText)
+                     : readPRS(_root, _bookroot, _mediafname, _extfname, errText);
     if (!rc)
     {
         QMessageBox::warning(0, tr("%1 file error").arg(n),
@@ -1111,88 +1163,174 @@ bool Media::cancelXml()
 ////////////////////////////////////////////////////////////////////////
 bool Media::saveXml()
 {
-    QFile media(_mediafname);
+   {
+       QFile media(_mediafname);
 
-    // Remove porevious backup
-    if (QFile::exists(_mediafname + ".bak"))
-    {
-        QFile old(_mediafname + ".bak");
-        if (!old.remove())
-        {
-            QMessageBox::critical(0, tr("Can't remove file"),
-                                  tr("Can't remove<b><font color=#0000ff>%1"
-                                     "</font><b>: <b><font color=#ff0000>"
-                                     "%2</font><b>")
-                                  .arg(_mediafname + ".bak")
-                                  .arg(old.errorString()));
-            return false;
-        }
-    }
+       // Remove porevious backup
+       if (QFile::exists(_mediafname + ".bak"))
+       {
+           QFile old(_mediafname + ".bak");
+           if (!old.remove())
+           {
+               QMessageBox::critical(0, tr("Can't remove file"),
+                                        tr("Can't remove<b><font color=#0000ff>%1"
+                                           "</font><b>: <b><font color=#ff0000>"
+                                           "%2</font><b>")
+                                        .arg(_mediafname + ".bak")
+                                        .arg(old.errorString()));
+               return false;
+           }
+       }
 
-    // Backup media file
-    if (!media.copy(_mediafname + ".bak"))
-    {
-        QMessageBox::critical(0, tr("Can't backup file"),
-                              tr("Can't copy <b><font color=#0000ff>%1"
-                                 "</font><b> to <b><font color=#0000ff>"
-                                 "%2</font><b>: <b><font color=#ff0000>"
-                                 "%3</font><b>")
-                              .arg(_mediafname)
-                              .arg(_mediafname + ".bak")
-                              .arg(media.errorString()));
-        return false;
-    }
+       // Backup media file
+       if (!media.copy(_mediafname + ".bak"))
+       {
+           QMessageBox::critical(0, tr("Can't backup file"),
+                                    tr("Can't copy <b><font color=#0000ff>%1"
+                                       "</font><b> to <b><font color=#0000ff>"
+                                       "%2</font><b>: <b><font color=#ff0000>"
+                                       "%3</font><b>")
+                                    .arg(_mediafname)
+                                    .arg(_mediafname + ".bak")
+                                    .arg(media.errorString()));
+           return false;
+       }
 
-    // Reopen and truncate media file
-    media.close();
-    if (!media.open(QFile::WriteOnly | QFile::Truncate))
-    {
-        QMessageBox::critical(0, tr("Can't open file"),
-                              tr("Can't open <b><font color=#0000ff>%1"
-                                 "</font><b>:<br> <b><font color=#ff0000>"
-                                 "%2</font><b>")
-                              .arg(_mediafname)
-                              .arg(media.errorString()));
-        return false;
-    }
+       // Reopen and truncate media file
+       media.close();
+       if (!media.open(QFile::WriteOnly | QFile::Truncate))
+       {
+           QMessageBox::critical(0, tr("Can't open file"),
+                                    tr("Can't open <b><font color=#0000ff>%1"
+                                       "</font><b>:<br> <b><font color=#ff0000>"
+                                       "%2</font><b>")
+                                    .arg(_mediafname)
+                                    .arg(media.errorString()));
+           return false;
+       }
 
-    // Write new XML to media file
-    QTextStream out(&media);
-    if (_wasEdit)
-        out << _prev_data;
-    else
-        _dom.save(out, 4);
+       // Write new XML to media file
+       QTextStream out(&media);
+       if (_wasEdit)
+           out << _prev_data;
+       else
+           _dom.save(out, 4);
 
-    // Flush the data
-    if (!media.flush())
-    {
-        QMessageBox::critical(0, tr("Can't flush file"),
-                              tr("Can't flush data to<b><font color=#0000ff>%1"
-                                 "</font><b>:<br> <b><font color=#ff0000>"
-                                 "%2</font><b>")
-                              .arg(_mediafname)
-                              .arg(media.errorString()));
-        return false;
-    }
-    int fd = media.handle();
-    if (fd != -1)
-    {
+       // Flush the data
+       if (!media.flush())
+       {
+           QMessageBox::critical(0, tr("Can't flush file"),
+                                    tr("Can't flush data to<b><font color=#0000ff>%1"
+                                       "</font><b>:<br> <b><font color=#ff0000>"
+                                       "%2</font><b>")
+                                    .arg(_mediafname)
+                                    .arg(media.errorString()));
+           return false;
+       }
+       int fd = media.handle();
+       if (fd != -1)
+       {
 #if defined(LINUX) || defined (MACOSX)
-        fsync(fd);
-        sync(); sync();
+           fsync(fd);
+           sync(); sync();
 #elif defined(WINDOWS) && !defined(_MSC_VER)
-        _commit(fd);
+           _commit(fd);
 #endif
-    }
-    media.close();
+       }
+       media.close();
+   }
 
-    QMessageBox::information(0, "OK", tr("File  <b><font color=#0000ff>%1"
-                                         "</font> <font color=#008000><br>"
-                                         "saved successfully</font></b>")
-                             .arg(H(_mediafname)));
-    _log->close();
-    return true;
-} // Media::saveXml
+   if( Config::mngThumbs() )
+   {
+       QFile media(_extfname);
+
+       // Remove porevious backup
+       if (QFile::exists(_extfname + ".bak"))
+       {
+           QFile old(_extfname + ".bak");
+           if (!old.remove())
+           {
+               QMessageBox::critical(0, tr("Can't remove file"),
+                                        tr("Can't remove<b><font color=#0000ff>%1"
+                                           "</font><b>: <b><font color=#ff0000>"
+                                           "%2</font><b>")
+                                        .arg(_extfname + ".bak")
+                                        .arg(old.errorString()));
+               return false;
+           }
+       }
+
+       // Backup media file
+       if (!media.copy(_extfname + ".bak"))
+       {
+           QMessageBox::critical(0, tr("Can't backup file"),
+                                    tr("Can't copy <b><font color=#0000ff>%1"
+                                       "</font><b> to <b><font color=#0000ff>"
+                                       "%2</font><b>: <b><font color=#ff0000>"
+                                       "%3</font><b>")
+                                    .arg(_extfname)
+                                    .arg(_extfname + ".bak")
+                                    .arg(media.errorString()));
+           return false;
+       }
+
+       // Reopen and truncate media file
+       media.close();
+       if (!media.open(QFile::WriteOnly | QFile::Truncate))
+       {
+           QMessageBox::critical(0, tr("Can't open file"),
+                                    tr("Can't open <b><font color=#0000ff>%1"
+                                       "</font><b>:<br> <b><font color=#ff0000>"
+                                       "%2</font><b>")
+                                    .arg(_extfname)
+                                    .arg(media.errorString()));
+           return false;
+       }
+
+       // Write new XML to media file
+       QTextStream out(&media);
+       _dom_ext.save(out, 4);
+
+       // Flush the data
+       if (!media.flush())
+       {
+           QMessageBox::critical(0, tr("Can't flush file"),
+                                    tr("Can't flush data to<b><font color=#0000ff>%1"
+                                       "</font><b>:<br> <b><font color=#ff0000>"
+                                       "%2</font><b>")
+                                    .arg(_mediafname)
+                                    .arg(media.errorString()));
+           return false;
+       }
+       int fd = media.handle();
+       if (fd != -1)
+       {
+#if defined(LINUX) || defined (MACOSX)
+           fsync(fd);
+           sync(); sync();
+#elif defined(WINDOWS) && !defined(_MSC_VER)
+           _commit(fd);
+#endif
+       }
+       media.close();
+   }
+
+   if( Config::mngThumbs() )
+   {
+        QMessageBox::information(0, "OK", tr("Files <b><font color=#0000ff>%1</font></b> and <b><font color=#0000ff>%2</font></b>"
+                                              "<font color=#008000><br>saved successfully</font>")
+                                         .arg(H(_mediafname)).arg(H(_extfname)));
+   }
+   else
+   {
+        QMessageBox::information(0, "OK", tr("File  <b><font color=#0000ff>%1"
+                                             "</font> <font color=#008000><br>"
+                                             "saved successfully</font></b>")
+                                          .arg(H(_mediafname)));
+   }
+   _log->close();
+   return true;
+}
 
 
 #define INTERM_XML(SUFF, STRING) do {                                      \
