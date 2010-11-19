@@ -249,7 +249,7 @@
        <string>Copy and convert every FB2 file to EPUB</string>
       </property>
       <property name="text">
-       <string>F9 - FB2/EPUB</string>
+       <string>F9 - Convert</string>
       </property>
      </widget>
     </item>
