@@ -3,7 +3,6 @@ HEADERS		= \
 		  BookData.h         \
 		  Config.h           \
 		  DeviceSelect.h     \
-		  EPUB.h             \
 		  EPUBParser.h       \
 		  FB2Parser.h        \
 		  FPanel.h           \
@@ -18,7 +17,6 @@ HEADERS		= \
 		  utils.h            \
 		  zipentry_p.h       \
                   Confirm.h          \
-                  FB2toEPUB.h        \
                   FB2toLRF.h         \
                   Viewer.h           \
                   zip.h              \
@@ -32,7 +30,6 @@ SOURCES         = \
 		  BookData.cpp       \
 		  Config.cpp         \
 		  DeviceSelect.cpp   \
-		  EPUB.cpp           \
 		  EPUBParser.cpp     \
 		  FB2Parser.cpp      \
 		  FPanel.cpp         \
@@ -45,7 +42,6 @@ SOURCES         = \
 		  unzip.cpp          \
 		  utils.cpp          \
                   Confirm.cpp        \
-                  FB2toEPUB.cpp      \
                   FB2toLRF.cpp       \
                   Viewer.cpp         \
                   mngr505.cpp        \

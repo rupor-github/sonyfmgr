@@ -19,33 +19,6 @@
 class QTextEdit;
 class QPushButton;
 class Config;
-class EditCSS : public QMainWindow
-{
-    Q_OBJECT
-
-public:
-    EditCSS(Config *par);
-    ~EditCSS();
-
-    virtual void show();
-
-    QTextEdit   *te;
-    QPushButton *save;
-    QPushButton *cancel;
-    QPushButton *revertCurrent;
-    QPushButton *revertDefault;
-
-private slots:
-    void textChanged();
-    void saveReq();
-    void revertCReq();
-    void revertDReq();
-
-private:
-    Config    *_par;
-    bool      _wasEdit;
-};
-
 
 ////////////////////////////////////////////////////////////////////////
 class Config: public QDialog {
@@ -76,10 +49,6 @@ public:
 
     int     exec1();
     void    restore_dependecies();
-
-    static QString CSS()                    { return _EPUBStyles;  }
-    static void    setCSS(const QString& c) { _EPUBStyles = c;      }
-    static QString DefCSS()                 { return  _default_css; }
 
     // _cmouseSel property definition
     public:
@@ -165,17 +134,6 @@ public:
     private slots:
         void conf_over(bool checked) { _confOverWr = checked; }
 
-    // _epub_tmp property definition
-    public:
-        static QString EPUBTmp() { return _epub_tmp; }
-    private:
-        static QString _epub_tmp;
-
-    // _f9_lrf property definition
-    public:
-        static bool F9LRF() { return _f9_lrf; }
-    private:
-        static bool _f9_lrf;
 
     // _fb2Pattern property definition
     public:
@@ -241,6 +199,14 @@ public:
     private:
         static QString _fb2lrf_tmp;
 
+    // _fb2lrf_ext property definition
+    public:
+        static QString fb2lrfExt() { return _fb2lrf_ext; }
+    private:
+        static QString _fb2lrf_ext;
+    private slots:
+        void fb2lrf_ext(const QString& t) { _fb2lrf_ext = t; }
+
     // _fb2lrf_utmp property definition
     public:
         static bool fb2UseTmp() { return _fb2lrf_utmp; }
@@ -298,6 +264,12 @@ public:
         static QString lrfViewer() { return _lrfviewer; }
     private:
         static QString _lrfviewer;
+
+    // _epubviewer property definition
+    public:
+        static QString epubViewer() { return _epubviewer; }
+    private:
+        static QString _epubviewer;
 
     // _mouseSel property definition
     public:
@@ -809,17 +781,17 @@ public:
 private slots:
     void fb2lrf_cmd(const QString& t)  { setFB2CommandCheck(t, _fb2lrf_cmd, _ui.fb2lrf_cmd_ok); }
     void lrf_text(const QString& t)    { setFileExists(t, _lrfviewer, _ui.lrf_ok);      }
+    void epub_text(const QString& t)   { setFileExists(t, _epubviewer, _ui.epub_ok);    }
     void fb2_text(const QString& t)    { setFileExists(t, _fb2viewer, _ui.fb2_ok);      }
     void fb2lrf_text(const QString& t) { setFileExists(t, _fb2lrf,    _ui.fb2lrf_ok);   }
     void fb2styles_text(const QString& t) { setFileReadable(t, _fb2styles,    _ui.fb2styles_ok);   }
-    void epub_tmp(const QString& t)    { setDirExists(t,  _epub_tmp,  _ui.epub_tmp_ok);     }
     void fb2lrf_tmp(const QString& t)  { setDirExists(t,  _fb2lrf_tmp,  _ui.fb2lrf_tmp_ok); }
     void lrf_browse()       { setFname(_ui.lrfviewer_l, _lrfviewer, "LRF Viewer"); }
+    void epub_browse()      { setFname(_ui.epubviewer_l, _epubviewer, "EPUB Viewer"); }
     void fb2_browse()       { setFname(_ui.fb2viewer_l, _fb2viewer, "FB2 Viewer"); }
-    void fb2lrf_browse()    { setFname(_ui.fb2lrf_l, _fb2lrf,    "FB2LRF convertor"); }
-    void fb2styles_browse() { setFname(_ui.fb2styles_l, _fb2styles,    "FB2LRF styles file"); }
-    void epub_tmp_br() { setDname(_ui.epub_tmp_l,  _epub_tmp,  "EPUB temp. directory"); }
-    void fb2lrf_tmp_br() { setDname(_ui.fb2lrf_tmp_l, _fb2lrf_tmp,  "FB2LRF temp. directory"); }
+    void fb2lrf_browse()    { setFname(_ui.fb2lrf_l, _fb2lrf,    "Program file"); }
+    void fb2styles_browse() { setFname(_ui.fb2styles_l, _fb2styles,    "Styles file"); }
+    void fb2lrf_tmp_br() { setDname(_ui.fb2lrf_tmp_l, _fb2lrf_tmp,  "Temporary directory"); }
     void dirHelp();
     void sort1_a(bool checked) { _sort1_a = checked; setSort(); }
     void sort1_t(bool checked) { _sort1_t = checked; setSort(); }
@@ -833,16 +805,11 @@ private slots:
     void concat_sl(bool checked);
     void others_sl(bool checked);
     void coll_empty(bool checked);
-    void prs_thumbs(bool checked);   
+    void prs_thumbs(bool checked);
     void tr_clear(bool checked);
-    void f9_lrf(bool checked);
-    void epub_editstyles();
     void fb2lrf_env();
 
 private:
-    static QString    _EPUBStyles;
-    static const char *_default_css;
-
     void        saveGeom();
     void        restoreGeom();
     void        setFileExists(const QString& fname, QString& v, QLabel *l);
@@ -857,7 +824,6 @@ private:
                                    QString& rules);
     static bool parseReplacement(const QString& r, QString& from, QString& to);
 
-    static void set_f9_text(bool checked);
     static bool _init;
 };
 

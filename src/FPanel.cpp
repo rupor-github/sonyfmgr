@@ -47,7 +47,6 @@
 #include "Config.h"
 #include "Confirm.h"
 #include "DeviceSelect.h"
-#include "FB2toEPUB.h"
 #include "FB2toLRF.h"
 #include "FPanel.h"
 #include "FPanelItem.h"
@@ -1107,7 +1106,6 @@ void FPanel::keyPressEvent(QKeyEvent *ev)
         F8();
         return;
     } else if (ev->key() == Qt::Key_F9) {
-        // Copy with FB2 to EPUB conversion
         F9();
         return;
     } else if (ev->key() == Qt::Key_F10) {
@@ -1578,9 +1576,7 @@ bool FPanel::copyFile(const QString& fname, const QString& dst, LogWidget *log,
 
     // Overwrite ?
     bool fb2_convert = BookData::isFB2(fname)  &&  fb2conv;
-    QString dest_name(fb2_convert ? (myBaseName(fi.fileName()) +
-                                     (Config::F9LRF() ? ".lrf" : ".epub"))
-                      : fi.fileName());
+    QString dest_name( fb2_convert ? (myBaseName(fi.fileName()) + Config::fb2lrfExt()) : fi.fileName() );
     QFileInfo dest_info(dst + "/" + dest_name);
     if (dest_info.exists())
     {
@@ -1624,13 +1620,7 @@ bool FPanel::copyFile(const QString& fname, const QString& dst, LogWidget *log,
 
     if (fb2_convert)
     {
-        // Convert FB2 to EPUB
-        if (Config::F9LRF())
-            rc = FB2toLRF(fi.absoluteFilePath(),
-                          dest_info.absoluteFilePath(), log->_ui.txt);
-        else
-            rc = FB2toEPUB(fi.absoluteFilePath(),
-                           dest_info.absoluteFilePath(), log->_ui.txt);
+        rc = FB2toLRF(fi.absoluteFilePath(), dest_info.absoluteFilePath(), log->_ui.txt);
     }
     else
     {
@@ -2087,6 +2077,9 @@ void FPanel::viewFile()
     if (QFileInfo(fname).isDir())
         return;
 
+    // Some viewers on Windows do not like Unix path separators...
+    fname = QDir::toNativeSeparators( fname );
+
     switch (BookData::getType(fname))
     {
     case BookData::LRF:
@@ -2098,6 +2091,11 @@ void FPanel::viewFile()
         if (Config::fb2Viewer().isEmpty())
             return;
         vn = Config::fb2Viewer();
+        break;
+    case BookData::EPUB:
+        if (Config::epubViewer().isEmpty())
+            return;
+        vn = Config::epubViewer();
         break;
     default:
         return;

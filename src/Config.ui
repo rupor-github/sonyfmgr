@@ -17,78 +17,6 @@
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="gridLayout_24">
-   <item row="1" column="0">
-    <spacer name="horizontalSpacer_4">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>101</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="1">
-    <widget class="QPushButton" name="cancel_b">
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <spacer name="horizontalSpacer_5">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>101</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="3">
-    <widget class="QPushButton" name="ok_b">
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string>OK</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <spacer name="horizontalSpacer_6">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>101</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="0" colspan="5">
-    <widget class="QLabel" name="errstr">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0" colspan="5">
     <widget class="QTabWidget" name="tabs">
      <property name="sizePolicy">
@@ -98,11 +26,11 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>General 1</string>
+       <string>General </string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_19">
        <item row="0" column="0">
@@ -118,7 +46,7 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0">
+       <item row="1" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
           <string>Selection with &quot;+&quot;</string>
@@ -154,7 +82,7 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="0">
+       <item row="3" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_13">
          <property name="title">
           <string>Selection mode</string>
@@ -204,7 +132,7 @@
          </property>
         </spacer>
        </item>
-       <item row="5" column="0">
+       <item row="5" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_12">
          <property name="title">
           <string>Reports while copy/delete</string>
@@ -233,7 +161,7 @@
          </property>
         </spacer>
        </item>
-       <item row="7" column="0">
+       <item row="7" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_14">
          <property name="title">
           <string>Debug info</string>
@@ -249,7 +177,7 @@
          </layout>
         </widget>
        </item>
-       <item row="8" column="0">
+       <item row="8" column="0" colspan="3">
         <spacer name="verticalSpacer_18">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -262,7 +190,7 @@
          </property>
         </spacer>
        </item>
-       <item row="9" column="0">
+       <item row="9" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
           <string>Confirmations</string>
@@ -317,39 +245,19 @@
         </widget>
        </item>
        <item row="10" column="0">
-        <spacer name="verticalSpacer_4">
+        <spacer name="verticalSpacer_28">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>20</height>
+           <height>13</height>
           </size>
          </property>
         </spacer>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_7">
-      <attribute name="title">
-       <string>General 2</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_38">
-       <item row="0" column="0">
-        <spacer name="verticalSpacer_27">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>72</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
+       <item row="11" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_26">
          <property name="title">
           <string>Auxiliary windows behavior</string>
@@ -365,56 +273,20 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0">
-        <spacer name="verticalSpacer_28">
+       <item row="12" column="2">
+        <spacer name="verticalSpacer_34">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>72</height>
+           <height>9</height>
           </size>
          </property>
         </spacer>
        </item>
-       <item row="3" column="0">
-        <widget class="QGroupBox" name="groupBox_21">
-         <property name="title">
-          <string>F9 action</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_29">
-          <item row="0" column="0">
-           <widget class="QRadioButton" name="f9_epub">
-            <property name="text">
-             <string>Convert to EPUB</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QRadioButton" name="f9_lrf">
-            <property name="text">
-             <string>Convert to LRF using FB2LRF utility</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <spacer name="verticalSpacer_30">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>72</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="5" column="0">
+       <item row="13" column="0" colspan="3">
         <widget class="QGroupBox" name="Hidefiles">
          <property name="title">
           <string>Hide files</string>
@@ -426,15 +298,15 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0">
-        <spacer name="verticalSpacer_37">
+       <item row="14" column="1">
+        <spacer name="verticalSpacer_4">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>72</height>
+           <height>20</height>
           </size>
          </property>
         </spacer>
@@ -724,7 +596,7 @@
       <attribute name="title">
        <string>External tools</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_9">
+      <layout class="QGridLayout" name="gridLayout_38">
        <item row="0" column="0">
         <spacer name="verticalSpacer_29">
          <property name="orientation">
@@ -764,6 +636,9 @@
            <widget class="QPushButton" name="fb2viewer_browse">
             <property name="text">
              <string>Browse</string>
+            </property>
+            <property name="autoDefault">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -836,6 +711,9 @@
             <property name="text">
              <string>Browse</string>
             </property>
+            <property name="autoDefault">
+             <bool>true</bool>
+            </property>
            </widget>
           </item>
           <item row="1" column="2">
@@ -876,6 +754,80 @@
           <size>
            <width>20</width>
            <height>88</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="0">
+        <widget class="QGroupBox" name="groupBox_9">
+         <property name="title">
+          <string>EPUB viewer</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_9">
+          <item row="0" column="0" colspan="4">
+           <widget class="QLineEdit" name="epubviewer_l"/>
+          </item>
+          <item row="1" column="0">
+           <spacer name="horizontalSpacer_13">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>138</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="epubviewer_browse">
+            <property name="text">
+             <string>Browse</string>
+            </property>
+            <property name="autoDefault">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <spacer name="horizontalSpacer_14">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>180</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="epub_ok">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>OK</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="6" column="0">
+        <spacer name="verticalSpacer_27">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>75</height>
           </size>
          </property>
         </spacer>
@@ -1622,216 +1574,48 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_6">
-      <attribute name="title">
-       <string>EPUB</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_39">
-       <item row="0" column="0">
-        <spacer name="verticalSpacer_25">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>116</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBox_27">
-         <property name="title">
-          <string>EPUB Styles</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_27">
-          <item row="0" column="0">
-           <spacer name="horizontalSpacer_8">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>232</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="epub_editstyles">
-            <property name="text">
-             <string>Edit default styles</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <spacer name="horizontalSpacer_22">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>232</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <spacer name="verticalSpacer_26">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>117</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="3" column="0">
-        <widget class="QGroupBox" name="groupBox_20">
-         <property name="title">
-          <string>Temporary directory for EPUB creation</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_26">
-          <item row="0" column="0" colspan="4">
-           <widget class="QLineEdit" name="epub_tmp_l"/>
-          </item>
-          <item row="1" column="0">
-           <spacer name="horizontalSpacer_15">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>208</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="epub_tmp_browse">
-            <property name="text">
-             <string>Browse</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <spacer name="horizontalSpacer_14">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>207</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="3">
-           <widget class="QLabel" name="epub_tmp_ok">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>OK</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <spacer name="verticalSpacer_38">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>116</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="tab_8">
       <attribute name="title">
-       <string>FB2LRF 1</string>
+       <string>Convert</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_35">
-       <item row="0" column="0">
+       <item row="0" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_23">
          <property name="title">
-          <string>FB2LRF convertor</string>
+          <string>Program executable</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_32">
-          <item row="0" column="0" colspan="4">
-           <widget class="QLineEdit" name="fb2lrf_l"/>
-          </item>
-          <item row="1" column="0">
-           <spacer name="horizontalSpacer_16">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>191</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="fb2lrf_browse">
-            <property name="text">
-             <string>Browse</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <spacer name="horizontalSpacer_18">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>190</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="3">
-           <widget class="QLabel" name="fb2lrf_ok">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>OK</string>
-            </property>
-           </widget>
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLineEdit" name="fb2lrf_l"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="fb2lrf_ok">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>OK</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="fb2lrf_browse">
+              <property name="text">
+               <string>Browse</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="1" column="0" colspan="2">
         <spacer name="verticalSpacer_31">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -1844,65 +1628,43 @@
          </property>
         </spacer>
        </item>
-       <item row="2" column="0">
+       <item row="2" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_24">
          <property name="title">
-          <string>FB2LRF styles file</string>
+          <string>Styles file</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_33">
-          <item row="0" column="0" colspan="4">
-           <widget class="QLineEdit" name="fb2styles_l"/>
-          </item>
-          <item row="1" column="0">
-           <spacer name="horizontalSpacer_17">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>191</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="fb2styles_browse">
-            <property name="text">
-             <string>Browse</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <spacer name="horizontalSpacer_19">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>190</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="3">
-           <widget class="QLabel" name="fb2styles_ok">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>OK</string>
-            </property>
-           </widget>
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <widget class="QLineEdit" name="fb2styles_l"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="fb2styles_ok">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>OK</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="fb2styles_browse">
+              <property name="text">
+               <string>Browse</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="3" column="0" colspan="2">
         <spacer name="verticalSpacer_32">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -1915,67 +1677,79 @@
          </property>
         </spacer>
        </item>
-       <item row="4" column="0">
+       <item row="4" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_22">
          <property name="title">
-          <string>Temporary directory for LRF creation</string>
+          <string>Temporary directory</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_31">
-          <item row="0" column="0" colspan="4">
-           <widget class="QLineEdit" name="fb2lrf_tmp_l"/>
+         <layout class="QGridLayout" name="gridLayout_26">
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLineEdit" name="fb2lrf_tmp_l"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="fb2lrf_tmp_ok">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>OK</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="fb2lrf_tmp_browse">
+              <property name="text">
+               <string>Browse</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
-          <item row="2" column="0">
-           <spacer name="horizontalSpacer_20">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>208</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="1">
-           <widget class="QPushButton" name="fb2lrf_tmp_browse">
-            <property name="text">
-             <string>Browse</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <spacer name="horizontalSpacer_21">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>207</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="3">
-           <widget class="QLabel" name="fb2lrf_tmp_ok">
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>OK</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QCheckBox" name="fb2lrf_utmp">
-            <property name="text">
-             <string>Use the directory for resulting LRF, then copy them to destination</string>
-            </property>
-           </widget>
+          <item row="1" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QCheckBox" name="fb2lrf_utmp">
+              <property name="text">
+               <string>Use the directory for resulting file, then copy it to destination</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QFormLayout" name="formLayout_9">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_29">
+                <property name="text">
+                 <string>Result extension</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="fb2lrf_ext"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -1993,13 +1767,13 @@
          </property>
         </spacer>
        </item>
-       <item row="6" column="0">
+       <item row="6" column="0" colspan="3">
         <widget class="QGroupBox" name="Hidefiles_2">
          <property name="title">
-          <string>FB2LRF command line</string>
+          <string>Command line</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_34">
-          <item row="0" column="0" colspan="2">
+         <layout class="QGridLayout" name="gridLayout_36">
+          <item row="0" column="0">
            <widget class="QLineEdit" name="fb2lrf_cmd">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -2009,7 +1783,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
+          <item row="0" column="1">
            <widget class="QLabel" name="fb2lrf_cmd_ok">
             <property name="font">
              <font>
@@ -2022,116 +1796,230 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>%FB2LRF will be replaced by FB2LRF executable file</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>%STYLES will by replaced by styles file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" colspan="2">
-           <widget class="QLabel" name="label_3">
-            <property name="text">
-             <string>%TEMP will be relaced by temp. directory</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>%INP will be replaced by input file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QLabel" name="label_5">
-            <property name="text">
-             <string>%OUT will be replaced by output file</string>
-            </property>
-           </widget>
+          <item row="1" column="0" colspan="2">
+           <layout class="QGridLayout" name="gridLayout_34">
+            <item row="0" column="0">
+             <layout class="QGridLayout" name="gridLayout_27">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_6">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>%PGM</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="label_22">
+                <property name="text">
+                 <string>- executable file</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_2">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>%STYLES</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>- styles file name</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>%INP</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="label_24">
+                <property name="text">
+                 <string>- input file name</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="1">
+             <spacer name="horizontalSpacer_10">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>13</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="2">
+             <layout class="QGridLayout" name="gridLayout_29">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_25">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>%TEMP</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>- temporary directory</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_26">
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>%OUT</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>- output file name</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="label_27">
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="3">
+             <spacer name="horizontalSpacer_8">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>23</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="4">
+             <layout class="QGridLayout" name="gridLayout_31">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="fb2lrf_serr">
+                <property name="text">
+                 <string>Show output only on error</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="fb2lrf_scmd">
+                <property name="text">
+                 <string>Show command line</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tab_9">
-      <attribute name="title">
-       <string>FB2LRF 2</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_41">
-       <item row="0" column="0">
-        <spacer name="verticalSpacer_44">
+       <item row="7" column="0">
+        <spacer name="verticalSpacer_13">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Minimum</enum>
-         </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>20</width>
-           <height>14</height>
+           <width>13</width>
+           <height>7</height>
           </size>
          </property>
         </spacer>
        </item>
-       <item row="1" column="0">
-        <widget class="QGroupBox" name="groupBox_25">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title">
-          <string>Show FB2LRF details</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_36">
-          <item row="0" column="1">
-           <widget class="QCheckBox" name="fb2lrf_serr">
-            <property name="text">
-             <string>Show FB2LRF output only on error</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QCheckBox" name="fb2lrf_scmd">
-            <property name="text">
-             <string>Show FB2LRF command line</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <spacer name="verticalSpacer_35">
+       <item row="8" column="1">
+        <spacer name="verticalSpacer_25">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Minimum</enum>
-         </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>20</width>
-           <height>14</height>
+           <width>13</width>
+           <height>13</height>
           </size>
          </property>
         </spacer>
        </item>
-       <item row="3" column="0">
+       <item row="9" column="0" colspan="3">
         <widget class="QGroupBox" name="Wine_box1">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -2156,26 +2044,23 @@
          </layout>
         </widget>
        </item>
-       <item row="4" column="0">
-        <spacer name="verticalSpacer_34">
+       <item row="10" column="2">
+        <spacer name="verticalSpacer_26">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Minimum</enum>
-         </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>20</width>
-           <height>19</height>
+           <width>13</width>
+           <height>13</height>
           </size>
          </property>
         </spacer>
        </item>
-       <item row="5" column="0">
+       <item row="11" column="0" colspan="3">
         <widget class="QGroupBox" name="groupBox_31">
          <property name="title">
-          <string>Environment for FB2LRF</string>
+          <string>Environment variables</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_37">
           <item row="0" column="0" rowspan="5">
@@ -2187,19 +2072,6 @@
              </sizepolicy>
             </property>
            </widget>
-          </item>
-          <item row="0" column="1" colspan="3">
-           <spacer name="verticalSpacer_42">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>68</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item row="1" column="1" colspan="3">
            <widget class="QCheckBox" name="fb2lrf_ovr">
@@ -2279,21 +2151,83 @@
          </layout>
         </widget>
        </item>
-       <item row="6" column="0">
-        <spacer name="verticalSpacer_36">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>116</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
       </layout>
      </widget>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>101</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="cancel_b">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <spacer name="horizontalSpacer_5">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>101</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="ok_b">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>OK</string>
+     </property>
+     <property name="default">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <spacer name="horizontalSpacer_6">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>101</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0" colspan="5">
+    <widget class="QLabel" name="errstr">
+     <property name="text">
+      <string/>
+     </property>
     </widget>
    </item>
   </layout>
@@ -2314,10 +2248,6 @@
   <tabstop>conf_over</tabstop>
   <tabstop>conf_exit</tabstop>
   <tabstop>conf_max</tabstop>
-  <tabstop>log_disapp</tabstop>
-  <tabstop>f9_epub</tabstop>
-  <tabstop>f9_lrf</tabstop>
-  <tabstop>hide_files</tabstop>
   <tabstop>reg_fg</tabstop>
   <tabstop>reg_bg</tabstop>
   <tabstop>sel_fg</tabstop>
@@ -2332,8 +2262,8 @@
   <tabstop>fb2viewer_browse</tabstop>
   <tabstop>lrfviewer_l</tabstop>
   <tabstop>lrfviewer_browse</tabstop>
-  <tabstop>dir_rules</tabstop>
-  <tabstop>fb2_patt</tabstop>
+  <tabstop>epubviewer_l</tabstop>
+  <tabstop>epubviewer_browse</tabstop>
   <tabstop>tr_author</tabstop>
   <tabstop>root_prs</tabstop>
   <tabstop>root_sd</tabstop>
@@ -2364,9 +2294,6 @@
   <tabstop>s3_re</tabstop>
   <tabstop>s3_cs</tabstop>
   <tabstop>s3_gr</tabstop>
-  <tabstop>epub_editstyles</tabstop>
-  <tabstop>epub_tmp_l</tabstop>
-  <tabstop>epub_tmp_browse</tabstop>
   <tabstop>fb2lrf_l</tabstop>
   <tabstop>fb2lrf_browse</tabstop>
   <tabstop>fb2styles_l</tabstop>
@@ -2374,22 +2301,27 @@
   <tabstop>fb2lrf_tmp_l</tabstop>
   <tabstop>fb2lrf_tmp_browse</tabstop>
   <tabstop>fb2lrf_utmp</tabstop>
+  <tabstop>fb2lrf_ext</tabstop>
   <tabstop>fb2lrf_cmd</tabstop>
   <tabstop>fb2lrf_serr</tabstop>
   <tabstop>fb2lrf_scmd</tabstop>
   <tabstop>fb2lrf_drv</tabstop>
   <tabstop>fb2lrf_env</tabstop>
   <tabstop>fb2lrf_ovr</tabstop>
-  <tabstop>tr_title</tabstop>
+  <tabstop>sorder_d</tabstop>
+  <tabstop>s1_a</tabstop>
+  <tabstop>s1_t</tabstop>
+  <tabstop>sorder_a</tabstop>
   <tabstop>tr_clear</tabstop>
   <tabstop>dir_truscore</tabstop>
   <tabstop>dir_case</tabstop>
   <tabstop>dir_greedy</tabstop>
   <tabstop>dir_help</tabstop>
-  <tabstop>sorder_d</tabstop>
-  <tabstop>s1_a</tabstop>
-  <tabstop>s1_t</tabstop>
-  <tabstop>sorder_a</tabstop>
+  <tabstop>tr_title</tabstop>
+  <tabstop>log_disapp</tabstop>
+  <tabstop>hide_files</tabstop>
+  <tabstop>dir_rules</tabstop>
+  <tabstop>fb2_patt</tabstop>
  </tabstops>
  <resources/>
  <connections/>

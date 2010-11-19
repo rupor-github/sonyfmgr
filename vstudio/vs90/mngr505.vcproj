@@ -195,19 +195,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\EPUB.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\EPUBParser.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\FB2Parser.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\FB2toEPUB.cpp"
 				>
 			</File>
 			<File

@@ -56,8 +56,8 @@ bool FB2toLRF(const QString& fb2Name, const QString& LRFName,
     // Check command
     if (!cmd.contains("%INP") || !cmd.contains("%OUT"))
     {
-        MSG(tr("\n    Invalid FB2LRF command line: both %INP and %OUT should be present\n"),
-            tr("&nbsp;&nbsp;&nbsp;&nbsp;<br><b><font color=#ff0000>Invalid FB2LRF command line:</font> "
+        MSG(tr("\n    Invalid converter command line: both %INP and %OUT should be present\n"),
+            tr("&nbsp;&nbsp;&nbsp;&nbsp;<br><b><font color=#ff0000>Invalid converter command line:</font> "
                "both %INP and %OUT should be present</b><br>"));
         ERR(tr("FAIL\n"),
             tr("<b><font color=#ff0000>FAIL</font></b><br>"));
@@ -69,7 +69,7 @@ bool FB2toLRF(const QString& fb2Name, const QString& LRFName,
     QStringList params = cmd.split(" ", QString::SkipEmptyParts);
     for (int i=0; i<params.size(); i++)
     {
-        params[i].replace("%FB2LRF", Config::fb2LRF());
+        params[i].replace("%PGM", Config::fb2LRF());
         params[i].replace("%STYLES", replPath(Config::fb2Styles()));
         params[i].replace("%TEMP",   replPath(Config::fb2lrfTmp()));
         params[i].replace("%INP",    replPath(fb2Name));

@@ -35,6 +35,7 @@
 #define FB2LRF        ""
 #define FB2STYLES     ""
 #define FB2LRF_TMP    "C:\\Temp"
+#define FB2LRF_EXT    ".lrf"
 #define FB2LRF_ENV    "LANG=ru_RU.UTF-8\nLC_ALL=ru_RU.UTF-8"
 #define REG_FG        QColor(  0,   0,   0)
 #define REG_BG        QColor(255, 255, 255)
@@ -50,57 +51,21 @@
 #if defined(WINDOWS)
 #define FB2_VIEWER  "C:\\Program Files\\FBReader\\FBReader.exe"
 #define LRF_VIEWER  "C:\\Program Files\\calibre\\lrfviewer.exe"
-#define EPUB_TMP    "C:\\Temp"
-#define FB2LRF_CMD  "%FB2LRF -p -x %INP %OUT"
+#define EPUB_VIEWER "C:\\Program Files\\FBReader\\FBReader.exe"
+#define FB2LRF_CMD  "%PGM -s %STYLES -t %TEMP -i %INP -o %OUT"
 #define FB2LRF_DRV  ""
 #else
 #define FB2_VIEWER  ""
 #define LRF_VIEWER  ""
-#define EPUB_TMP    "/tmp"
-#define FB2LRF_CMD  "wine %FB2LRF -s %STYLES -t %TEMP -i %INP -o %OUT"
+#define EPUB_VIEWER ""
+#define FB2LRF_CMD  "wine %PGM -s %STYLES -t %TEMP -i %INP -o %OUT"
 #define FB2LRF_DRV  "Z:"
 #endif
-
-const char *Config::_default_css =
-"body {\n"
-"    margin-right: 0px;\n"
-"    text-align:   justify;\n"
-"    font-family:  'Swis721 BT';\n"
-"}\n"
-"p.title-p {\n"
-"    margin:       0px 0px 0.5em 0px;\n"
-"    font-family:  'Swis721 BT';\n"
-"    font-size:    12pt;\n"
-"}\n"
-"p.p {\n"
-"    margin:       0px;\n"
-"    text-align:   justify;\n"
-"    font-family:  'Swis721 BT';\n"
-"    font-size:    10pt;\n"
-"}\n"
-"p.empty-line {\n"
-"    height:       1em;\n"
-"    margin:       0px;\n"
-"}\n"
-"@font-face {\n"
-"    font-family: 'Swis721 BT';\n"
-"    src: url(res:///opt/sony/ebook/FONT/tt0003m_.ttf);\n"
-"}\n"
-"@font-face {\n"
-"    font-family: 'Dutch801 Rm BT';\n"
-"    src: url(res:///opt/sony/ebook/FONT/tt0011m_.ttf);\n"
-"}\n"
-"@font-face {\n"
-"    font-family: 'Courier10 Win95BT';\n"
-"    src: url(res:///opt/sony/ebook/FONT/tt0419m_.ttf);\n"
-"}\n"
-;
 
 Ui_Dialog    Config::_ui;
 bool         Config::_init = false;
 const QColor Config::invalid(255, 128, 128);
 const QColor Config::valid(128, 255, 128);
-QString      Config::_EPUBStyles;
 
 bool Config::_cmouseSel = true;
 bool Config::_coll_dummy = false;
@@ -113,8 +78,6 @@ bool Config::_confDelDir = true;
 bool Config::_confExit = true;
 int Config::_confMax = 100;
 bool Config::_confOverWr = true;
-QString Config::_epub_tmp = EPUB_TMP;
-bool Config::_f9_lrf = false;
 QString Config::_fb2Pattern = FB2_PATTERN;
 QString Config::_fb2lrf = FB2LRF;
 QString Config::_fb2lrf_cmd = FB2LRF_CMD;
@@ -124,6 +87,7 @@ bool Config::_fb2lrf_err = false;
 bool Config::_fb2lrf_ovr = true;
 bool Config::_fb2lrf_scm = true;
 QString Config::_fb2lrf_tmp = FB2LRF_TMP;
+QString Config::_fb2lrf_ext = FB2LRF_EXT;
 bool Config::_fb2lrf_utmp = true;
 QString Config::_fb2styles = FB2STYLES;
 QString Config::_fb2viewer = FB2_VIEWER;
@@ -132,6 +96,7 @@ bool Config::_htmlReport = false;
 bool Config::_insertSel = true;
 bool Config::_log_disapp = true;
 QString Config::_lrfviewer = LRF_VIEWER;
+QString Config::_epubviewer = EPUB_VIEWER;
 bool Config::_mouseSel = true;
 QColor Config::_nf_reg_bg = NF_REG_BG;
 QColor Config::_nf_reg_fg = NF_REG_FG;
@@ -205,118 +170,6 @@ static QString ini2str(const QString &s)
 }
 
 ////////////////////////////////////////////////////////////////////////
-EditCSS::EditCSS(Config *par) : QMainWindow(par), _par(par), _wasEdit(false)
-{
-    QWidget     *cwidget = new QWidget(this);
-    QGridLayout *gl = new QGridLayout(cwidget);
-
-    save = new QPushButton(cwidget);
-    save->setText(tr("Save"));
-    save->setEnabled(false);
-
-    cancel = new QPushButton(cwidget);
-    cancel->setText(tr("Cancel"));
-
-    revertCurrent = new QPushButton(cwidget);
-    revertCurrent->setText(tr("Revert current editing"));
-    revertCurrent->setEnabled(false);
-
-    revertDefault = new QPushButton(cwidget);
-    revertDefault->setText(tr("Revert to default"));
-
-    te = new QTextEdit(cwidget);
-    te->setReadOnly(false);
-    te->setUndoRedoEnabled(true);
-    te->setLineWrapMode(QTextEdit::NoWrap);
-    te->setPlainText(par->CSS());
-    connect(te, SIGNAL(textChanged()), this, SLOT(textChanged()));
-
-    gl->addWidget(te,            0, 0, 1, 4);
-    gl->addWidget(save,          1, 0, 1, 1, Qt::AlignHCenter);
-    gl->addWidget(cancel,        1, 1, 1, 1, Qt::AlignHCenter);
-    gl->addWidget(revertCurrent, 1, 2, 1, 1, Qt::AlignHCenter);
-    gl->addWidget(revertDefault, 1, 3, 1, 1, Qt::AlignHCenter);
-
-    setCentralWidget(cwidget);
-
-    connect(save,          SIGNAL(pressed()), this, SLOT(saveReq()));
-    connect(cancel,        SIGNAL(pressed()), this, SLOT(deleteLater()));
-    connect(revertCurrent, SIGNAL(pressed()), this, SLOT(revertCReq()));
-    connect(revertDefault, SIGNAL(pressed()), this, SLOT(revertDReq()));
-    setWindowTitle(tr("media.xml file preview"));
-} // EditCSS::EditCSS
-
-
-////////////////////////////////////////////////////////////////////////
-EditCSS::~EditCSS()
-{
-    QSettings st(mngr505::_company, mngr505::_appName);
-
-    // Save geomtery
-    st.beginGroup("EditCSS");
-    st.setValue("size", size());
-    st.setValue("pos", pos());
-    st.endGroup();
-} // EditCSS::~EditCSS
-
-////////////////////////////////////////////////////////////////////////
-void EditCSS::saveReq()
-{
-    if (_wasEdit)
-        _par->setCSS(te->toPlainText());
-
-    deleteLater();
-} // EditCSS::saveReq
-
-////////////////////////////////////////////////////////////////////////
-void EditCSS::textChanged()
-{
-    _wasEdit = true;
-    revertCurrent->setEnabled(true);
-    save->setEnabled(true);
-} // EditCSS::textChanged
-
-////////////////////////////////////////////////////////////////////////
-void EditCSS::revertCReq()
-{
-    _wasEdit = false;
-    te->setPlainText(_par->CSS());
-    revertCurrent->setEnabled(false);
-    save->setEnabled(false);
-} // EditCSS::revertCReq
-
-
-////////////////////////////////////////////////////////////////////////
-void EditCSS::revertDReq()
-{
-    _wasEdit = true;
-    te->setPlainText(_par->DefCSS());
-    revertCurrent->setEnabled(true);
-    save->setEnabled(true);
-} // EditCSS::revertCReq
-
-
-////////////////////////////////////////////////////////////////////////
-void EditCSS::show()
-{
-    QSettings    st(mngr505::_company, mngr505::_appName);
-    QVariant     v;
-
-    // Restore geometry
-    st.beginGroup("EditCSS");
-    v = st.value("size");
-    if (v.isValid())
-        resize(v.toSize());
-    v = st.value("pos");
-    if (v.isValid())
-        move(v.toPoint());
-
-    st.endGroup();
-    QMainWindow::show();
-} // EditCSS::show
-
-
-////////////////////////////////////////////////////////////////////////
 Config::Config(QWidget *par) : QDialog(par)
 {
     _ui.setupUi(this);
@@ -324,7 +177,7 @@ Config::Config(QWidget *par) : QDialog(par)
     _ui.ok_b->setAutoFillBackground(true);
     _ui.fb2_ok->setAutoFillBackground(true);
     _ui.lrf_ok->setAutoFillBackground(true);
-    _ui.epub_tmp_ok->setAutoFillBackground(true);
+    _ui.epub_ok->setAutoFillBackground(true);
     _ui.fb2lrf_tmp_ok->setAutoFillBackground(true);
     _ui.fb2lrf_ok->setAutoFillBackground(true);
     _ui.fb2styles_ok->setAutoFillBackground(true);
@@ -346,17 +199,14 @@ Config::Config(QWidget *par) : QDialog(par)
             this,                  SLOT(fb2_browse()));
     connect(_ui.lrfviewer_browse,  SIGNAL(pressed()),
             this,                  SLOT(lrf_browse()));
-    connect(_ui.epub_tmp_browse,   SIGNAL(pressed()),
-            this,                  SLOT(epub_tmp_br()));
+    connect(_ui.epubviewer_browse,  SIGNAL(pressed()),
+            this,                  SLOT(epub_browse()));
     connect(_ui.fb2lrf_tmp_browse, SIGNAL(pressed()),
             this,                  SLOT(fb2lrf_tmp_br()));
     connect(_ui.fb2lrf_browse,     SIGNAL(pressed()),
             this,                  SLOT(fb2lrf_browse()));
     connect(_ui.fb2styles_browse,  SIGNAL(pressed()),
             this,                  SLOT(fb2styles_browse()));
-    connect(_ui.epub_editstyles,   SIGNAL(pressed()),
-            this,                  SLOT(epub_editstyles()));
-
 
     connect(_ui.cmouse_sel, SIGNAL(clicked(bool)), this, SLOT(cmousesel(bool)));
     _ui.cmouse_sel->setChecked(_cmouseSel);
@@ -380,10 +230,6 @@ Config::Config(QWidget *par) : QDialog(par)
     _ui.conf_max->setValue(_confMax);
     connect(_ui.conf_over, SIGNAL(clicked(bool)), this, SLOT(conf_over(bool)));
     _ui.conf_over->setChecked(_confOverWr);
-    connect(_ui.epub_tmp_l, SIGNAL(textChanged(const QString&)), this, SLOT(epub_tmp(const QString&)));
-    _ui.epub_tmp_l->setText(_epub_tmp);
-    connect(_ui.f9_lrf, SIGNAL(toggled(bool)), this, SLOT(f9_lrf(bool)));
-    _ui.f9_lrf->setChecked(_f9_lrf);
     connect(_ui.fb2_patt, SIGNAL(textChanged(const QString&)), this, SLOT(fb2_patt(const QString&)));
     _ui.fb2_patt->setText(_fb2Pattern);
     connect(_ui.fb2lrf_l, SIGNAL(textChanged(const QString&)), this, SLOT(fb2lrf_text(const QString&)));
@@ -402,6 +248,8 @@ Config::Config(QWidget *par) : QDialog(par)
     _ui.fb2lrf_scmd->setChecked(_fb2lrf_scm);
     connect(_ui.fb2lrf_tmp_l, SIGNAL(textChanged(const QString&)), this, SLOT(fb2lrf_tmp(const QString&)));
     _ui.fb2lrf_tmp_l->setText(_fb2lrf_tmp);
+    connect(_ui.fb2lrf_ext, SIGNAL(textChanged(const QString&)), this, SLOT(fb2lrf_ext(const QString&)));
+    _ui.fb2lrf_ext->setText(_fb2lrf_ext);
     connect(_ui.fb2lrf_utmp, SIGNAL(clicked(bool)), this, SLOT(fb2lrf_utmp(bool)));
     _ui.fb2lrf_utmp->setChecked(_fb2lrf_utmp);
     connect(_ui.fb2styles_l, SIGNAL(textChanged(const QString&)), this, SLOT(fb2styles_text(const QString&)));
@@ -418,6 +266,8 @@ Config::Config(QWidget *par) : QDialog(par)
     _ui.log_disapp->setChecked(_log_disapp);
     connect(_ui.lrfviewer_l, SIGNAL(textChanged(const QString&)), this, SLOT(lrf_text(const QString&)));
     _ui.lrfviewer_l->setText(_lrfviewer);
+    connect(_ui.epubviewer_l, SIGNAL(textChanged(const QString&)), this, SLOT(epub_text(const QString&)));
+    _ui.epubviewer_l->setText(_epubviewer);
     connect(_ui.rmouse_sel, SIGNAL(clicked(bool)), this, SLOT(rmousesel(bool)));
     _ui.rmouse_sel->setChecked(_mouseSel);
     connect(_ui.nf_reg_bg, SIGNAL(clicked()), this, SLOT(nf_reg_bg_slot()));
@@ -587,7 +437,6 @@ Config::Config(QWidget *par) : QDialog(par)
     QSettings    st(mngr505::_company, mngr505::_appName);
     st.beginGroup("Config");
     _ui.tabs->setCurrentIndex(st.value("current_index", 0).toInt());
-    _EPUBStyles = ini2str(st.value("EPUB_styles", str2ini(_default_css)).toString());
     st.endGroup();
 
 } // Config::Config
@@ -603,13 +452,11 @@ void Config::restore_dependecies()
     coll_empty(_coll_empty);
     prs_thumbs(_mngThumbs);
     tr_clear(_translClear);
-    _ui.f9_epub->setChecked(!_f9_lrf);
-    f9_lrf(_f9_lrf);
 
     setFileExists(_fb2viewer, _fb2viewer, _ui.fb2_ok);
     setFileExists(_lrfviewer, _lrfviewer, _ui.lrf_ok);
+    setFileExists(_epubviewer, _epubviewer, _ui.epub_ok);
     setFileExists(_fb2lrf,    _fb2lrf,    _ui.fb2lrf_ok);
-    setDirExists(_epub_tmp,  _epub_tmp,  _ui.epub_tmp_ok);
     setDirExists(_fb2lrf_tmp,  _fb2lrf_tmp,  _ui.fb2lrf_tmp_ok);
     setFB2CommandCheck(_fb2lrf_cmd, _fb2lrf_cmd, _ui.fb2lrf_cmd_ok);
     setFileReadable(_fb2styles, _fb2styles, _ui.fb2styles_ok);
@@ -694,8 +541,6 @@ void Config::revert()
     _confExit = true;
     _confMax = 100;
     _confOverWr = true;
-    _epub_tmp = EPUB_TMP;
-    _f9_lrf = false;
     _fb2Pattern = FB2_PATTERN;
     _fb2lrf = FB2LRF;
     _fb2lrf_cmd = FB2LRF_CMD;
@@ -705,6 +550,7 @@ void Config::revert()
     _fb2lrf_ovr = true;
     _fb2lrf_scm = true;
     _fb2lrf_tmp = FB2LRF_TMP;
+    _fb2lrf_ext = FB2LRF_EXT;
     _fb2lrf_utmp = true;
     _fb2styles = FB2STYLES;
     _fb2viewer = FB2_VIEWER;
@@ -713,6 +559,7 @@ void Config::revert()
     _insertSel = true;
     _log_disapp = true;
     _lrfviewer = LRF_VIEWER;
+    _epubviewer = EPUB_VIEWER;
     _mouseSel = true;
     _nf_reg_bg = NF_REG_BG;
     _nf_reg_fg = NF_REG_FG;
@@ -768,7 +615,6 @@ void Config::revert()
     _s3_rules = S3_RULES;
     _s3_from = QRegExp();
     _s3_to.clear();
-    _EPUBStyles = _default_css;
 } // Config::revert
 
 
@@ -788,8 +634,6 @@ void Config::reread()
     _confExit = st.value("conf_exit", true).toBool();
     _confMax = st.value("conf_max_files", 100).toInt();
     _confOverWr = st.value("conf_overwrite", true).toBool();
-    _epub_tmp = st.value("epub_tmp_dir", EPUB_TMP).toString();
-    _f9_lrf = st.value("f9_lrf", false).toBool();
     _fb2Pattern = st.value("fb2_pattern", FB2_PATTERN).toString();
     _fb2lrf = st.value("fb2lrf", FB2LRF).toString();
     _fb2lrf_cmd = st.value("fb2lrf_cmd", FB2LRF_CMD).toString();
@@ -799,6 +643,7 @@ void Config::reread()
     _fb2lrf_ovr = st.value("fb2lrf_override_env", true).toBool();
     _fb2lrf_scm = st.value("fb2lrf_show_cmd", true).toBool();
     _fb2lrf_tmp = st.value("fb2lrf_tmp_dir", FB2LRF_TMP).toString();
+    _fb2lrf_ext = st.value("fb2lrf_ext", FB2LRF_EXT).toString();
     _fb2lrf_utmp = st.value("fb2lrf_usetmp", true).toBool();
     _fb2styles = st.value("fb2lrf_styles_file", FB2STYLES).toString();
     _fb2viewer = st.value("fb2_viewer", FB2_VIEWER).toString();
@@ -807,6 +652,7 @@ void Config::reread()
     _insertSel = st.value("insert_selects", true).toBool();
     _log_disapp = st.value("log_disappears", true).toBool();
     _lrfviewer = st.value("lrf_viewer", LRF_VIEWER).toString();
+    _epubviewer = st.value("epub_viewer", EPUB_VIEWER).toString();
     _mouseSel = st.value("rmouse_selects", true).toBool();
     _nf_reg_bg = st.value("nf_reg_bg_color", NF_REG_BG).value<QColor>();
     _nf_reg_fg = st.value("nf_reg_fg_color", NF_REG_FG).value<QColor>();
@@ -854,7 +700,6 @@ void Config::reread()
     _s1_rules = st.value("s1_sort_replacement", S1_RULES).toString();
     _s2_rules = st.value("s2_sort_replacement", S2_RULES).toString();
     _s3_rules = st.value("s3_sort_replacement", S3_RULES).toString();
-    _EPUBStyles = ini2str(st.value("EPUB_styles", str2ini(_default_css)).toString());
     st.endGroup();
 } // Config::reread
 
@@ -885,8 +730,6 @@ void Config::init()
     _confExit = st.value("conf_exit", true).toBool();
     _confMax = st.value("conf_max_files", 100).toInt();
     _confOverWr = st.value("conf_overwrite", true).toBool();
-    _epub_tmp = st.value("epub_tmp_dir", EPUB_TMP).toString();
-    _f9_lrf = st.value("f9_lrf", false).toBool();
     _fb2Pattern = st.value("fb2_pattern", FB2_PATTERN).toString();
     _fb2lrf = st.value("fb2lrf", FB2LRF).toString();
     _fb2lrf_cmd = st.value("fb2lrf_cmd", FB2LRF_CMD).toString();
@@ -896,6 +739,7 @@ void Config::init()
     _fb2lrf_ovr = st.value("fb2lrf_override_env", true).toBool();
     _fb2lrf_scm = st.value("fb2lrf_show_cmd", true).toBool();
     _fb2lrf_tmp = st.value("fb2lrf_tmp_dir", FB2LRF_TMP).toString();
+    _fb2lrf_ext = st.value("fb2lrf_ext", FB2LRF_EXT).toString();
     _fb2lrf_utmp = st.value("fb2lrf_usetmp", true).toBool();
     _fb2styles = st.value("fb2lrf_styles_file", FB2STYLES).toString();
     _fb2viewer = st.value("fb2_viewer", FB2_VIEWER).toString();
@@ -904,6 +748,7 @@ void Config::init()
     _insertSel = st.value("insert_selects", true).toBool();
     _log_disapp = st.value("log_disappears", true).toBool();
     _lrfviewer = st.value("lrf_viewer", LRF_VIEWER).toString();
+    _epubviewer = st.value("epub_viewer", EPUB_VIEWER).toString();
     _mouseSel = st.value("rmouse_selects", true).toBool();
     _nf_reg_bg = st.value("nf_reg_bg_color", NF_REG_BG).value<QColor>();
     _nf_reg_fg = st.value("nf_reg_fg_color", NF_REG_FG).value<QColor>();
@@ -987,9 +832,7 @@ void Config::init()
             _s3_from.setMinimal(_s3Greedy ? false : true);
         }
     }
-    _EPUBStyles = ini2str(st.value("EPUB_styles", str2ini(_default_css)).toString());
     st.endGroup();
-    set_f9_text(_f9_lrf);
     _init = true;
 } // Config::init
 
@@ -1108,8 +951,6 @@ void Config::save()
     st.setValue("conf_exit", _confExit);
     st.setValue("conf_max_files", _confMax);
     st.setValue("conf_overwrite", _confOverWr);
-    st.setValue("epub_tmp_dir", _epub_tmp);
-    st.setValue("f9_lrf", _f9_lrf);
     st.setValue("fb2_pattern", _fb2Pattern);
     st.setValue("fb2lrf", _fb2lrf);
     st.setValue("fb2lrf_cmd", _fb2lrf_cmd);
@@ -1119,6 +960,7 @@ void Config::save()
     st.setValue("fb2lrf_override_env", _fb2lrf_ovr);
     st.setValue("fb2lrf_show_cmd", _fb2lrf_scm);
     st.setValue("fb2lrf_tmp_dir", _fb2lrf_tmp);
+    st.setValue("fb2lrf_ext", _fb2lrf_ext);
     st.setValue("fb2lrf_usetmp", _fb2lrf_utmp);
     st.setValue("fb2lrf_styles_file", _fb2styles);
     st.setValue("fb2_viewer", _fb2viewer);
@@ -1127,6 +969,7 @@ void Config::save()
     st.setValue("insert_selects", _insertSel);
     st.setValue("log_disappears", _log_disapp);
     st.setValue("lrf_viewer", _lrfviewer);
+    st.setValue("epub_viewer", _epubviewer);
     st.setValue("rmouse_selects", _mouseSel);
     st.setValue("nf_reg_bg_color", _nf_reg_bg);
     st.setValue("nf_reg_fg_color", _nf_reg_fg);
@@ -1174,7 +1017,6 @@ void Config::save()
     st.setValue("s1_sort_replacement", _s1_rules);
     st.setValue("s2_sort_replacement", _s2_rules);
     st.setValue("s3_sort_replacement", _s3_rules);
-    st.setValue("EPUB_styles", str2ini(_EPUBStyles));
     st.setValue("current_index", _ui.tabs->currentIndex());
     st.endGroup();
 } // Config::save
@@ -1416,26 +1258,6 @@ void Config::tr_clear(bool checked)
     _ui.tr_author->setDisabled(checked);
     _ui.tr_title->setDisabled(checked);
 } // Config::tr_clear
-
-////////////////////////////////////////////////////////////////////////
-void Config::f9_lrf(bool checked)
-{
-    set_f9_text(checked);
-    _f9_lrf = checked;
-} // Config::f9_lrf
-
-////////////////////////////////////////////////////////////////////////
-void Config::set_f9_text(bool checked)
-{
-    mngr505::_ui.F9->setText(checked ? "F9 - FB2LRF" : "F9 - FB2/EPUB");
-} // Config::set_f9_text
-
-////////////////////////////////////////////////////////////////////////
-void Config::epub_editstyles()
-{
-    EditCSS *e = new EditCSS(this);
-    e->show();
-} // Config::epub_editstyles
 
 ////////////////////////////////////////////////////////////////////////
 void Config::fb2lrf_env()

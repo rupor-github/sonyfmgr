@@ -21,7 +21,7 @@
 #include "mngr505.h"
 
 Ui::MainWindow    mngr505::_ui;
-const char *mngr505::_version = "1.13";
+const char *mngr505::_version = "1.14";
 const char *mngr505::_company = "HaraSoft";
 const char *mngr505::_appName = "mngr650";
 
@@ -242,7 +242,7 @@ void mngr505::about()
        "It provides basic two-panel file manager functionality as well "
        "as some Sony eBook Reader specific functions, like collection "
        "management</p>"
-       "<p>Manager650 is aware about .lrf, .fb2 and .fb2.zip formats "
+       "<p>Manager650 is aware about .lrf, .epub, .fb2 and .fb2.zip formats "
        "and shows author/title information for these types of files</p>"
        "<center>Version: %1</center>").arg(_version));
 } // mngr505::about
