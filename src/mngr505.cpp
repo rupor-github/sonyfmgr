@@ -21,7 +21,7 @@
 #include "mngr505.h"
 
 Ui::MainWindow    mngr505::_ui;
-const char *mngr505::_version = "1.14";
+const char *mngr505::_version = "1.15";
 const char *mngr505::_company = "HaraSoft";
 const char *mngr505::_appName = "mngr650";
 

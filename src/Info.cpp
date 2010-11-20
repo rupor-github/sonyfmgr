@@ -572,7 +572,8 @@ bool Info::fillEPUBInfo(const QString& fullname, BookData *bd)
 
        if( ! cover_file.isEmpty() )
        {
-          cover_file.prepend( content_file.section( '/', -2, 0, QString::SectionIncludeTrailingSep ) );
+          if( content_file.section( '/', 0, 0, QString::SectionIncludeTrailingSep ) != content_file )
+             cover_file.prepend( content_file.section( '/', -2, 0, QString::SectionIncludeTrailingSep ) );
 
           QBuffer image;
           if( image.open( QIODevice::ReadWrite ) )
