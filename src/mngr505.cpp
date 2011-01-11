@@ -454,7 +454,7 @@ void mngr505::confExit()
     if (!Config::confExit())
         qApp->closeAllWindows();
     else if (QMessageBox::question(0, tr("Exit confirmation"),
-                                   tr("Do you really want to quit the Manager505 ?"),
+                                   tr("Do you really want to quit program?"),
                                    QMessageBox::Yes | QMessageBox::No,
                                    QMessageBox::Yes)
              == QMessageBox::Yes)
