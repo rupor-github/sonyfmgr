@@ -20,7 +20,8 @@
 // #define REPL_RULES  "s/_/ /"
 
 #define SEPARATOR     "/"
-#define REPL_RULES    "s%(\\w+)(?:\\W+\\w*)*(/(\\w+\\W*)+)*\\W*%\\1\\2%"
+// #define REPL_RULES    "s%(\\w+)(?:\\W+\\w*)*(/(\\w+\\W*)+)*\\W*%\\1\\2%"
+#define REPL_RULES    ""
 #define S1_RULES      ""
 #define S2_RULES      ""
 #define S3_RULES      ""

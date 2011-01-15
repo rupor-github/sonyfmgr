@@ -26,7 +26,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -957,46 +957,50 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3">
+          <item row="1" column="0" colspan="2">
            <widget class="QLineEdit" name="dir_rules"/>
           </item>
-          <item row="2" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item row="2" column="0" colspan="2">
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
             <item>
-             <widget class="QCheckBox" name="dir_case">
-              <property name="text">
-               <string>Case sensitive</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QCheckBox" name="dir_case">
+                <property name="text">
+                 <string>Case sensitive</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="dir_greedy">
+                <property name="text">
+                 <string>Greedy</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QCheckBox" name="dir_greedy">
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="dir_help">
               <property name="text">
-               <string>Greedy</string>
+               <string>Help</string>
               </property>
              </widget>
             </item>
            </layout>
-          </item>
-          <item row="2" column="1">
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>335</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="2">
-           <widget class="QPushButton" name="dir_help">
-            <property name="text">
-             <string>Help</string>
-            </property>
-           </widget>
           </item>
          </layout>
         </widget>
