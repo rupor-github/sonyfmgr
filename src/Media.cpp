@@ -1195,9 +1195,8 @@ bool Media::saveXml()
                                     .arg(media.errorString()));
            return false;
        }
-
-       // Reopen and truncate media file
        media.close();
+
        if (!media.open(QFile::WriteOnly | QFile::Truncate))
        {
            QMessageBox::critical(0, tr("Can't open file"),
@@ -1233,7 +1232,7 @@ bool Media::saveXml()
 #if defined(LINUX) || defined (MACOSX)
            fsync(fd);
            sync(); sync();
-#elif defined(WINDOWS) && !defined(_MSC_VER)
+#elif defined(WINDOWS)
            _commit(fd);
 #endif
        }
@@ -1273,9 +1272,8 @@ bool Media::saveXml()
                                     .arg(media.errorString()));
            return false;
        }
-
-       // Reopen and truncate media file
        media.close();
+
        if (!media.open(QFile::WriteOnly | QFile::Truncate))
        {
            QMessageBox::critical(0, tr("Can't open file"),
@@ -1308,7 +1306,7 @@ bool Media::saveXml()
 #if defined(LINUX) || defined (MACOSX)
            fsync(fd);
            sync(); sync();
-#elif defined(WINDOWS) && !defined(_MSC_VER)
+#elif defined(WINDOWS)
            _commit(fd);
 #endif
        }
