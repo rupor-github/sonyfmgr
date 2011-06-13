@@ -80,6 +80,15 @@ public:
     private slots:
         void coll_enum(bool checked) { _coll_enum = checked; }
 
+    // _coll_dbdirs property definition
+    public:
+        static bool dbdirsColl() { return _coll_dbdirs; }
+    private:
+        static bool _coll_dbdirs;
+    private slots:
+        void coll_dbdirs(bool checked) { _coll_dbdirs = checked; }
+
+
     // _collectdbg property definition
     public:
         static bool collectDbg() { return _collectdbg; }

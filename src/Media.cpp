@@ -793,17 +793,30 @@ bool Media::updateColl()
 void Media::scanDir(const QString& nprefix, const QString& cprefix,
                     int dcnt, const char *dformat, const QString& dname)
 {
-    ////+++++ DEBUG
+    //+++++ DEBUG
     //_log->_ui.txt->insertPlainText(QString("scanDir(\"%1\", \"%2\", %3, \"%4\", \"%5\")\n")
     //                               .arg(nprefix).arg(cprefix).arg(dcnt)
-    //                               .arg(dformat).arg(dname));
+    //                               .arg(dformat).arg(getPath(dname)));
     //TO_BOTTOM(_log->_ui.txt);
 
     if (_log->canceled())
         return;
 
-    if( Config::mngThumbs() && getPath( dname ).startsWith( _thumbroot ) )
-        return;
+    if( Config::dbdirsColl() )
+    {
+       if( 0 == getPath( dname ).indexOf( _thumbroot ) )
+          return;
+       if( 0 == getPath( dname ).indexOf( "database/cache" ) )
+          return;
+       if( 0 == getPath( dname ).indexOf( "database/layout" ) )
+          return;
+       if( 0 == getPath( dname ).indexOf( "database/sync" ) )
+          return;
+       if( 0 == getPath( dname ).indexOf( "Digital Editions" ) )
+          return;
+       if( 0 == getPath( dname ).indexOf( "epub", Qt::CaseInsensitive ) )
+          return;
+    }
 
     QTextCodec        *codec = QTextCodec::codecForName("UTF-8");
     QDir              dir(dname);

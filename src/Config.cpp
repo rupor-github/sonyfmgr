@@ -72,6 +72,7 @@ bool Config::_cmouseSel = true;
 bool Config::_coll_dummy = false;
 bool Config::_coll_empty = false;
 bool Config::_coll_enum = false;
+bool Config::_coll_dbdirs = false;
 bool Config::_collectdbg = false;
 bool Config::_concat = false;
 QString Config::_concatSep = SEPARATOR;
@@ -217,6 +218,8 @@ Config::Config(QWidget *par) : QDialog(par)
     _ui.coll_empty->setChecked(_coll_empty);
     connect(_ui.coll_enum, SIGNAL(clicked(bool)), this, SLOT(coll_enum(bool)));
     _ui.coll_enum->setChecked(_coll_enum);
+    connect(_ui.coll_dbdirs, SIGNAL(clicked(bool)), this, SLOT(coll_dbdirs(bool)));
+    _ui.coll_dbdirs->setChecked(_coll_dbdirs);
     connect(_ui.collect_dbg, SIGNAL(clicked(bool)), this, SLOT(collectdbg(bool)));
     _ui.collect_dbg->setChecked(_collectdbg);
     connect(_ui.concat, SIGNAL(clicked(bool)), this, SLOT(concat_sl(bool)));
@@ -535,6 +538,7 @@ void Config::revert()
     _coll_dummy = false;
     _coll_empty = false;
     _coll_enum = false;
+    _coll_dbdirs = false;
     _collectdbg = false;
     _concat = false;
     _concatSep = SEPARATOR;
@@ -628,6 +632,7 @@ void Config::reread()
     _coll_dummy = st.value("dummy_books_in_empty_collections", false).toBool();
     _coll_empty = st.value("create_empty_collections", false).toBool();
     _coll_enum = st.value("enumerate_collections", false).toBool();
+    _coll_dbdirs = st.value("dbdirs_collections", false).toBool();
     _collectdbg = st.value("collect_debug", false).toBool();
     _concat = st.value("concatenate", false).toBool();
     _concatSep = st.value("concatenate_separator", SEPARATOR).toString();
@@ -724,6 +729,7 @@ void Config::init()
     _coll_dummy = st.value("dummy_books_in_empty_collections", false).toBool();
     _coll_empty = st.value("create_empty_collections", false).toBool();
     _coll_enum = st.value("enumerate_collections", false).toBool();
+    _coll_dbdirs = st.value("dbdirs_collections", false).toBool();
     _collectdbg = st.value("collect_debug", false).toBool();
     _concat = st.value("concatenate", false).toBool();
     _concatSep = st.value("concatenate_separator", SEPARATOR).toString();
@@ -945,6 +951,7 @@ void Config::save()
     st.setValue("dummy_books_in_empty_collections", _coll_dummy);
     st.setValue("create_empty_collections", _coll_empty);
     st.setValue("enumerate_collections", _coll_enum);
+    st.setValue("dbdirs_collections", _coll_dbdirs);
     st.setValue("collect_debug", _collectdbg);
     st.setValue("concatenate", _concat);
     st.setValue("concatenate_separator", _concatSep);

@@ -26,7 +26,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -1248,17 +1248,11 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <spacer name="horizontalSpacer_9">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+           <widget class="QCheckBox" name="coll_dbdirs">
+            <property name="text">
+             <string>Do not scan known database directories</string>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>264</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
+           </widget>
           </item>
           <item row="1" column="1">
            <widget class="QCheckBox" name="coll_dummy">
