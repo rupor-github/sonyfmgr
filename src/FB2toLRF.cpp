@@ -6,6 +6,7 @@
 
 #include <QFile>
 #include <QFileInfo>
+#include <QDir>
 #include <QProcess>
 #include <QScrollBar>
 
@@ -34,17 +35,27 @@
 } while(0)
 
 ////////////////////////////////////////////////////////////////////////
+/*
+ *static QString replPath(const QString& path)
+ *{
+ *#if defined(WINDOWS)
+ *    return path;
+ *#else
+ *    QString rc = Config::wineRoot() + path;
+ *    rc.replace("/", "\\");
+ *    return rc;
+ *#endif
+ *} // replPath
+ *
+ */
 static QString replPath(const QString& path)
 {
 #if defined(WINDOWS)
-    return path;
+return QDir::toNativeSeparators( path );
 #else
-    QString rc = Config::wineRoot() + path;
-    rc.replace("/", "\\");
-    return rc;
+return QDir::toNativeSeparators( Config::wineRoot() + path );
 #endif
 } // replPath
-
 
 ////////////////////////////////////////////////////////////////////////
 bool FB2toLRF(const QString& fb2Name, const QString& LRFName,
@@ -69,11 +80,11 @@ bool FB2toLRF(const QString& fb2Name, const QString& LRFName,
     QStringList params = cmd.split(" ", QString::SkipEmptyParts);
     for (int i=0; i<params.size(); i++)
     {
-        params[i].replace("%PGM", Config::fb2LRF());
+        params[i].replace("%PGM",    QDir::toNativeSeparators(Config::fb2LRF()));
         params[i].replace("%STYLES", replPath(Config::fb2Styles()));
         params[i].replace("%TEMP",   replPath(Config::fb2lrfTmp()));
-        params[i].replace("%INP",    replPath(fb2Name));
-        params[i].replace("%OUT",    replPath(outName));
+        params[i].replace("%INP",    replPath(QDir::cleanPath(fb2Name)));
+        params[i].replace("%OUT",    replPath(QDir::cleanPath(outName)));
     }
     cmd = params[0];
     if (!params.isEmpty())
