@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+# Our staff
+Qt/4.7.0/**
+!Qt/4.7.0/readme.txt
+Qt/4.7.1/**
+!Qt/4.7.1/readme.txt
