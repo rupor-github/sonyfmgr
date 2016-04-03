@@ -63,5 +63,6 @@ unix {
         message(Building for Linux)
         SOURCES     += umount_lin.cpp
         DEFINES     += LINUX
+        LIBS        += -lz
     }
 }
